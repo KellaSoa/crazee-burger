@@ -1,18 +1,19 @@
 import { useState } from "react";
 
-export default function LoginForm() {
-  const [newUserState, setNewUserState] = useState("");
+export default function LoginPage() {
+  const [inputValue, setInputValue] = useState("");
 
   const handeSubmit = (event) => {
     event.preventDefault();
-    alert("bonjour " + newUserState);
-    setNewUserState("");
+    alert(`bonjour ${inputValue}`);
+    setInputValue("");
   };
 
   const handeChange = (event) => {
     console.log(event.target.value);
-    setNewUserState(event.target.value);
+    setInputValue(event.target.value);
   };
+
   return (
     <div>
       <h1>bienvenue chez nous !</h1>
@@ -20,7 +21,7 @@ export default function LoginForm() {
       <form action="action" onSubmit={handeSubmit}>
         <input
           type="text"
-          value={newUserState}
+          value={inputValue}
           onChange={handeChange}
           required
           placeholder="Entrez votre prénom..."
