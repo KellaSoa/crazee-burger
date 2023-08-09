@@ -24,9 +24,9 @@ export default function LoginForm() {
           value={userName}
           onChange={handeChange}
           required
-          placeholder="Entrez votre prénom..."
+          placeholder="Entrez votre prénom"
         />
-        <button>Accéder à votre espace</button>
+        <button>Accéder à mon espace</button>
       </form>
     </div>
   );
