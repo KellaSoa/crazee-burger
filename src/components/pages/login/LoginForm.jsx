@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 import { BsPersonCircle } from "react-icons/bs";
 import { IoChevronForward } from "react-icons/io5";
+import TextInput from "../../reusable-ui/TextInput";
+import PrimaryButton from "../../reusable-ui/PrimaryButton";
 
 export default function LoginForm() {
   const [userName, setuserName] = useState("");
@@ -23,20 +25,17 @@ export default function LoginForm() {
       <h1>bienvenue chez nous !</h1>
       <hr />
       <h2>Connectez vous</h2>
-      <div className="input-icon">
-        <BsPersonCircle className="icon" />
-        <input
-          type="text"
-          value={userName}
-          onChange={handeChange}
-          required
-          placeholder="Entrez votre prénom"
-        />
-      </div>
-      <button className="btn-icon">
-        <span>Accéder à mon espace</span>
-        <IoChevronForward className="iconForward" />
-      </button>
+      <TextInput
+        value={userName}
+        onChange={handeChange}
+        required
+        placeholder={"Entrez votre prénom"}
+        Icon={<BsPersonCircle className="icon" />}
+      />
+      <PrimaryButton
+        label={"Accéder à mon espace"}
+        Icon={<IoChevronForward className="iconForward" />}
+      />
     </LoginFormStyled>
   );
 }
@@ -53,44 +52,5 @@ const LoginFormStyled = styled.form`
   hr {
     border: 1.5px solid ${theme.colors.primary};
     margin-bottom: 40px;
-  }
-  .input-icon {
-    background-color: white;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    padding: 18px 24px;
-    margin: 18px 0;
-
-    .icon {
-      font-size: 15px;
-      margin-right: 8px;
-      color: #93a2b1;
-    }
-
-    input {
-      border: none;
-      font-size: 15px;
-      width: 100%;
-      padding: 10x;
-    }
-    &::placeholder {
-      background: white;
-      color: lightgray;
-    }
-  }
-  .btn-icon {
-    font-family: initial;
-    color: white;
-    background-color: ${theme.colors.primary};
-
-    &:active {
-      color: white;
-      background-color: ${theme.colors.primary};
-      border: 1px solid ${theme.colors.primary};
-    }
-    width: 100%;
-    .iconForward {
-    }
   }
 `;
