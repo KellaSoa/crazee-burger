@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { theme } from "../../../theme";
+import { BsPersonCircle } from "react-icons/bs";
+import { IoChevronForward } from "react-icons/io5";
+import TextInput from "../../reusable-ui/TextInput";
+import PrimaryButton from "../../reusable-ui/PrimaryButton";
 
 export default function LoginForm() {
   const [userName, setuserName] = useState("");
@@ -15,19 +21,41 @@ export default function LoginForm() {
     setuserName(event.target.value);
   };
   return (
-    <div>
+    <LoginFormStyled action="action" onSubmit={handeSubmit}>
       <h1>bienvenue chez nous !</h1>
-      <h3>Connectez vous</h3>
-      <form action="action" onSubmit={handeSubmit}>
-        <input
-          type="text"
-          value={userName}
-          onChange={handeChange}
-          required
-          placeholder="Entrez votre prénom..."
-        />
-        <button>Accéder à votre espace</button>
-      </form>
-    </div>
+      <hr />
+      <h2>Connectez vous</h2>
+      <TextInput
+        value={userName}
+        onChange={handeChange}
+        required
+        placeholder={"Entrez votre prénom"}
+        Icon={<BsPersonCircle className="icon" />}
+      />
+      <PrimaryButton
+        label={"Accéder à mon espace"}
+        Icon={<IoChevronForward className="iconForward" />}
+      />
+    </LoginFormStyled>
   );
 }
+
+const LoginFormStyled = styled.form`
+  letter-spacing: 1.5px;
+  text-align: center;
+  font-family: "Amatic SC", cursive;
+  min-width: 400px;
+  max-width: 500px;
+  padding: 40px ${theme.spacing.lg};
+  border-radius: ${theme.borderRadius.round};
+
+  h1,
+  h2 {
+    color: ${theme.colors.white};
+    text-transform: capitalize;
+  }
+  hr {
+    border: 1.5px solid ${theme.colors.primary};
+    margin-bottom: 40px;
+  }
+`;
