@@ -42,7 +42,12 @@ export default function LoginForm() {
 
 const LoginFormStyled = styled.form`
   letter-spacing: 1.5px;
+  text-align: center;
   font-family: "Amatic SC", cursive;
+  min-width: 400px;
+  max-width: 500px;
+  padding: 40px ${theme.spacing.lg};
+  border-radius: ${theme.borderRadius.round};
 
   h1,
   h2 {
