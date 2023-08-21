@@ -1,11 +1,11 @@
 import { styled } from "styled-components";
 import Profile from "./Profile";
 
-export default function NavbarRigthSide({ username }) {
+export default function NavbarRigthSide() {
   return (
     <NavbarRigthSideStyled>
       <div className="admin-btn"></div>
-      <Profile username={username} />
+      <Profile />
     </NavbarRigthSideStyled>
   );
 }

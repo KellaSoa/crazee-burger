@@ -19,6 +19,7 @@ const PrimaryButtonStyled = styled.button`
   align-items: center;
   justify-content: center;
   width: 100%;
+
   &:active {
     color: white;
     background-color: ${theme.colors.primary};
@@ -29,5 +30,8 @@ const PrimaryButtonStyled = styled.button`
     background-color: ${theme.colors.white};
     color: ${theme.colors.primary};
     border: 2px solid ${theme.colors.primary};
+  }
+  span {
+    padding: 9px 9px;
   }
 `;

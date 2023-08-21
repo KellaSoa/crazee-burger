@@ -5,12 +5,12 @@ import { theme } from "../../../theme";
 import NavbarRigthSide from "./NavbarRigthSide";
 import { refreshPage } from "../../../utils/window";
 
-export default function Navbar({ userName }) {
+export default function Navbar() {
   //state
   return (
     <NavStyles>
       <Logo className="logo-order-page" onClick={refreshPage} />
-      <NavbarRigthSide username={userName} />
+      <NavbarRigthSide />
     </NavStyles>
   );
 }
