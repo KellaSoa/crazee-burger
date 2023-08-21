@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import NavbarRigthSide from "./NavbarRigthSide";
+import { refreshPage } from "../../../utils/window";
 
 export default function Navbar({ userName }) {
   //state
   return (
     <NavStyles>
-      <Logo />
+      <Logo className="logo-order-page" onClick={refreshPage} />
       <NavbarRigthSide username={userName} />
     </NavStyles>
   );
@@ -21,6 +22,9 @@ const NavStyles = styled.nav`
   height: 10vh;
   display: flex;
   justify-content: space-between;
-
   padding: 0px 20px;
+
+  .logo-order-page {
+    cursor: pointer;
+  }
 `;
