@@ -7,7 +7,7 @@ import Logo from "../../reusable-ui/Logo";
 export default function LoginPage() {
   return (
     <LoginPageStyled className="container">
-      <Logo />
+      <Logo className={"logo-login-page"} />
       <LoginForm />
     </LoginPageStyled>
   );
@@ -24,4 +24,7 @@ const LoginPageStyled = styled.div`
   background-repeat: no-repeat;
   background-blend-mode: darken;
   background-size: cover;
+  .logo-login-page {
+    transform: scale(2.5);
+  }
 `;
