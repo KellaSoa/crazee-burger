@@ -2,7 +2,6 @@ import { BsPersonCircle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
-
 export default function Profile({ username }) {
   return (
     <ProfileStyled>
@@ -47,9 +46,9 @@ const ProfileStyled = styled.div`
           color: ${theme.colors.greyDark};
         }
         small {
-          font-size: ${theme.fonts.XXS};
+          font-size: ${theme.fonts.size.XXS};
           color: ${theme.colors.greyBlue};
-          font-weight: ${theme.weights.medium};
+          font-weight: ${theme.fonts.weights.medium};
           text-decoration: none;
           position: relative;
           bottom: 2px;
