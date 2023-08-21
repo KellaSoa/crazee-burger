@@ -4,7 +4,7 @@ import Profile from "./Profile";
 export default function NavbarRigthSide({ username }) {
   return (
     <NavbarRigthSideStyled>
-      <div className="admin-btn">admin btn</div>
+      <div className="admin-btn"></div>
       <Profile username={username} />
     </NavbarRigthSideStyled>
   );
