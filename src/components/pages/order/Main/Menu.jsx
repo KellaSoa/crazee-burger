@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
-import Card from "./Card";
+import Product from "./Product";
 
 export default function Menu() {
   return (
     <MenuStyled>
-      <Card />
+      <Product />
     </MenuStyled>
   );
 }
