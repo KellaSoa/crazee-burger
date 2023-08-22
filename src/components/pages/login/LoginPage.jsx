@@ -1,6 +1,6 @@
 import { useState } from "react";
 import LoginForm from "./LoginForm";
-import bg from "../../../assets/images/burgerbackground.jpg";
+import bg from "/images/burgerbackground.jpg";
 import { styled } from "styled-components";
 import Logo from "../../reusable-ui/Logo";
 
