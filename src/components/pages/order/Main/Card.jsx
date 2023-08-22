@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
-import { fakeMenu1, fakeMenu2 } from "../../../fakeData/fakeMenu";
-import { theme } from "../../../theme";
-import PrimaryButton from "../../reusable-ui/PrimaryButton";
-import { formatPrice } from "../../../utils/maths";
+import { fakeMenu1, fakeMenu2 } from "../../../../fakeData/fakeMenu";
+import { theme } from "../../../../theme";
+import PrimaryButton from "../../../reusable-ui/PrimaryButton";
+import { formatPrice } from "../../../../utils/maths";
 export default function Card() {
   const Card = () =>
     fakeMenu2.map((item, index) => (
@@ -50,10 +50,12 @@ const CardStyled = styled.div`
     justify-content: space-between;
     align-items: center;
     border: ipx solid red;
+    margin-left: 20px;
+    margin-right: 20px;
   }
   .price {
     color: ${theme.colors.primary};
-    font-size: ${theme.fonts.size.P2};
+    font-size: ${theme.fonts.size.P3};
   }
   .btn-card {
     width: auto;

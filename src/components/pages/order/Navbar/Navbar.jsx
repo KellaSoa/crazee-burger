@@ -1,9 +1,9 @@
-import Logo from "../../reusable-ui/Logo";
+import Logo from "../../../reusable-ui/Logo";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { theme } from "../../../theme";
+import { theme } from "../../../../theme";
 import NavbarRigthSide from "./NavbarRigthSide";
-import { refreshPage } from "../../../utils/window";
+import { refreshPage } from "../../../../utils/window";
 
 export default function Navbar() {
   //state
