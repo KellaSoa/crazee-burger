@@ -1,6 +1,6 @@
 import { useState } from "react";
 import LoginForm from "./LoginForm";
-import bg from "../../../assets/images/burgerbackground.jpg";
+import bg from "/images/burgerbackground.jpg";
 import { styled } from "styled-components";
 import Logo from "../../reusable-ui/Logo";
 
@@ -14,16 +14,22 @@ export default function LoginPage() {
 }
 
 const LoginPageStyled = styled.div`
-  position: relative;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-image: url(${bg});
-  background-repeat: no-repeat;
-  background-blend-mode: darken;
-  background-size: cover;
+
+  &::before {
+    content: "";
+    background: url(${bg}) center center #000000b2;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    background-size: cover;
+    position: absolute;
+    z-index: -1;
+    inset: 0px;
+  }
   .logo-login-page {
     transform: scale(2.5);
   }

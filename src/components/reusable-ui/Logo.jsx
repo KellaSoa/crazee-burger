@@ -1,7 +1,7 @@
 import React from "react";
 import { theme } from "../../theme";
 import { styled } from "styled-components";
-import logo from "../../assets/images/logo.png";
+import logo from "/images/logo.png";
 
 export default function Logo({ className, onClick }) {
   return (

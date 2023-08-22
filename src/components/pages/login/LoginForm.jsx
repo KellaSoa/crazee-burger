@@ -10,6 +10,7 @@ import PrimaryButton from "../../reusable-ui/PrimaryButton";
 export default function LoginForm() {
   const [userName, setuserName] = useState("");
   const navigate = useNavigate();
+
   const handeSubmit = (event) => {
     event.preventDefault();
     setuserName("");
@@ -20,9 +21,10 @@ export default function LoginForm() {
     console.log(event.target.value);
     setuserName(event.target.value);
   };
+
   return (
     <LoginFormStyled action="action" onSubmit={handeSubmit}>
-      <h1>bienvenue chez nous !</h1>
+      <h1>Bienvenue chez nous !</h1>
       <hr />
       <h2>Connectez vous</h2>
       <TextInput
