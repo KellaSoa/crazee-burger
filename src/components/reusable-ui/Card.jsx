@@ -1,25 +1,18 @@
 import { styled } from "styled-components";
-import { fakeMenu1, fakeMenu2 } from "../../../../fakeData/fakeMenu";
-import { theme } from "../../../../theme";
-import PrimaryButton from "../../../reusable-ui/PrimaryButton";
-import { formatPrice } from "../../../../utils/maths";
-import { useState } from "react";
-export default function Card() {
-  const [menu, setMenu] = useState(fakeMenu2);
-  const Card = () =>
-    menu.map((item, index) => (
-      <CardStyled className="card" key={item.id}>
-        <img src={item.imageSource} alt={item.title} />
-        <div className="title">{item.title} </div>
-        <div className="description">
-          <span className="price">{formatPrice(item.price)}</span>
-          <button></button>
-          <PrimaryButton className="btn-card" label={"Ajouter"} />
-        </div>
-      </CardStyled>
-    ));
-
-  return <Card />;
+import { theme } from "../../theme";
+import PrimaryButton from "./PrimaryButton";
+export default function Card({ title, imageSource, info }) {
+  return (
+    <CardStyled>
+      <img src={imageSource} alt={title} />
+      <div className="title">{title} </div>
+      <div className="description">
+        <span className="info">{info}</span>
+        <button></button>
+        <PrimaryButton className="btn-card" label={"Ajouter"} />
+      </div>
+    </CardStyled>
+  );
 }
 
 const CardStyled = styled.div`
@@ -55,7 +48,7 @@ const CardStyled = styled.div`
     margin-left: 20px;
     margin-right: 20px;
   }
-  .price {
+  .info {
     color: ${theme.colors.primary};
     font-size: ${theme.fonts.size.P3};
   }
