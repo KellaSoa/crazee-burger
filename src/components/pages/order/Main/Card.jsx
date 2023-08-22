@@ -3,9 +3,11 @@ import { fakeMenu1, fakeMenu2 } from "../../../../fakeData/fakeMenu";
 import { theme } from "../../../../theme";
 import PrimaryButton from "../../../reusable-ui/PrimaryButton";
 import { formatPrice } from "../../../../utils/maths";
+import { useState } from "react";
 export default function Card() {
+  const [menu, setMenu] = useState(fakeMenu2);
   const Card = () =>
-    fakeMenu2.map((item, index) => (
+    menu.map((item, index) => (
       <CardStyled className="card" key={item.id}>
         <img src={item.imageSource} alt={item.title} />
         <div className="title">{item.title} </div>
