@@ -8,7 +8,6 @@ export default function Card({ title, imageSource, info }) {
       <div className="title">{title} </div>
       <div className="description">
         <span className="info">{info}</span>
-        <button></button>
         <PrimaryButton className="btn-card" label={"Ajouter"} />
       </div>
     </CardStyled>
