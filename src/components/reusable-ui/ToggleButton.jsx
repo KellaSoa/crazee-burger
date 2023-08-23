@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React from "react"
 import styled from "styled-components"
 import { theme } from "../../theme"
+=======
+import React from "react";
+import styled from "styled-components";
+import { theme } from "../../theme";
+>>>>>>> cea541386fc4f9329264541824dd438c074dd8d8
 
 export default function ToggleButton({
   isChecked,
@@ -24,7 +30,11 @@ export default function ToggleButton({
         data-unchecked={labelIfUnchecked}
       ></label>
     </ToggleButtonStyled>
+<<<<<<< HEAD
   )
+=======
+  );
+>>>>>>> cea541386fc4f9329264541824dd438c074dd8d8
 }
 
 const ToggleButtonStyled = styled.div`
@@ -131,4 +141,8 @@ const ToggleButtonStyled = styled.div`
       background-color: ${theme.colors.primary};
     }
   }
+<<<<<<< HEAD
 `
+=======
+`;
+>>>>>>> cea541386fc4f9329264541824dd438c074dd8d8
