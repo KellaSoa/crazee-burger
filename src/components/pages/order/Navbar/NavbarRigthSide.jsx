@@ -27,7 +27,7 @@ export default function NavbarRigthSide() {
       setIsModeAdmin(!isModeAdmin)
   }
 
-  return (
+  return ( 
     <NavbarRigthSideStyled>
       <ToggleButton 
         labelIfChecked = "Désactiver le mode admin"
