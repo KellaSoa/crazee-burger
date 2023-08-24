@@ -57,13 +57,5 @@ const AdminTabStyled = styled.div`
   display: flex;
   margin-left: 50px;
   border-bottom: 1px solid ${theme.colors.greyLight};
- 
-  .containTab {
-  }
-  /* Style the tab content */
-  .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border-top: 1px solid ${theme.colors.greyLight};
-  }
+  
 `;

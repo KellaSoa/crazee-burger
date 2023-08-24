@@ -26,5 +26,8 @@ export default function Menu() {
 
 const MenuStyled = styled.div`
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  padding: 50px 50px 150px;
+  grid-row-gap: 60px;
+  overflow-y: scroll;
 `;
