@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Menu from "./Menu";
 import { theme } from "../../../../theme";
-import Tabs from "../Tabs/Tabs";
+import Admin from "../../../admin/Admin";
 
 export default function Main() {
   return (
@@ -10,7 +10,7 @@ export default function Main() {
         <div>Left</div>
         <Menu />
       </div>
-      <Tabs />
+      <Admin />
     </MainStyled>
   );
 }

@@ -1,16 +1,20 @@
 import { styled } from "styled-components";
 import { theme } from "../../theme";
+import { useContext } from "react";
+import IsActiveContext from "../context/IsActiveContext";
 
-export default function PannelButton({ label, Icon, className }) {
+export default function TabButton({ id,label, Icon,isActive,onClick }) {
+  const infoActive = useContext(IsActiveContext);
+  console.log(infoActive);
   return (
-    <PannelButtonStyled className={className}>
+    <TabButtonStyled className={` ${isActive ? "activeBtn" : "inActiveBtn"}`} onClick={onClick} id={id}>
       {Icon && Icon}
       <span>{label}</span>
-    </PannelButtonStyled>
+    </TabButtonStyled>
   );
 }
 
-const PannelButtonStyled = styled.button`
+const TabButtonStyled = styled.button`
   font-family: initial;
   color: ${theme.colors.greyDark};
   background-color: ${theme.colors.greyLight};
@@ -18,15 +22,17 @@ const PannelButtonStyled = styled.button`
   align-items: center;
   justify-content: center;
   float: left;
-  border: none;
+  border: none; 
   outline: none;
   cursor: pointer;
   transition: 0.3s;
 
+  .activeBtn {
+  }
   &:active {
     color: white;
-    background-color: ${theme.colors.greyLight};
-    border: 1px solid ${theme.colors.greyLight};
+    background-color: ${theme.colors.dark};
+    color: ${theme.colors.white}
   }
 
   &:hover {
