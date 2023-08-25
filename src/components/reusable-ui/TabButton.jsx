@@ -1,13 +1,10 @@
 import { styled } from "styled-components";
 import { theme } from "../../theme";
-import { useContext } from "react";
-import IsActiveContext from "../context/IsActiveTabContext";
 
-export default function TabButton({ id,label, Icon,isActive,onClick }) {
-  const infoActive = useContext(IsActiveContext);
-  console.log(infoActive);
+export default function TabButton({ id,label, Icon,onClick }) {
+  
   return (
-    <TabButtonStyled className={` ${isActive ? "activeBtn" : "inActiveBtn"}`} onClick={onClick} id={id}>
+    <TabButtonStyled onClick={onClick} id={id}>
       {Icon && Icon}
       <span>{label}</span>
     </TabButtonStyled>
@@ -15,9 +12,10 @@ export default function TabButton({ id,label, Icon,isActive,onClick }) {
 }
 
 const TabButtonStyled = styled.button`
-  font-family: initial;
-  color: ${theme.colors.greyDark};
-  background-color: ${theme.colors.greyLight};
+  box-shadow:${theme.shadows.subtle};
+  border-radius: 5px 5px 0px 0px;
+  border:1px solid ${theme.colors.greyLight};
+  background: ${theme.colors.white};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,9 +24,15 @@ const TabButtonStyled = styled.button`
   outline: none;
   cursor: pointer;
   transition: 0.3s;
-
-  .activeBtn {
-  }
+  height: 43px;
+  padding: 0px 22px;
+  font-size: ${theme.fonts.size.P0};
+  color: ${theme.colors.greyDark};
+  font-family: initial;
+  position: relative;
+  left: 50px;
+  top: 1px;
+  
   &:active {
     color: white;
     background-color: ${theme.colors.dark};
@@ -36,9 +40,7 @@ const TabButtonStyled = styled.button`
   }
 
   &:hover {
-    background-color: ${theme.colors.white};
-    color: ${theme.colors.greyLight};
-    border: 2px solid ${theme.colors.greyLight};
+    border-bottom: 2px solid ${theme.colors.white};
   }
   span {
     padding: 9px 9px;

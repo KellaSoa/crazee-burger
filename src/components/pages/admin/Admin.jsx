@@ -23,11 +23,7 @@ export default function Admin() {
   )
 }
 
-const AdminStyled = styled.div`
-    height: 250px;
-    background: ${theme.colors.white};
-    border: 1px solid  ${theme.colors.greyLight};
-    box-shadow: ${theme.shadows.subtle};
+const AdminStyled = styled.div`    
     position: absolute;
     bottom: 0;
     right: 0;

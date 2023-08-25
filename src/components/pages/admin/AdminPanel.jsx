@@ -17,14 +17,18 @@ export default function AdminPanel() {
 }
 
 const AdminPanelStyled = styled.div`
-background-color: ${theme.colors.background_white};
-color: ${theme.colors.dark};
+    background-color: ${theme.colors.background_white};
+    color: ${theme.colors.dark};
+    height: 250px;
+    background: ${theme.colors.white};
+    border: 1px solid  ${theme.colors.greyLight};
+    box-shadow: ${theme.shadows.subtle};
 
-.panelActive{
-    display: block;
-}
+    .panelActive{
+        display: block;
+    }
 
-.panelInActive{
-    display: none;
-}
+    .panelInActive{
+        display: none;
+    }
 `;
