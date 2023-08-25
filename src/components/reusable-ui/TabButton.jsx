@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { theme } from "../../theme";
 import { useContext } from "react";
-import IsActiveContext from "../context/IsActiveContext";
+import IsActiveContext from "../context/IsActiveTabContext";
 
 export default function TabButton({ id,label, Icon,isActive,onClick }) {
   const infoActive = useContext(IsActiveContext);

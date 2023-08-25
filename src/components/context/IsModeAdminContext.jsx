@@ -1,7 +1,6 @@
 import { createContext } from "react";
 
 export default createContext({
-  isActive:"",
-  setIsActive: ()=>{},
-  onclick: ()=>{},
+  isModeAdmin:false,
+  setIsModeAdmin: ()=>{},
 });
