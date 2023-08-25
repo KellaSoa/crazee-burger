@@ -1,12 +1,12 @@
 import { styled } from "styled-components";
 import { theme } from "../../theme";
 
-export default function TabButton({ id,label, Icon,onClick }) {
+export default function TabButton({ id,label, Icon,onClick,className}) {
   
   return (
-    <TabButtonStyled onClick={onClick} id={id}>
-      {Icon && Icon}
-      <span>{label}</span>
+    <TabButtonStyled onClick={onClick} id={id} className={className}>
+      <div className="icon">{Icon && Icon}</div>
+      {label && <span>{label}</span>}
     </TabButtonStyled>
   );
 }
@@ -32,17 +32,14 @@ const TabButtonStyled = styled.button`
   position: relative;
   left: 50px;
   top: 1px;
-  
-  &:active {
-    color: white;
-    background-color: ${theme.colors.dark};
-    color: ${theme.colors.white}
-  }
-
+ 
   &:hover {
     border-bottom: 2px solid ${theme.colors.white};
   }
   span {
     padding: 9px 9px;
+  }
+  .icon{
+    display: flex;
   }
 `;

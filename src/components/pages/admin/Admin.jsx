@@ -2,24 +2,32 @@ import React, { useState } from 'react'
 import AdminTab from './AdminTab'
 import AdminPanel from './AdminPanel'
 import { styled } from 'styled-components';
-import { theme } from '../../../theme';
-import IsActiveTabContext from '../../context/IsActiveTabContext';
+import TabContent from '../../context/TabContext';
+import TabActiveContext from '../../context/TabActiveContext';
 
 export default function Admin() {
+ 
+  const [tabName,setTabName] = useState("");
+  const [tabActive, setTabActive] = useState("");
+  const [isCollapsed,setIsCollapsed] = useState(false);
 
-  const [isActive,setIsActive] = useState("");
-
-  const isActiveTabContextValue ={
-    isActive,setIsActive
+  const tabContentValue ={
+    tabName,setTabName
+  }
+  const tabActiveContextValue ={
+    tabActive, setTabActive
   }
 
+
   return (
-    <IsActiveTabContext.Provider value={isActiveTabContextValue}>
-      <AdminStyled>
-          <AdminTab/>
-          <AdminPanel/>
-      </AdminStyled>
-    </IsActiveTabContext.Provider>
+    <TabContent.Provider value={tabContentValue}>
+      <TabActiveContext.Provider value={tabActiveContextValue}>
+        <AdminStyled>
+            <AdminTab isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed}/>
+            {isCollapsed && <AdminPanel/>}
+        </AdminStyled>      
+      </TabActiveContext.Provider>
+    </TabContent.Provider>
   )
 }
 

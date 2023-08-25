@@ -1,17 +1,19 @@
 import React, { useContext } from 'react'
-import IsActiveContext from '../../context/IsActiveTabContext';
+import TabContext from '../../context/TabContext';
 import { theme } from '../../../theme';
 import { styled } from 'styled-components';
-import IsActiveTabContext from '../../context/IsActiveTabContext';
+import TabActiveContext from '../../context/TabActiveContext';
 
 export default function AdminPanel() {
 
-    const {isActive,setIsActive} = useContext(IsActiveTabContext)
+    const {tabName,setTabName} = useContext(TabContext)
+    const {tabActive, setTabActive} = useContext(TabActiveContext)
+
     return (
         <AdminPanelStyled>            
-            <div className={isActive == 'default'? 'panelActive':'panelInActive'}></div>
-            <div className={isActive == 'add'? 'panelActive':'panelInActive'}>Ajouter Produit</div>
-            <div className={isActive == 'edit'? 'panelActive':'panelInActive'}>Modifier Produit</div>
+            <div className={tabName == 'collapsed'? 'panelActive':'panelInActive'}></div>
+            <div className={tabName == "add" || tabActive == "add"? 'panelActive':'panelInActive'}>Ajouter Produit</div>
+            <div className={tabName == 'edit' || tabActive == "edit"? 'panelActive':'panelInActive'}>Modifier Produit</div>
         </AdminPanelStyled>
     )
 }
