@@ -1,12 +1,10 @@
 import { styled } from "styled-components";
 import TabButton from "../../reusable-ui/TabButton";
-import { FiChevronDown,FiChevronUp } from "react-icons/fi";
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdModeEditOutline } from "react-icons/md";
 import { useContext, useState} from "react";
 import { theme } from "../../../theme";
 import TabContext from "../../context/TabContext";
 import TabActiveContext from "../../context/TabActiveContext";
+import { getTabsConfig } from "./helper/getTabsConfig";
  
 export default function AdminTab({isCollapsed,setIsCollapsed} ) {
   //defaut active button add product
@@ -28,30 +26,8 @@ export default function AdminTab({isCollapsed,setIsCollapsed} ) {
     setDefaultBtnActive("")
   };
 
-  const tabsConfig = [
-    {
-      id:"collapsed", 
-      label:"",
-      className: isCollapsed ? "is-active" : "",
-      Icon:isCollapsed ? <FiChevronUp /> : <FiChevronDown /> ,
-      onClick:handleClick ,
-    },
-    {
-      id:"add",
-      Icon:<AiOutlinePlus />,
-      label:"Ajouter un produit",
-      onClick:handleClick,  
-      className:tabName == "add" || tabActive == "add" || defaultBtnActive =="default" ? "is-active" : "",
-    },
-    {
-      id:"edit",
-      Icon:<MdModeEditOutline />,
-      label:"Modifier un produit",
-      onClick:handleClick,
-      className:tabName == "edit" || tabActive == "edit" ? "is-active" : "",
-    }
-
-  ]
+  const tabs= getTabsConfig(isCollapsed,handleClick,tabName,tabActive,defaultBtnActive);
+  
   
   return (
     <AdminTabStyled>
@@ -63,7 +39,7 @@ export default function AdminTab({isCollapsed,setIsCollapsed} ) {
         className={tabName == "add" || tabActive == "add" || defaultBtnActive =="default" ? "is-active" : ""}       
       />
        */}
-      {tabsConfig.map((tab)=>{
+      {tabs.map((tab)=>{
         return <TabButton 
           key={tab.id}
           id={tab.id} 

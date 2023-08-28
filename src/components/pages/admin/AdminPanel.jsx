@@ -3,32 +3,17 @@ import TabContext from '../../context/TabContext';
 import { theme } from '../../../theme';
 import { styled } from 'styled-components';
 import TabActiveContext from '../../context/TabActiveContext';
+import { getPanelsConfig } from './helper/getPanelsConfig';
 
 export default function AdminPanel() {
-
     const {tabName,setTabName} = useContext(TabContext)
-    const {tabActive, setTabActive} = useContext(TabActiveContext)
+    const {tabActive, setTabActive} = useContext(TabActiveContext)    
 
-    const panelsConfig = [
-        {
-            className: tabName == 'collapsed'? 'panelActive':'panelInActive',
-            text: "",
-        },
-        {
-            className: tabName == "add" || tabActive == "add"? 'panelActive':'panelInActive',
-            text: "Ajouter Produit"
-        },
-        {
-            className: tabName == 'edit' || tabActive == "edit"? 'panelActive':'panelInActive',
-            text: "Modifier Produit"
-        },
-        
-        
-    ]
+    const panels = getPanelsConfig(tabName,tabActive)
 
     return (
         <AdminPanelStyled>            
-           {panelsConfig.map((panel,index)=>{
+           {panels.map((panel,index)=>{
                 return <div key={index} className={panel.className}>{panel.text}</div>
            })} 
             {/* <div className={tabName == "add" || tabActive == "add"? 'panelActive':'panelInActive'}>Ajouter Produit</div> */}
