@@ -9,11 +9,29 @@ export default function AdminPanel() {
     const {tabName,setTabName} = useContext(TabContext)
     const {tabActive, setTabActive} = useContext(TabActiveContext)
 
+    const panelsConfig = [
+        {
+            className: tabName == 'collapsed'? 'panelActive':'panelInActive',
+            text: "",
+        },
+        {
+            className: tabName == "add" || tabActive == "add"? 'panelActive':'panelInActive',
+            text: "Ajouter Produit"
+        },
+        {
+            className: tabName == 'edit' || tabActive == "edit"? 'panelActive':'panelInActive',
+            text: "Modifier Produit"
+        },
+        
+        
+    ]
+
     return (
         <AdminPanelStyled>            
-            <div className={tabName == 'collapsed'? 'panelActive':'panelInActive'}></div>
-            <div className={tabName == "add" || tabActive == "add"? 'panelActive':'panelInActive'}>Ajouter Produit</div>
-            <div className={tabName == 'edit' || tabActive == "edit"? 'panelActive':'panelInActive'}>Modifier Produit</div>
+           {panelsConfig.map((panel,index)=>{
+                return <div key={index} className={panel.className}>{panel.text}</div>
+           })} 
+            {/* <div className={tabName == "add" || tabActive == "add"? 'panelActive':'panelInActive'}>Ajouter Produit</div> */}
         </AdminPanelStyled>
     )
 }

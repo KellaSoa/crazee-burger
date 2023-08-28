@@ -27,26 +27,52 @@ export default function AdminTab({isCollapsed,setIsCollapsed} ) {
     setTabName(idSelected);
     setDefaultBtnActive("")
   };
+
+  const tabsConfig = [
+    {
+      id:"collapsed", 
+      label:"",
+      className: isCollapsed ? "is-active" : "",
+      Icon:isCollapsed ? <FiChevronUp /> : <FiChevronDown /> ,
+      onClick:handleClick ,
+    },
+    {
+      id:"add",
+      Icon:<AiOutlinePlus />,
+      label:"Ajouter un produit",
+      onClick:handleClick,  
+      className:tabName == "add" || tabActive == "add" || defaultBtnActive =="default" ? "is-active" : "",
+    },
+    {
+      id:"edit",
+      Icon:<MdModeEditOutline />,
+      label:"Modifier un produit",
+      onClick:handleClick,
+      className:tabName == "edit" || tabActive == "edit" ? "is-active" : "",
+    }
+
+  ]
   
   return (
     <AdminTabStyled>
-      <TabButton id="collapsed" 
-        className={isCollapsed ? "is-active" : ""}
-        Icon={isCollapsed ? <FiChevronUp /> : <FiChevronDown /> }
-        onClick={handleClick} 
-      />
+      {/*
       <TabButton id="add"
         Icon={<AiOutlinePlus />}
         label={"Ajouter un produit"}
         onClick={handleClick}
         className={tabName == "add" || tabActive == "add" || defaultBtnActive =="default" ? "is-active" : ""}       
       />
-      <TabButton id="edit"
-        Icon={<MdModeEditOutline />}
-        label={"Modifier un produit"}
-        onClick={handleClick}
-        className={tabName == "edit" || tabActive == "edit" ? "is-active" : ""}
+       */}
+      {tabsConfig.map((tab)=>{
+        return <TabButton 
+          key={tab.id}
+          id={tab.id} 
+          label={tab.label}
+          className={tab.className}
+          Icon={tab.Icon}
+          onClick={tab.onClick} 
       />
+      })}
     </AdminTabStyled>   
   );
 }
