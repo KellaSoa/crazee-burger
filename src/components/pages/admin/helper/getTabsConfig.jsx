@@ -7,7 +7,7 @@ export const getTabsConfig = (isCollapsed, handleClick, tabName,tabActive,defaul
     {
       id:"collapsed", 
       label:"",
-      className: isCollapsed ? "is-active" : "",
+      className: tabName == "collapsed" || isCollapsed ? "is-active" : "",
       Icon:isCollapsed ? <FiChevronUp /> : <FiChevronDown /> ,
       onClick:handleClick ,
     },

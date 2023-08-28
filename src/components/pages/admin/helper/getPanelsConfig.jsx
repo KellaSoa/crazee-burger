@@ -10,6 +10,7 @@ export const getPanelsConfig = (tabName,tabActive) => [
     {
         className: tabName == 'edit' || tabActive == "edit"? 'panelActive':'panelInActive',
         text: "Modifier Produit"
-    },   
+    },
+    
     
 ]
