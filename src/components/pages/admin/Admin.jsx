@@ -7,12 +7,12 @@ import TabActiveContext from '../../context/TabActiveContext';
 
 export default function Admin() {
  
-  const [tabCurrentName, setTabCurrentName] = useState("");
+  const [tabCurrentName, setTabCurrentName] = useState("add");
   const [tabActive, setTabActive] = useState("");
   const [isCollapsed,setIsCollapsed] = useState(false);
-
   const TabCurrentNameValue ={
-    tabCurrentName, setTabCurrentName
+    tabCurrentName,
+    setTabCurrentName
   }
   const tabActiveContextValue ={
     tabActive, setTabActive
