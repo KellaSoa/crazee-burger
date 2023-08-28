@@ -1,24 +1,46 @@
-import styled from "styled-components";
-import Menu from "./Menu";
-import { theme } from "../../../../theme";
+import styled from "styled-components"
+import { theme } from "../../../../theme"
+import Menu from "./Menu"
+import { useContext } from "react"
+import IsModeAdminContext from "../../../context/IsModeAdminContext"
+import Admin from "../../admin/Admin"
 
 export default function Main() {
+
+  const {isModeAdmin, setIsModeAdmin} = useContext(IsModeAdminContext)
+
   return (
-    <MainStyled>
-      <div>Left</div>
-      <Menu />
+    <MainStyled className="main">
+      {/* <div className="basket">Basket</div>  */}
+      <div className="menu-and-admin">
+          <Menu />
+          {/* {isModeAdmin ? <Admin />: null} */}
+          {isModeAdmin && <Admin />} 
+        </div>
     </MainStyled>
-  );
+  )
 }
 
 const MainStyled = styled.div`
-  background: #f5f5f7;
-  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
+  background: ${theme.colors.background_white};
+  height: calc(95vh - 10vh);
+
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
-  display: flex;
-  justify-items: center;
-  justify-content: space-between;
-  padding: 50px 50px 150px;
-  grid-row-gap: 60px;
-`;
+  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
+
+  display: grid;
+  grid-template-columns:1fr;
+
+  overflow-y: scroll;
+  .basket {
+    background: pink;
+  }
+  .menu-and-admin{
+    position: relative;
+    overflow-y: hidden;    
+    display: grid;
+    border-bottom-left-radius: ${theme.borderRadius.extraRound};
+    border-bottom-right-radius: ${theme.borderRadius.extraRound};
+  }
+`

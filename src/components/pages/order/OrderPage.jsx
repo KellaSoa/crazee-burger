@@ -1,22 +1,30 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState } from "react";
 import Navbar from "./Navbar/Navbar";
 import styled from "styled-components";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
+import IsModeAdminContext from "../../context/IsModeAdminContext";
 
 export default function OrderPage() {
   //state
+  const [isModeAdmin, setIsModeAdmin] = useState(false)
+
+  const isModeAdminContextValue = {
+    isModeAdmin, setIsModeAdmin
+  }
 
   //comportement
   //return
   return (
-    <OrderPageStyled>
-      <div className="container">
-        <Navbar />
-        <Main />
-      </div>
-    </OrderPageStyled>
+    <IsModeAdminContext.Provider value={isModeAdminContextValue}>
+      <OrderPageStyled>
+        <div className="container">
+          <Navbar />
+          <Main />
+        </div>
+      </OrderPageStyled>
+    </IsModeAdminContext.Provider>
+
   );
 }
 
