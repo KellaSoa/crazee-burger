@@ -8,11 +8,10 @@ import { getTabsConfig } from "./helper/getTabsConfig";
  
 export default function AdminTab({isCollapsed,setIsCollapsed} ) {
   //defaut active button add product
-  const [defaultActiveBtn, setDefaultActiveBtn] = useState("add");
+ 
   const {tabCurrentName, setTabCurrentName} = useContext(TabCurrentName)
   const {tabActive, setTabActive} = useContext(TabActiveContext)  
   
-  console.log(defaultActiveBtn)
   const handleClick = (event) => {
     var idSelected = event.currentTarget.id;
     if ( idSelected === "collapsed"){
@@ -20,13 +19,12 @@ export default function AdminTab({isCollapsed,setIsCollapsed} ) {
     }else{
       setTabActive(idSelected);
       //collapsed panel when click Tab != collapsed  
-      setIsCollapsed(true);
+      setIsCollapsed(true);      
     }     
-    setTabCurrentName(idSelected);
-    setDefaultActiveBtn(false)
+    setTabCurrentName(idSelected);   
   };
 
-  const tabs= getTabsConfig(isCollapsed,tabCurrentName,tabActive,defaultActiveBtn);
+  const tabs= getTabsConfig(isCollapsed,tabCurrentName,tabActive);
   
   
   return (
@@ -36,16 +34,15 @@ export default function AdminTab({isCollapsed,setIsCollapsed} ) {
         Icon={<AiOutlinePlus />}
         label={"Ajouter un produit"}
         onClick={handleClick}
-        className={tabCurrentName == "add" || tabActive == "add" || defaultActiveBtn =="add" ? "is-active" : ""}       
+        className={tabCurrentName == "add" || tabActive == "add"  ? "is-active" : ""}       
       />
        */}
       {tabs.map((tab)=>{
-        console.log(defaultActiveBtn)
         return <TabButton 
           key={tab.id}
           id={tab.id} 
           label={tab.label}
-          className={ tabCurrentName == tab.id || tabActive == tab.id || tab.id === defaultActiveBtn  ? "is-active" : ""}
+          className={ tabCurrentName == tab.id || tabActive == tab.id ? "is-active" : ""}
           Icon={tab.Icon}
           onClick={handleClick} 
       />
