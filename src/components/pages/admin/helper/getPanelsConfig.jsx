@@ -1,14 +1,14 @@
-export const getPanelsConfig = (tabName,tabActive) => [
+export const getPanelsConfig = (tabActive) => [
     {
-        className: tabName == 'collapsed'? 'panelActive':'panelInActive',
+        id: 'collapsed',
         text: "",
     },
     {
-        className: tabName == "add" || tabActive == "add"? 'panelActive':'panelInActive',
+        id:"add",
         text: "Ajouter Produit"
     },
     {
-        className: tabName == 'edit' || tabActive == "edit"? 'panelActive':'panelInActive',
+        id:"edit",
         text: "Modifier Produit"
     },
     

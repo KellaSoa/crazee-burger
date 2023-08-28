@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import AdminTab from './AdminTab'
 import AdminPanel from './AdminPanel'
 import { styled } from 'styled-components';
-import TabContent from '../../context/TabContext';
+import TabCurrentName from '../../context/TabCurrentName';
 import TabActiveContext from '../../context/TabActiveContext';
 
 export default function Admin() {
  
-  const [tabName,setTabName] = useState("");
+  const [tabCurrentName, setTabCurrentName] = useState("");
   const [tabActive, setTabActive] = useState("");
   const [isCollapsed,setIsCollapsed] = useState(false);
 
-  const tabContentValue ={
-    tabName,setTabName
+  const TabCurrentNameValue ={
+    tabCurrentName, setTabCurrentName
   }
   const tabActiveContextValue ={
     tabActive, setTabActive
@@ -20,14 +20,14 @@ export default function Admin() {
 
 
   return (
-    <TabContent.Provider value={tabContentValue}>
+    <TabCurrentName.Provider value={TabCurrentNameValue}>
       <TabActiveContext.Provider value={tabActiveContextValue}>
         <AdminStyled>
             <AdminTab isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed}/>
             {isCollapsed && <AdminPanel/>}
         </AdminStyled>      
       </TabActiveContext.Provider>
-    </TabContent.Provider>
+    </TabCurrentName.Provider>
   )
 }
 

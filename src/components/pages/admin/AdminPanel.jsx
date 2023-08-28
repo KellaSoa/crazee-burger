@@ -1,22 +1,20 @@
 import React, { useContext } from 'react'
-import TabContext from '../../context/TabContext';
 import { theme } from '../../../theme';
 import { styled } from 'styled-components';
 import TabActiveContext from '../../context/TabActiveContext';
 import { getPanelsConfig } from './helper/getPanelsConfig';
 
 export default function AdminPanel() {
-    const {tabName,setTabName} = useContext(TabContext)
     const {tabActive, setTabActive} = useContext(TabActiveContext)    
 
-    const panels = getPanelsConfig(tabName,tabActive)
+    const panels = getPanelsConfig(tabActive)
 
     return (
         <AdminPanelStyled>            
            {panels.map((panel,index)=>{
-                return <div key={index} className={panel.className}>{panel.text}</div>
+                return <div key={index} className={tabActive === panel.id ? 'panelActive':'panelInActive'}>{panel.text}</div>
            })} 
-            {/* <div className={tabName == "add" || tabActive == "add"? 'panelActive':'panelInActive'}>Ajouter Produit</div> */}
+            {/* <div className={tabActive == "add"? 'panelActive':'panelInActive'}>Ajouter Produit</div> */}
         </AdminPanelStyled>
     )
 }

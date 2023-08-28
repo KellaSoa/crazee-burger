@@ -2,31 +2,31 @@ import { styled } from "styled-components";
 import TabButton from "../../reusable-ui/TabButton";
 import { useContext, useState} from "react";
 import { theme } from "../../../theme";
-import TabContext from "../../context/TabContext";
+import TabCurrentName from "../../context/TabCurrentName";
 import TabActiveContext from "../../context/TabActiveContext";
 import { getTabsConfig } from "./helper/getTabsConfig";
  
 export default function AdminTab({isCollapsed,setIsCollapsed} ) {
   //defaut active button add product
-  const [defaultBtnActive, setDefaultBtnActive] = useState("default");
-  const {tabName,setTabName} = useContext(TabContext)
+  const [defaultActiveBtn, setDefaultActiveBtn] = useState("add");
+  const {tabCurrentName, setTabCurrentName} = useContext(TabCurrentName)
   const {tabActive, setTabActive} = useContext(TabActiveContext)  
   
-
+  console.log(defaultActiveBtn)
   const handleClick = (event) => {
     var idSelected = event.currentTarget.id;
-    if ( idSelected=="collapsed"){
+    if ( idSelected === "collapsed"){
       setIsCollapsed(!isCollapsed);  
     }else{
       setTabActive(idSelected);
       //collapsed panel when click Tab != collapsed  
       setIsCollapsed(true);
     }     
-    setTabName(idSelected);
-    setDefaultBtnActive("")
+    setTabCurrentName(idSelected);
+    setDefaultActiveBtn(false)
   };
 
-  const tabs= getTabsConfig(isCollapsed,handleClick,tabName,tabActive,defaultBtnActive);
+  const tabs= getTabsConfig(isCollapsed,tabCurrentName,tabActive,defaultActiveBtn);
   
   
   return (
@@ -36,17 +36,18 @@ export default function AdminTab({isCollapsed,setIsCollapsed} ) {
         Icon={<AiOutlinePlus />}
         label={"Ajouter un produit"}
         onClick={handleClick}
-        className={tabName == "add" || tabActive == "add" || defaultBtnActive =="default" ? "is-active" : ""}       
+        className={tabCurrentName == "add" || tabActive == "add" || defaultActiveBtn =="add" ? "is-active" : ""}       
       />
        */}
       {tabs.map((tab)=>{
+        console.log(defaultActiveBtn)
         return <TabButton 
           key={tab.id}
           id={tab.id} 
           label={tab.label}
-          className={tab.className}
+          className={ tabCurrentName == tab.id || tabActive == tab.id || tab.id === defaultActiveBtn  ? "is-active" : ""}
           Icon={tab.Icon}
-          onClick={tab.onClick} 
+          onClick={handleClick} 
       />
       })}
     </AdminTabStyled>   
