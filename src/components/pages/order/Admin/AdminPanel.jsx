@@ -5,7 +5,7 @@ import { getPanelsConfig } from './helper/getPanelsConfig';
 import OrderContext from '../../../context/OrderContext';
 
 export default function AdminPanel() {
-    const {tabActive, setTabActive} = useContext(OrderContext)    
+    const {tabActive} = useContext(OrderContext)    
 
     const panels = getPanelsConfig(tabActive)
 

@@ -6,7 +6,7 @@ import OrderContext from '../../../context/OrderContext';
 
 export default function Admin() {
   
-  const {isCollapsed,setIsCollapsed} = useContext(OrderContext)
+  const {isCollapsed} = useContext(OrderContext)
 
   return (
     <AdminStyled>
