@@ -3,13 +3,13 @@ import Profile from "./Profile";
 import ToggleButton from "../../../reusable-ui/ToggleButton";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import IsModeAdminContext from "../../../context/IsModeAdminContext";
 import { useContext } from "react";
+import OrderContext from "../../../context/OrderContext";
 //import {FaUserSecret} from "react-icons/fa"
 
 export default function NavbarRigthSide() {   
 
-  const {isModeAdmin, setIsModeAdmin} = useContext(IsModeAdminContext)
+  const {isModeAdmin, setIsModeAdmin} = useContext(OrderContext)
 
   const displayNotification = () =>{
       if(!isModeAdmin){

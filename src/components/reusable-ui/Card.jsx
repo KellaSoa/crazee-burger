@@ -21,7 +21,7 @@ const CardStyled = styled.div`
   border-radius: ${theme.borderRadius.extraRound};
   margin: 20px 20px;
   padding: 20px;
-  box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+  box-shadow: ${theme.shadows.medium};
 
   img {
     height: 145px;
