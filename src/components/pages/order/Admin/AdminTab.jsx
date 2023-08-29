@@ -28,7 +28,7 @@ export default function AdminTab( ) {
     setTabCurrentName(idSelected);   
   };
 
-  const tabs= getTabsConfig(isCollapsed,tabCurrentName,tabActive);
+  const tabs= getTabsConfig(isCollapsed);
   
   
   return (

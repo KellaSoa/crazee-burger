@@ -7,7 +7,7 @@ import OrderContext from '../../../context/OrderContext';
 export default function AdminPanel() {
     const {tabActive} = useContext(OrderContext)    
 
-    const panels = getPanelsConfig(tabActive)
+    const panels = getPanelsConfig
 
     return (
         <AdminPanelStyled>            

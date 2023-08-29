@@ -1,4 +1,4 @@
-export const getPanelsConfig = (tabActive) => [
+export const getPanelsConfig =  [
     {
         id: 'collapsed',
         text: "",
