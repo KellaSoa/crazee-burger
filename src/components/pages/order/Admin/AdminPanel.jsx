@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
-import { theme } from '../../../theme';
+import { theme } from '../../../../theme/index';
 import { styled } from 'styled-components';
-import TabActiveContext from '../../context/TabActiveContext';
 import { getPanelsConfig } from './helper/getPanelsConfig';
+import OrderContext from '../../../context/OrderContext';
 
 export default function AdminPanel() {
-    const {tabActive, setTabActive} = useContext(TabActiveContext)    
+    const {tabActive, setTabActive} = useContext(OrderContext)    
 
     const panels = getPanelsConfig(tabActive)
 

@@ -3,27 +3,37 @@ import Navbar from "./Navbar/Navbar";
 import styled from "styled-components";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
-import IsModeAdminContext from "../../context/IsModeAdminContext";
+import OrderContext from "../../context/OrderContext";
 
 export default function OrderPage() {
   //state
   const [isModeAdmin, setIsModeAdmin] = useState(false)
+  const [tabCurrentName, setTabCurrentName] = useState("add");
+  const [tabActive, setTabActive] = useState("");
+  const [isCollapsed,setIsCollapsed] = useState(false);
 
-  const isModeAdminContextValue = {
-    isModeAdmin, setIsModeAdmin
+  const orderContextValue = {
+    isCollapsed,
+    setIsCollapsed,
+    isModeAdmin, 
+    setIsModeAdmin,
+    tabCurrentName,
+    setTabCurrentName,
+    tabActive,
+    setTabActive
   }
 
   //comportement
   //return
   return (
-    <IsModeAdminContext.Provider value={isModeAdminContextValue}>
+    <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>
         <div className="container">
           <Navbar />
           <Main />
         </div>
       </OrderPageStyled>
-    </IsModeAdminContext.Provider>
+    </OrderContext.Provider>
 
   );
 }

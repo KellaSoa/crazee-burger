@@ -1,16 +1,20 @@
 import { styled } from "styled-components";
-import TabButton from "../../reusable-ui/TabButton";
+import TabButton from "../../../reusable-ui/TabButton";
 import { useContext, useState} from "react";
-import { theme } from "../../../theme";
-import TabCurrentName from "../../context/TabCurrentName";
-import TabActiveContext from "../../context/TabActiveContext";
+import { theme } from "../../../../theme/index";
 import { getTabsConfig } from "./helper/getTabsConfig";
+import OrderContext from "../../../context/OrderContext";
  
-export default function AdminTab({isCollapsed,setIsCollapsed} ) {
+export default function AdminTab( ) {
   //defaut active button add product
  
-  const {tabCurrentName, setTabCurrentName} = useContext(TabCurrentName)
-  const {tabActive, setTabActive} = useContext(TabActiveContext)  
+  const {
+    isCollapsed,
+    setIsCollapsed,
+    tabCurrentName,
+    setTabCurrentName,
+    tabActive,
+    setTabActive} = useContext(OrderContext)
   
   const handleClick = (event) => {
     var idSelected = event.currentTarget.id;
