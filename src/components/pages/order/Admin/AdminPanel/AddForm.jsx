@@ -20,23 +20,21 @@ export default function AddForm() {
   //state
   const {handleAdd} = useContext(OrderContext)
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-
   //components
   const newProductAdd ={
-    id: new Date().getTime(),
-    ...newProduct
+    ...newProduct,//add new product in form after handleChange input
+    id: crypto.randomUUID(),
   }
 
-  const handeChange = (event) => {
-    const newValue = event.target.value
-    const nameInput = event.target.name
-    //add dinamically name object with [nameInput] ie {title: newValue,imageSource: newValue,price: newValue}
-    setNewProduct({...newProduct, [nameInput]: newValue}) 
-    console.log(newProduct)
+  const handleChange = (event) => {
+    const {name, value} = event.target
+    //add dinamically name object with [name] ie {title: newValue,imageSource: newValue,price: newValue}
+    setNewProduct({...newProduct, [name]: value}) 
   };
   const handleSubmit = (event) => {
     event.preventDefault();
     handleAdd(newProductAdd)
+    console.log(newProductAdd)
   }
 
   //render
@@ -46,7 +44,7 @@ export default function AddForm() {
       <div className='input-fields'>
         <TextInput
           value={newProduct.title}
-          onChange={handeChange}
+          onChange={handleChange}
           placeholder={"Nom du produit (ex: Super Burger) "}
           Icon={<FaHamburger className="icon" />}
           className = "textInputAdd" 
@@ -54,7 +52,7 @@ export default function AddForm() {
         />
         <UrlInput
           value={newProduct.imageSource}
-          onChange={handeChange}
+          onChange={handleChange}
           placeholder={"Lien URL d'une image (ex: https://la-photo-de-mon-produit.png) "}
           Icon={<BsFillCameraFill className="icon" />}
           className = "textInputAdd"
@@ -62,7 +60,7 @@ export default function AddForm() {
         />
         <TextInput
           value={newProduct.price ? newProduct.price : ""}
-          onChange={handeChange}
+          onChange={handleChange}
           placeholder={"Prix"}
           Icon={<MdOutlineEuro className="icon" />}
           className = "textInputAdd"

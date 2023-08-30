@@ -15,8 +15,7 @@ export default function OrderPage() {
 
   const [menu,setMenu] = useState(fakeMenu.MEDIUM)
 
-  const handleAdd = (newProduct) => {
-   
+  const handleAdd = (newProduct) => {   
     const menuCopy = [...menu];
     const menuUpdate = [newProduct, ...menuCopy]
     setMenu(menuUpdate)
