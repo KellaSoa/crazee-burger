@@ -11,22 +11,22 @@ import OrderContext from '../../../../context/OrderContext';
 
 export default function AddForm() {
 
-    const [productName, setProductName] = useState("");
-    const [urlName, setUrlName] = useState("");
+    const [title, setTitle] = useState("");
+    const [imageSource, setImageSource] = useState("");
     const [price, setPrice] = useState("");
 
     const {handleAdd} = useContext(OrderContext)
 
     const newProduct ={
       id: 2,
-      imageSource: "/images/burger2.png",
       title: "Burger 2",
-      price: 7.556
+      imageSource: imageSource,
+      price: price
     }
 
     const handeChange = (event) => {
-        setProductName(event.target.value);
-        setUrlName(event.target.value);
+        setTitle(event.target.value);
+        setImageSource(event.target.value);
         setPriceName(event.target.value);
     };
     const handleSubmit = (event) => {
@@ -39,7 +39,7 @@ export default function AddForm() {
       <div className='image-preview'><img src="" alt="Aucune image" /></div>
       <div className='input-fields'>
         <TextInput
-          value={productName}
+          value={title}
           onChange={handeChange}
           placeholder={"Nom du produit (ex: Super Burger) "}
           Icon={<FaHamburger className="icon" />}
@@ -47,7 +47,7 @@ export default function AddForm() {
           name=""
         />
         <UrlInput
-          value={urlName}
+          value={imageSource}
           onChange={handeChange}
           placeholder={"Lien URL d'une image (ex: https://la-photo-de-mon-produit.png) "}
           Icon={<BsFillCameraFill className="icon" />}
