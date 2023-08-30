@@ -128,7 +128,6 @@ height: 100%;
 .submit-button{
   grid-area: 4 / 2 / 5 / -1;
   display:flex;
-  justify-content: center;
   align-items: center;
 
 

@@ -7,7 +7,7 @@ const IMAGE_DEFAULT = "/images/coming-soon.png"
 export default function Card({Icon, title, imageSource, leftDescription }) {
   return (
     <CardStyled className="produit">
-      <button className="delete">{Icon && Icon}</button>
+      <button className="delete-button" aria-label="delete-button">{Icon && Icon}</button>
       <div className="image">
         <img src={imageSource ? imageSource : IMAGE_DEFAULT} alt={title} />
       </div>
@@ -34,15 +34,23 @@ const CardStyled = styled.div`
   padding-bottom: 10px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
-  .delete{
+  position:relative;
+
+  .delete-button{
     position: absolute;
-    right: 20px;
-    top: 20px;   
-    text-align: center;
-    font-size: ${theme.fonts.size.P3};
-    background-color: ${theme.colors.white};
+    right: 15px;
+    top: 15px;
+    cursor:pointer;
+    background: none;
+    border: none;
     color: ${theme.colors.primary};
-    border-radius: ${theme.borderRadius.circle};
+    
+    :hover{
+      color: ${theme.colors.red};
+    }
+    :active{
+      color: ${theme.colors.primary};
+    }
   }
   .image {
     width: 100%;

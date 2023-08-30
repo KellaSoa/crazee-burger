@@ -15,7 +15,7 @@ export default function Menu() {
         return (
           <Card
             key={id}
-            Icon={isModeAdmin && <TiDelete className="iconForward" />}
+            Icon={isModeAdmin && <TiDelete className="icon" />}
             title={title}
             imageSource={imageSource}
             leftDescription={formatPrice(price)}
@@ -35,4 +35,9 @@ const MenuStyled = styled.div`
   justify-items: center;
   box-shadow: ${theme.shadows.strong};
   overflow-y: scroll;
+
+  .icon{
+    width: 100%;
+    height: 100%;
+  }
 `
