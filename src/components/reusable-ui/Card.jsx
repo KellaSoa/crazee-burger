@@ -1,9 +1,10 @@
 import { styled } from "styled-components";
 import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
-export default function Card({ title, imageSource, info }) {
+export default function Card({Icon, title, imageSource, info }) {
   return (
     <CardStyled>
+      <div className="delete">{Icon && Icon}</div>
       <img src={imageSource} alt={title} />
       <div className="title">{title} </div>
       <div className="description">
@@ -22,6 +23,7 @@ const CardStyled = styled.div`
   margin: 20px 20px;
   padding: 20px;
   box-shadow: ${theme.shadows.medium};
+  position: relative;
 
   img {
     height: 145px;
@@ -53,5 +55,15 @@ const CardStyled = styled.div`
   }
   .btn-card {
     width: auto;
+  }
+  .delete{
+    position: absolute;
+    right: 20px;
+    top: 20px;   
+    text-align: center;
+    font-size: ${theme.fonts.size.P3};
+    background-color: ${theme.colors.white};
+    color: ${theme.colors.primary};
+    border-radius: ${theme.borderRadius.circle};
   }
 `;

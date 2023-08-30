@@ -4,13 +4,23 @@ import styled from "styled-components";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
 import OrderContext from "../../context/OrderContext";
+import { fakeMenu } from "../../../fakeData/fakeMenu"
 
 export default function OrderPage() {
   //state
   const [isModeAdmin, setIsModeAdmin] = useState(false)
-  const [tabCurrentName, setTabCurrentName] = useState("add");
-  const [tabActive, setTabActive] = useState("");
-  const [isCollapsed,setIsCollapsed] = useState(false);
+  const [tabCurrentName, setTabCurrentName] = useState("add")
+  const [tabActive, setTabActive] = useState("")
+  const [isCollapsed,setIsCollapsed] = useState(false)
+
+  const [menu,setMenu] = useState(fakeMenu.MEDIUM)
+
+  const handleAdd = (newProduct) => {
+   
+    const menuCopy = [...menu];
+    const menuUpdate = [newProduct, ...menuCopy]
+    setMenu(menuUpdate)
+  }
 
   const orderContextValue = {
     isCollapsed,
@@ -20,8 +30,13 @@ export default function OrderPage() {
     tabCurrentName,
     setTabCurrentName,
     tabActive,
-    setTabActive
+    setTabActive,
+    menu,
+    setMenu,
+    handleAdd
   }
+  
+  
 
   //comportement
   //return

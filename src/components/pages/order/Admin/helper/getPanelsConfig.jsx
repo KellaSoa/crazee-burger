@@ -1,15 +1,19 @@
-export const getPanelsConfig =  [
+import AddForm from "../AdminPanel/AddForm";
+import EditForm from "../AdminPanel/EditForm";
+
+export const getPanelsConfig = [
     {
         id: 'collapsed',
-        text: "",
+        content: "",
     },
     {
         id:"add",
-        text: "Ajouter Produit"
+        Content: <AddForm/>
+
     },
     {
         id:"edit",
-        text: "Modifier Produit"
+        Content: <EditForm/>
     },
     
     

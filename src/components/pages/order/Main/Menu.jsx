@@ -1,12 +1,13 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import styled from "styled-components"
-import { fakeMenu2 } from "../../../../fakeData/fakeMenu"
 import { theme } from "../../../../theme"
 import { formatPrice } from "../../../../utils/maths"
 import Card from "../../../reusable-ui/Card"
+import OrderContext from "../../../context/OrderContext"
+import { TiDelete } from "react-icons/ti";
 
 export default function Menu() {
-  const [menu, setMenu] = useState(fakeMenu2)
+  const {menu,isModeAdmin} = useContext(OrderContext)
 
   return (
     <MenuStyled className="menu">
@@ -14,6 +15,7 @@ export default function Menu() {
         return (
           <Card
             key={id}
+            Icon={isModeAdmin && <TiDelete className="iconForward" />}
             title={title}
             imageSource={imageSource}
             leftDescription={formatPrice(price)}
