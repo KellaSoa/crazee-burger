@@ -15,6 +15,7 @@ export default function OrderPage() {
 
   const [menu,setMenu] = useState(fakeMenu.MEDIUM)
 
+  //comportement
   const handleAdd = (newProduct) => {   
     const menuCopy = [...menu];
     const menuUpdate = [newProduct, ...menuCopy]
@@ -34,10 +35,7 @@ export default function OrderPage() {
     handleAdd
   }
   
-  
-
-  //comportement
-  //return
+  //render
   return (
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>

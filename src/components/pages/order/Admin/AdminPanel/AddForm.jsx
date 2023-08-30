@@ -8,18 +8,21 @@ import PrimaryButton from '../../../../reusable-ui/PrimaryButton';
 import { styled } from 'styled-components';
 import { theme } from '../../../../../theme';
 import OrderContext from '../../../../context/OrderContext';
+import { FiCheck } from 'react-icons/fi';
 
 
 const EMPTY_PRODUCT ={
   id: "",
   title: "",
   imageSource: "",
-  price: 14,
+  price: 0,
 }
 export default function AddForm() {
   //state
   const {handleAdd} = useContext(OrderContext)
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [isSubmit, setIsSubmit] = useState(false)
+
   //components
   const newProductAdd ={
     ...newProduct,//add new product in form after handleChange input
@@ -31,10 +34,22 @@ export default function AddForm() {
     //add dinamically name object with [name] ie {title: newValue,imageSource: newValue,price: newValue}
     setNewProduct({...newProduct, [name]: value}) 
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     handleAdd(newProductAdd)
+    setNewProduct(EMPTY_PRODUCT)
+
+    displaySuccessMessage()
   }
+
+  const displaySuccessMessage = () =>{
+    setIsSubmit(true)
+    setTimeout(()=>{
+      setIsSubmit(false)
+    },2000)
+  }
+
 
   //render
   return (
@@ -69,10 +84,17 @@ export default function AddForm() {
         />
           
       </div>
-      <PrimaryButton
-        label={"Ajouter un nouveau produit au menu"}
-        className="submit-button"
-      />
+      <div className="submit-button">
+        <PrimaryButton
+          label={"Ajouter un nouveau produit au menu"}          
+        />
+        {isSubmit &&  (       
+          <div className='submit-message'>
+            <FiCheck/>
+            <span>Ajouté avec succès !</span>
+          </div>
+        )}
+      </div>
     </AddFormStyled>
   )
 }
@@ -90,6 +112,9 @@ height: 100%;
   border: 1px solid ${theme.colors.greyLight};
   border: ${theme.borderRadius.subtle};
   margin-right: 20px;
+  img{
+    
+  }
 
   div{
     margin:0px auto;
@@ -102,10 +127,17 @@ height: 100%;
 }
 .submit-button{
   grid-area: 4 / 2 / 5 / -1;
-  width: 75%;
-  background-color: ${theme.colors.green};
-  padding: 10px 20px;
-  border: 1px solid ${theme.colors.green};
+  display:flex;
+  justify-content: center;
+  align-items: center;
+
+
+  button{
+    width: 50%;
+    background-color: ${theme.colors.green};
+    padding: 10px 20px;
+    border: 1px solid ${theme.colors.green};
+  }
 }
 
 .textInputAdd{
@@ -135,7 +167,9 @@ height: 100%;
     margin-right: 20px;
 
     img{
-    margin:0px auto;
+      margin:0px auto;
+      width: 100%;
+      height: 100%;
     }
 }
 

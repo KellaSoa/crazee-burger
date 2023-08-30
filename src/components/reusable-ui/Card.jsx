@@ -7,7 +7,7 @@ const IMAGE_DEFAULT = "/images/coming-soon.png"
 export default function Card({Icon, title, imageSource, leftDescription }) {
   return (
     <CardStyled className="produit">
-      <div className="delete">{Icon && Icon}</div>
+      <button className="delete">{Icon && Icon}</button>
       <div className="image">
         <img src={imageSource ? imageSource : IMAGE_DEFAULT} alt={title} />
       </div>
