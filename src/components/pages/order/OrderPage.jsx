@@ -32,7 +32,6 @@ export default function OrderPage() {
     tabActive,
     setTabActive,
     menu,
-    setMenu,
     handleAdd
   }
   

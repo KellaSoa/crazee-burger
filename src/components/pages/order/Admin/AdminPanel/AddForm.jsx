@@ -8,7 +8,6 @@ import PrimaryButton from '../../../../reusable-ui/PrimaryButton';
 import { styled } from 'styled-components';
 import { theme } from '../../../../../theme';
 import OrderContext from '../../../../context/OrderContext';
-// , , , FiCheck
 
 export default function AddForm() {
 
