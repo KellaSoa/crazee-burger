@@ -13,7 +13,7 @@ export default function OrderPage() {
   const [tabActive, setTabActive] = useState("")
   const [isCollapsed,setIsCollapsed] = useState(false)
 
-  const [menu,setMenu] = useState(fakeMenu.LARGE)
+  const [menu,setMenu] = useState(fakeMenu.SMALL)
 
   //comportement
   const handleAdd = (newProduct) => {   
@@ -28,6 +28,10 @@ export default function OrderPage() {
     const menuUpdated = menuCopy.filter((product) =>product.id !== idProduct)
     setMenu(menuUpdated)
   }
+  const handleReset = () => { 
+    setMenu(fakeMenu.LARGE)
+  }
+
 
   const orderContextValue = {
     isCollapsed,
@@ -38,9 +42,11 @@ export default function OrderPage() {
     setTabCurrentName,
     tabActive,
     setTabActive,
+    
     menu,
     handleAdd,
-    handleDelete
+    handleDelete,
+    handleReset
   }
   
   //render

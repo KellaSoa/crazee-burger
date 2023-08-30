@@ -13,5 +13,6 @@ export default createContext({
 
     menu:[],
     handleAdd: () => {},
-    handleDelete: () => {}
+    handleDelete: () => {},
+    handleReset: () => {}
 });
