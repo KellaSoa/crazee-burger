@@ -9,56 +9,64 @@ import { styled } from 'styled-components';
 import { theme } from '../../../../../theme';
 import OrderContext from '../../../../context/OrderContext';
 
+
+const EMPTY_PRODUCT ={
+  id: "",
+  title: "",
+  imageSource: "",
+  price: 14,
+}
 export default function AddForm() {
+  //state
+  const {handleAdd} = useContext(OrderContext)
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
-    const [title, setTitle] = useState("");
-    const [imageSource, setImageSource] = useState("");
-    const [price, setPrice] = useState("");
+  //components
+  const newProductAdd ={
+    id: new Date().getTime(),
+    ...newProduct
+  }
 
-    const {handleAdd} = useContext(OrderContext)
+  const handeChange = (event) => {
+    const newValue = event.target.value
+    const nameInput = event.target.name
+    //add dinamically name object with [nameInput] ie {title: newValue,imageSource: newValue,price: newValue}
+    setNewProduct({...newProduct, [nameInput]: newValue}) 
+    console.log(newProduct)
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleAdd(newProductAdd)
+  }
 
-    const newProduct ={
-      id: 2,
-      title: "Burger 2",
-      imageSource: imageSource,
-      price: price
-    }
-
-    const handeChange = (event) => {
-        setTitle(event.target.value);
-        setImageSource(event.target.value);
-        setPriceName(event.target.value);
-    };
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      handleAdd(newProduct)
-    }
-
+  //render
   return (
     <AddFormStyled action="action" onSubmit={handleSubmit}>
       <div className='image-preview'><img src="" alt="Aucune image" /></div>
       <div className='input-fields'>
         <TextInput
-          value={title}
+          value={newProduct.title}
           onChange={handeChange}
           placeholder={"Nom du produit (ex: Super Burger) "}
           Icon={<FaHamburger className="icon" />}
           className = "textInputAdd" 
-          name=""
+          name="title"
         />
         <UrlInput
-          value={imageSource}
+          value={newProduct.imageSource}
           onChange={handeChange}
           placeholder={"Lien URL d'une image (ex: https://la-photo-de-mon-produit.png) "}
           Icon={<BsFillCameraFill className="icon" />}
           className = "textInputAdd"
+          name="imageSource"
         />
         <TextInput
-          value={price}
+          value={newProduct.price ? newProduct.price : ""}
           onChange={handeChange}
           placeholder={"Prix"}
           Icon={<MdOutlineEuro className="icon" />}
           className = "textInputAdd"
+          name="price"
         />
           
       </div>

@@ -1,14 +1,14 @@
 import { styled } from "styled-components";
 import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
-export default function Card({Icon, title, imageSource, info }) {
+export default function Card({Icon, title, imageSource, leftDescription }) {
   return (
     <CardStyled>
       <div className="delete">{Icon && Icon}</div>
       <img src={imageSource} alt={title} />
       <div className="title">{title} </div>
       <div className="description">
-        <span className="info">{info}</span>
+        <span className="info">{leftDescription}</span>
         <PrimaryButton className="btn-card" label={"Ajouter"} />
       </div>
     </CardStyled>
