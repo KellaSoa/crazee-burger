@@ -1,10 +1,12 @@
 import { useContext, useState } from "react"
 import styled from "styled-components"
-import { theme } from "../../../../theme"
-import { formatPrice } from "../../../../utils/maths"
-import Card from "../../../reusable-ui/Card"
-import OrderContext from "../../../context/OrderContext"
+import { theme } from "../../../../../theme"
+import { formatPrice } from "../../../../../utils/maths"
+import Card from "../../../../reusable-ui/Card"
+import OrderContext from "../../../../context/OrderContext"
 import { TiDelete } from "react-icons/ti";
+import EmptyMenuAdmin from "./EmptyMenuAdmin"
+import EmptyMenuClient from "./EmptyMenuClient"
 
 export default function Menu() {
   //state
@@ -14,11 +16,10 @@ export default function Menu() {
   //render
   if(menu.length === 0){
     return(
-      <div>
-        <span>Pas de produit</span>
-        <button onClick={handleReset}>Générer de nouveaux produits</button>
-      </div>
-    )
+      <>
+        {isModeAdmin ? <EmptyMenuAdmin onReset={handleReset}/> : <EmptyMenuClient/> }
+      </>  
+    )    
   }
   return (
     <MenuStyled className="menu">
