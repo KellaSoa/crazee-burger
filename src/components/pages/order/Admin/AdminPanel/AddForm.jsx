@@ -34,13 +34,14 @@ export default function AddForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     handleAdd(newProductAdd)
-    console.log(newProductAdd)
   }
 
   //render
   return (
     <AddFormStyled action="action" onSubmit={handleSubmit}>
-      <div className='image-preview'><img src="" alt="Aucune image" /></div>
+      <div className='image-preview'>
+        { newProductAdd.imageSource ? <img src={newProductAdd.imageSource} alt={newProductAdd.title} /> : <div> Aucune image</div>}
+      </div>
       <div className='input-fields'>
         <TextInput
           value={newProduct.title}
@@ -85,6 +86,14 @@ height: 100%;
 
 .image-preview{
   grid-area: 1 / 1 / 4 / 2;
+  padding: 20px;
+  border: 1px solid ${theme.colors.greyLight};
+  border: ${theme.borderRadius.subtle};
+  margin-right: 20px;
+
+  div{
+    margin:0px auto;
+  }
 }
 .input-fields{
   grid-area: 1 / 2 / 4 / -2 ;
