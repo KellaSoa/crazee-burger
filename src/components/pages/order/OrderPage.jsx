@@ -21,6 +21,13 @@ export default function OrderPage() {
     const menuUpdate = [newProduct, ...menuCopy]
     setMenu(menuUpdate)
   }
+  const handleDelete = (idProduct) => {   
+    //copy state
+    const menuCopy = [...menu]
+    //update state
+    const menuUpdated = menuCopy.filter((product) =>product.id !== idProduct)
+    setMenu(menuUpdated)
+  }
 
   const orderContextValue = {
     isCollapsed,
@@ -32,7 +39,8 @@ export default function OrderPage() {
     tabActive,
     setTabActive,
     menu,
-    handleAdd
+    handleAdd,
+    handleDelete
   }
   
   //render

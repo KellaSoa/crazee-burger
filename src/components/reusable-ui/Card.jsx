@@ -4,10 +4,10 @@ import PrimaryButton from "./PrimaryButton"
 
 const IMAGE_DEFAULT = "/images/coming-soon.png"
 
-export default function Card({Icon, title, imageSource, leftDescription }) {
+export default function Card({Icon, title, imageSource, leftDescription,onDelete }) {
   return (
     <CardStyled className="produit">
-      <button className="delete-button" aria-label="delete-button">{Icon && Icon}</button>
+      <button className="delete-button" aria-label="delete-button" onClick={onDelete}>{Icon && Icon}</button>
       <div className="image">
         <img src={imageSource ? imageSource : IMAGE_DEFAULT} alt={title} />
       </div>

@@ -7,8 +7,11 @@ import OrderContext from "../../../context/OrderContext"
 import { TiDelete } from "react-icons/ti";
 
 export default function Menu() {
-  const {menu,isModeAdmin} = useContext(OrderContext)
+  //state
+  const {menu,isModeAdmin,handleDelete} = useContext(OrderContext)
 
+
+  //render
   return (
     <MenuStyled className="menu">
       {menu.map(({ id, title, imageSource, price }) => {
@@ -19,6 +22,7 @@ export default function Menu() {
             title={title}
             imageSource={imageSource}
             leftDescription={formatPrice(price)}
+            onDelete={() => handleDelete(id)}
           />
         )
       })}

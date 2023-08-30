@@ -12,5 +12,6 @@ export default createContext({
     setTabCurrentName: () =>{},
 
     menu:[],
-    handleAdd: () => {}
+    handleAdd: () => {},
+    handleDelete: () => {}
 });
