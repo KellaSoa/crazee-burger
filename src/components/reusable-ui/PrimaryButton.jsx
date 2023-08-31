@@ -5,7 +5,7 @@ export default function PrimaryButton({ label, Icon, className }) {
   return (
     <PrimaryButtonStyled className={className}>
       <span>{label}</span>
-      {Icon && Icon}
+      {Icon && <div className="icon">{Icon && Icon}</div>}
     </PrimaryButtonStyled>
   );
 }
@@ -28,7 +28,7 @@ const PrimaryButtonStyled = styled.button`
   font-weight: 800;
   color: white;
   background-color: ${theme.colors.primary};
-  border: 1px solid ${theme.colors.primary};
+  border: 1px solid ${theme.colors.primary}; 
 
   &:hover:not(:disabled) {
     background-color: white;
@@ -46,5 +46,15 @@ const PrimaryButtonStyled = styled.button`
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+  
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: ${theme.fonts.size.SM};
+    margin-right: 8px;
+    color: ${theme.colors.white};
+    
   }
 `;
