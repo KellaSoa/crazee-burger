@@ -1,13 +1,11 @@
 import React, { useContext, useState } from 'react'
 import TextInput from '../../../../reusable-ui/TextInput'
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
 import Button from '../../../../reusable-ui/Button';
 import { styled } from 'styled-components';
 import OrderContext from '../../../../context/OrderContext';
 import ImagePreview from './ImagePreview';
 import SubmitMessage from './SubmitMessage';
+import { getInputTextsConfig } from './getInputTextsConfig';
 
 const EMPTY_PRODUCT ={
   id: "",
@@ -47,13 +45,25 @@ export default function AddForm() {
     },2000)
   }
 
+  const inputTexts = getInputTextsConfig(newProduct)
 
   //render
   return (
     <AddFormStyled action="action" onSubmit={handleSubmit}>
       <ImagePreview imageSource={newProduct.imageSource} title={newProduct.title}/>
       <div className='input-fields'>
-        <TextInput
+        {inputTexts.map((input)=>{
+          return <TextInput
+          key={input.id}
+          value={input.value}
+          onChange={handleChange}
+          placeholder={input.placeholder}
+          Icon={input.Icon}
+          name={input.name}
+          version="minimalist"
+          />
+        })}
+        {/* <TextInput
           value={newProduct.title}
           onChange={handleChange}
           placeholder={"Nom du produit (ex: Super Burger) "}
@@ -61,22 +71,7 @@ export default function AddForm() {
           name="title"
           version="minimalist"
         />
-        <TextInput
-          value={newProduct.imageSource}
-          onChange={handleChange}
-          placeholder={"Lien URL d'une image (ex: https://la-photo-de-mon-produit.png) "}
-          Icon={<BsFillCameraFill className="icon" />}
-          name="imageSource"
-          version="minimalist"
-        />
-        <TextInput
-          value={newProduct.price ? newProduct.price : ""}
-          onChange={handleChange}
-          placeholder={"Prix"}
-          Icon={<MdOutlineEuro className="icon" />}
-          name="price"
-          version="minimalist"
-        />
+         */}
           
       </div>
       <div className="contain-button">
