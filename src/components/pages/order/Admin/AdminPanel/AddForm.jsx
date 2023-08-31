@@ -84,14 +84,14 @@ export default function AddForm() {
         />
           
       </div>
-      <div className="submit-button">
+      <div className="contain-button">
         <Button version= "success"
           label={"Ajouter un nouveau produit au menu"}          
         />
         {isSubmit &&  (       
           <div className='submit-message'>
-            <FiCheck/>
-            <span>Ajouté avec succès !</span>
+            <FiCheck className='uicon'/>
+            <span className='message'>Ajouté avec succès !</span>
           </div>
         )}
       </div>
@@ -130,9 +130,30 @@ grid-row-gap: 8px;
   display: grid;
   grid-row-gap: 8px;
 }
-.submit-button{
+.contain-button{
   grid-area: 4 / 2 / 5 / -1;
   display:flex;
   align-items: center;
+  .submit-message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    .message{
+      margin-left: 5px;
+      font-size: ${theme.fonts.size.P0};
+      color: ${theme.colors.green};
+    }
+    .uicon{
+      color: ${theme.colors.green};
+      margin-left: 10px;
+      border: 1px solid ${theme.colors.green};
+      border-radius: ${theme.borderRadius.circle};
+      vertical-align: center;
+
+
+    }
+  }
+ 
 }
 `;
