@@ -1,9 +1,9 @@
 import { css, styled } from "styled-components";
 import { theme } from "../../theme";
 
-export default function Button({ label, Icon, version= "primary" }) {
+export default function Button({ label, Icon, version= "primary", onReset }) {
   return (
-    <ButtonStyled version={version}>
+    <ButtonStyled version={version} onClick={onReset}>
       <span>{label}</span>
       {Icon && <div className="icon">{Icon && Icon}</div>}
     </ButtonStyled>
