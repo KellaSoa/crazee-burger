@@ -63,24 +63,24 @@ export default function AddForm() {
           onChange={handleChange}
           placeholder={"Nom du produit (ex: Super Burger) "}
           Icon={<FaHamburger className="icon" />}
-          className = "textInputAdd" 
           name="title"
+          version="minimalist"
         />
-        <UrlInput
+        <TextInput
           value={newProduct.imageSource}
           onChange={handleChange}
           placeholder={"Lien URL d'une image (ex: https://la-photo-de-mon-produit.png) "}
           Icon={<BsFillCameraFill className="icon" />}
-          className = "textInputAdd"
           name="imageSource"
+          version="minimalist"
         />
         <TextInput
           value={newProduct.price ? newProduct.price : ""}
           onChange={handleChange}
           placeholder={"Prix"}
           Icon={<MdOutlineEuro className="icon" />}
-          className = "textInputAdd"
           name="price"
+          version="minimalist"
         />
           
       </div>
@@ -105,6 +105,8 @@ grid-template-columns: 1fr 3fr;
 grid-template-rows: repeat(4,1fr);
 width: 70%;
 height: 100%;
+grid-column-gap: 20px;
+grid-row-gap: 8px;
 
 .image-preview{
   grid-area: 1 / 1 / 4 / 2;
@@ -113,7 +115,10 @@ height: 100%;
   border: ${theme.borderRadius.subtle};
   margin-right: 20px;
   img{
-    
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
   }
 
   div{
@@ -121,9 +126,9 @@ height: 100%;
   }
 }
 .input-fields{
-  grid-area: 1 / 2 / 4 / -2 ;
-  
+  grid-area: 1 / 2 / 4 / -2 ;  
   display: grid;
+  grid-row-gap: 8px;
 }
 .submit-button{
   grid-area: 4 / 2 / 5 / -1;
@@ -137,20 +142,6 @@ height: 100%;
     padding: 10px 20px;
     border: 1px solid ${theme.colors.green};
   }
-}
-
-.textInputAdd{
-    background-color: ${theme.colors.greyLight};    
-    padding: 5px 20px;
-    margin-top:0px;
-    margin-bottom: 20px;
-    border-radius: 0px;
-}
-.textInputAdd:hover:not(:disabled){
-    border: none;
-}
-.textInputAdd input{
-    background-color: ${theme.colors.greyLight};
 }
 
 .add-product:hover:not(:disabled) {
