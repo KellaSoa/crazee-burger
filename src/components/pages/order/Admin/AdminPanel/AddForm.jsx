@@ -55,11 +55,8 @@ export default function AddForm() {
         {inputTexts.map((input)=>{
           return <TextInput
           key={input.id}
-          value={input.value}
+          {...input}
           onChange={handleChange}
-          placeholder={input.placeholder}
-          Icon={input.Icon}
-          name={input.name}
           version="minimalist"
           />
         })}
