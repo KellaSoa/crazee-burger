@@ -1,16 +1,16 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import { theme } from "../../theme";
 
-export default function PrimaryButton({ label, Icon, className }) {
+export default function Button({ label, Icon, version= "primary" }) {
   return (
-    <PrimaryButtonStyled className={className}>
+    <ButtonStyled version={version}>
       <span>{label}</span>
       {Icon && <div className="icon">{Icon && Icon}</div>}
-    </PrimaryButtonStyled>
+    </ButtonStyled>
   );
 }
 
-const PrimaryButtonStyled = styled.button`
+const ButtonStyled = styled.button`
   width: 100%;
   border: 1px solid red;
   display: inline-flex;
@@ -27,6 +27,24 @@ const PrimaryButtonStyled = styled.button`
   font-size: 15px;
   font-weight: 800;
   color: white;
+  
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: ${theme.fonts.size.SM};
+    margin-right: 8px;
+  }
+  ${({version}) => extraButton[version]}
+`;
+
+const extraButtonPrimary = css`
   background-color: ${theme.colors.primary};
   border: 1px solid ${theme.colors.primary}; 
 
@@ -42,19 +60,28 @@ const PrimaryButtonStyled = styled.button`
     background-color: ${theme.colors.primary};
     border: 1px solid ${theme.colors.primary};
   }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-  
-  .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: ${theme.fonts.size.SM};
-    margin-right: 8px;
-    color: ${theme.colors.white};
-    
-  }
 `;
+
+const extraButtonSuccess = css`
+  width: 50%;
+  background-color: ${theme.colors.green};
+  padding: 10px 20px;
+  border: 1px solid ${theme.colors.green}; 
+  &:hover:not(:disabled) {
+    background-color: white;
+    color: ${theme.colors.green};
+    border: 1px solid ${theme.colors.green};
+    transition: all 200ms ease-out;
+  }
+
+  &:active {
+    color: white;
+    background-color: ${theme.colors.green};
+    border: 1px solid ${theme.colors.green};
+  } 
+`;
+
+const extraButton ={
+  primary: extraButtonPrimary,
+  success: extraButtonSuccess
+}

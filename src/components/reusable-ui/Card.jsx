@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { theme } from "../../theme"
-import PrimaryButton from "./PrimaryButton"
+import Button from "./Button"
 
 const IMAGE_DEFAULT = "/images/coming-soon.png"
 
@@ -16,7 +16,7 @@ export default function Card({Icon, title, imageSource, leftDescription,onDelete
         <div className="description">
           <div className="left-description">{leftDescription}</div>
           <div className="right-description">
-            <PrimaryButton className="primary-button" label={"Ajouter"} />
+            <Button className="primary-button" label={"Ajouter"} />
           </div>
         </div>
       </div>

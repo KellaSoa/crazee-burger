@@ -4,7 +4,7 @@ import UrlInput from '../../../../reusable-ui/UrlInput'
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
-import PrimaryButton from '../../../../reusable-ui/PrimaryButton';
+import Button from '../../../../reusable-ui/Button';
 import { styled } from 'styled-components';
 import { theme } from '../../../../../theme';
 import OrderContext from '../../../../context/OrderContext';
@@ -85,7 +85,7 @@ export default function AddForm() {
           
       </div>
       <div className="submit-button">
-        <PrimaryButton
+        <Button version= "success"
           label={"Ajouter un nouveau produit au menu"}          
         />
         {isSubmit &&  (       
@@ -134,33 +134,5 @@ grid-row-gap: 8px;
   grid-area: 4 / 2 / 5 / -1;
   display:flex;
   align-items: center;
-
-
-  button{
-    width: 50%;
-    background-color: ${theme.colors.green};
-    padding: 10px 20px;
-    border: 1px solid ${theme.colors.green};
-  }
 }
-
-.add-product:hover:not(:disabled) {
-    background-color: white;
-    color: ${theme.colors.green};
-    border: 1px solid ${theme.colors.green};
-    transition: all 200ms ease-out;
-}
-.image-preview{
-    padding: 20px;
-    border: 1px solid ${theme.colors.greyLight};
-    border: ${theme.borderRadius.subtle};
-    margin-right: 20px;
-
-    img{
-      margin:0px auto;
-      width: 100%;
-      height: 100%;
-    }
-}
-
 `;
