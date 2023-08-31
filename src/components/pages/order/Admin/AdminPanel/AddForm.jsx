@@ -9,7 +9,14 @@ import { styled } from 'styled-components';
 import { theme } from '../../../../../theme';
 import OrderContext from '../../../../context/OrderContext';
 import { FiCheck } from 'react-icons/fi';
+import ImagePreview from './ImagePreview';
 
+const EMPTY_PRODUCT ={
+  id: "",
+  title: "",
+  imageSource: "",
+  price: 0,
+}
 export default function AddForm() {
   //state
   const {handleAdd,newProduct,setNewProduct} = useContext(OrderContext)
@@ -46,9 +53,7 @@ export default function AddForm() {
   //render
   return (
     <AddFormStyled action="action" onSubmit={handleSubmit}>
-      <div className='image-preview'>
-        { newProductAdd.imageSource ? <img src={newProductAdd.imageSource} alt={newProductAdd.title} /> : <div> Aucune image</div>}
-      </div>
+      <ImagePreview imageSource={newProduct.imageSource} title={newProduct.title}/>
       <div className='input-fields'>
         <TextInput
           value={newProduct.title}
@@ -100,28 +105,6 @@ height: 100%;
 grid-column-gap: 20px;
 grid-row-gap: 8px;
 
-.image-preview{
-  grid-area: 1 / 1 / 4 / 2;
-  padding: 20px;
-  border: 1px solid ${theme.colors.greyLight};
-  border: ${theme.borderRadius.subtle};
-  color: ${theme.colors.greyLight};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  justify-items: center;
-  text-align: center;
-  img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-  }
-
-  div{
-    margin:0px auto;
-  }
-}
 .input-fields{
   grid-area: 1 / 2 / 4 / -2 ;  
   display: grid;
