@@ -10,17 +10,9 @@ import { theme } from '../../../../../theme';
 import OrderContext from '../../../../context/OrderContext';
 import { FiCheck } from 'react-icons/fi';
 
-
-const EMPTY_PRODUCT ={
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-}
 export default function AddForm() {
   //state
-  const {handleAdd} = useContext(OrderContext)
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const {handleAdd,newProduct,setNewProduct} = useContext(OrderContext)
   const [isSubmit, setIsSubmit] = useState(false)
 
   //components
@@ -113,7 +105,12 @@ grid-row-gap: 8px;
   padding: 20px;
   border: 1px solid ${theme.colors.greyLight};
   border: ${theme.borderRadius.subtle};
-  margin-right: 20px;
+  color: ${theme.colors.greyLight};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
   img{
     width: 100%;
     height: 100%;

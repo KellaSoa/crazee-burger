@@ -6,12 +6,21 @@ import { theme } from "../../../theme";
 import OrderContext from "../../context/OrderContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu"
 
+const EMPTY_PRODUCT ={
+  id: "",
+  title: "",
+  imageSource: "",
+  price: 0,
+}
+
 export default function OrderPage() {
   //state
   const [isModeAdmin, setIsModeAdmin] = useState(false)
   const [tabCurrentName, setTabCurrentName] = useState("add")
   const [tabActive, setTabActive] = useState("")
   const [isCollapsed,setIsCollapsed] = useState(false)
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+
 
   const [menu,setMenu] = useState(fakeMenu.SMALL)
 
@@ -46,7 +55,9 @@ export default function OrderPage() {
     menu,
     handleAdd,
     handleDelete,
-    handleReset
+    handleReset,
+    newProduct, 
+    setNewProduct
   }
   
   //render
