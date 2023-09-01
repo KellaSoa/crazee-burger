@@ -4,9 +4,9 @@ import Button from "./Button"
 
 const IMAGE_DEFAULT = "/images/coming-soon.png"
 
-export default function Card({Icon, title, imageSource, leftDescription, onDelete, version = "client" , onEdit}) {
+export default function Card({Icon, title, imageSource, leftDescription, onDelete, onClick, version = "client" }) {
   return (
-    <CardStyled version={version} onClick={onEdit}>
+    <CardStyled version={version} onClick={onClick}>
       <button className="delete-button" aria-label="delete-button" onClick={onDelete}>{Icon && Icon}</button>
       <div className="image">
         <img src={imageSource ? imageSource : IMAGE_DEFAULT} alt={title} />

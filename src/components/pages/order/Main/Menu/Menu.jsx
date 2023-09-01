@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import styled from "styled-components"
 import { theme } from "../../../../../theme"
 import { formatPrice } from "../../../../../utils/maths"
@@ -10,8 +10,13 @@ import EmptyMenuClient from "./EmptyMenuClient"
 
 export default function Menu() {
   //state
-  const {menu,isModeAdmin,handleDelete,handleReset,handleClick} = useContext(OrderContext)
+  const {menu,isModeAdmin,handleDelete,handleReset,setProductSelected} = useContext(OrderContext)
 
+  const handleClick = (idProductSelected) => {
+    //find product selected
+    const productSelected = menu.find((product) =>product.id === idProductSelected)
+    setProductSelected(productSelected)
+  }
 
   //render
   if(menu.length === 0){
@@ -32,7 +37,7 @@ export default function Menu() {
             imageSource={imageSource}
             leftDescription={formatPrice(price)}
             onDelete={() => handleDelete(id)}
-            onEdit={() => handleClick(id)}
+            onClick={() => handleClick(id)}
             version={isModeAdmin ? "admin" : "client"}
           />
         )

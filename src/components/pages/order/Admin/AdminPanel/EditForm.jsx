@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { styled } from 'styled-components';
-import { theme } from '../../../../../theme';
 import HintMessage from './HintMessage';
 import OrderContext from '../../../../context/OrderContext';
 import ImagePreview from './ImagePreview';
@@ -9,7 +8,7 @@ import { getInputTextsConfig } from './getInputTextsConfig';
 
 export default function EditForm() {
 
-  const {productSelected,setProductSelected} = useContext(OrderContext)
+  const {productSelected,setProductSelected,handleEdit} = useContext(OrderContext)
   const inputTexts = getInputTextsConfig(productSelected)
 
   //components
@@ -18,6 +17,7 @@ export default function EditForm() {
     //add dinamically name object with [name] ie {title: newValue,imageSource: newValue,price: newValue}
     //get newProduct object and add newValue by form   
     setProductSelected({...productSelected, [name]: value}) 
+    handleEdit(productSelected)
   };
 
   return (
