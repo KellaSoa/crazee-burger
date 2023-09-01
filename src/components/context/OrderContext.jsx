@@ -18,6 +18,8 @@ export default createContext({
     handleClick: () => {},
 
     
-    newProduct: () => {},
-    setNewProduct: () => {}
+    newProduct: {},
+    setNewProduct: () => {},
+    productSelected: {},
+    setProductSelected: () => {},
 });

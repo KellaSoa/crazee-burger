@@ -1,18 +1,13 @@
-import React, { useContext, useState } from 'react'
-import TextInput from '../../../../reusable-ui/TextInput'
+import React, { useContext, useState } from 'react';
+import TextInput from '../../../../reusable-ui/TextInput';
 import Button from '../../../../reusable-ui/Button';
 import { styled } from 'styled-components';
 import OrderContext from '../../../../context/OrderContext';
 import ImagePreview from './ImagePreview';
 import SubmitMessage from './SubmitMessage';
 import { getInputTextsConfig } from './getInputTextsConfig';
+import { EMPTY_PRODUCT } from '../../../../../enums/product';
 
-const EMPTY_PRODUCT ={
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-}
 export default function AddForm() {
   //state
   const {handleAdd,newProduct,setNewProduct} = useContext(OrderContext)
@@ -34,7 +29,7 @@ export default function AddForm() {
   const handleSubmit = (event) => { 
     event.preventDefault();
     handleAdd(newProductAdd)
-    setNewProduct(EMPTY_PRODUCT)
+    setNewProduct(EMPTY_PRODUCT )
 
     displaySuccessMessage()
   }

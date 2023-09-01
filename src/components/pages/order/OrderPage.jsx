@@ -4,14 +4,8 @@ import styled from "styled-components";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
 import OrderContext from "../../context/OrderContext";
-import { fakeMenu } from "../../../fakeData/fakeMenu"
-
-const EMPTY_PRODUCT ={
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-}
+import { fakeMenu } from "../../../fakeData/fakeMenu";
+import{EMPTY_PRODUCT} from "../../../enums/product"
 
 export default function OrderPage() {
   //state
@@ -19,10 +13,9 @@ export default function OrderPage() {
   const [tabCurrentName, setTabCurrentName] = useState("add")
   const [tabActive, setTabActive] = useState("")
   const [isCollapsed,setIsCollapsed] = useState(false)
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-
-
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
   const [menu,setMenu] = useState(fakeMenu.LARGE)
+  const [productSelected,setProductSelected] = useState(EMPTY_PRODUCT )
 
   //comportement
   const handleAdd = (newProduct) => {   
@@ -41,8 +34,10 @@ export default function OrderPage() {
     setMenu(fakeMenu.LARGE)
   }
  
-  const handleClick = (idProduct) => {   
-    alert("handleEDIt")
+  const handleClick = (idProductSelected) => {   
+    //copy state
+    const productSelected = menu.find((product) =>product.id === idProductSelected)
+    setProductSelected(productSelected)
   }
 
 
@@ -63,7 +58,9 @@ export default function OrderPage() {
     handleClick,
 
     newProduct, 
-    setNewProduct
+    setNewProduct,
+    productSelected,
+    setProductSelected
   }
   
   //render
