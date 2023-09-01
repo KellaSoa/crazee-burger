@@ -1,20 +1,20 @@
 import React, { useContext } from 'react'
-import { theme } from '../../../../theme/index';
+import { theme } from '../../../../../theme/index';
 import { styled } from 'styled-components';
-import { getPanelsConfig } from './helper/getPanelsConfig';
-import OrderContext from '../../../context/OrderContext';
+import { getPanelsConfig } from '../helper/getPanelsConfig';
+import OrderContext from '../../../../context/OrderContext';
 
 export default function AdminPanel() {
     const {tabActive} = useContext(OrderContext)    
 
-    const panels = getPanelsConfig
+   const panels = getPanelsConfig
 
     return (
         <AdminPanelStyled>            
            {panels.map((panel,index)=>{
-                return <div key={index} className={tabActive === panel.id ? 'panelActive':'panelInActive'}>{panel.text}</div>
+                return <div key={index} className={tabActive === panel.id ? 'panelActive':'panelInActive'}>{panel.Content}</div>
            })} 
-            {/* <div className={tabActive == "add"? 'panelActive':'panelInActive'}>Ajouter Produit</div> */}
+            
         </AdminPanelStyled>
     )
 }
@@ -26,6 +26,7 @@ const AdminPanelStyled = styled.div`
     background: ${theme.colors.white};
     border: 1px solid  ${theme.colors.greyLight};
     box-shadow: ${theme.shadows.subtle};
+    padding: 25px 5%;
 
     .panelActive{
         display: block;
