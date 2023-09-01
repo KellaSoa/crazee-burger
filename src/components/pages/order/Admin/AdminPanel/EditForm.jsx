@@ -1,7 +1,16 @@
 import React from 'react'
+import { styled } from 'styled-components';
+import { theme } from '../../../../../theme';
+import HintMessage from './HintMessage';
 
 export default function EditForm() {
   return (
-    <div>EditForm</div>
+    <EditFormStyled>
+      <HintMessage/>
+    </EditFormStyled>
   )
 }
+
+const EditFormStyled = styled.div`
+
+`;

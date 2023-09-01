@@ -10,7 +10,7 @@ import EmptyMenuClient from "./EmptyMenuClient"
 
 export default function Menu() {
   //state
-  const {menu,isModeAdmin,handleDelete,handleReset} = useContext(OrderContext)
+  const {menu,isModeAdmin,handleDelete,handleReset,handleClick} = useContext(OrderContext)
 
 
   //render
@@ -32,6 +32,8 @@ export default function Menu() {
             imageSource={imageSource}
             leftDescription={formatPrice(price)}
             onDelete={() => handleDelete(id)}
+            onEdit={() => handleClick(id)}
+            version={isModeAdmin ? "admin" : "client"}
           />
         )
       })}

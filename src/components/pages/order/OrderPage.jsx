@@ -22,7 +22,7 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
 
-  const [menu,setMenu] = useState(fakeMenu.SMALL)
+  const [menu,setMenu] = useState(fakeMenu.LARGE)
 
   //comportement
   const handleAdd = (newProduct) => {   
@@ -40,6 +40,10 @@ export default function OrderPage() {
   const handleReset = () => { 
     setMenu(fakeMenu.LARGE)
   }
+ 
+  const handleClick = (idProduct) => {   
+    alert("handleEDIt")
+  }
 
 
   const orderContextValue = {
@@ -56,6 +60,8 @@ export default function OrderPage() {
     handleAdd,
     handleDelete,
     handleReset,
+    handleClick,
+
     newProduct, 
     setNewProduct
   }

@@ -1,12 +1,12 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { theme } from "../../theme"
 import Button from "./Button"
 
 const IMAGE_DEFAULT = "/images/coming-soon.png"
 
-export default function Card({Icon, title, imageSource, leftDescription,onDelete }) {
+export default function Card({Icon, title, imageSource, leftDescription, onDelete, version = "client" }, onEdit) {
   return (
-    <CardStyled className="produit">
+    <CardStyled version={version} onClick={onEdit}>
       <button className="delete-button" aria-label="delete-button" onClick={onDelete}>{Icon && Icon}</button>
       <div className="image">
         <img src={imageSource ? imageSource : IMAGE_DEFAULT} alt={title} />
@@ -32,7 +32,7 @@ const CardStyled = styled.div`
   grid-template-rows: 65% 1fr;
   padding: 20px;
   padding-bottom: 10px;
-  box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+  box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);  
   border-radius: ${theme.borderRadius.extraRound};
   position:relative;
 
@@ -117,4 +117,15 @@ const CardStyled = styled.div`
       
     }
   } 
+  ${({version}) => extraCard[version]}
 `
+
+const extraStyleAdmin = css`
+  &:hover:not(:disabled) {
+    border: 1px solid ${theme.colors.primary};
+    cursor: pointer;
+  }
+`;
+const extraCard ={
+  admin: extraStyleAdmin
+}
