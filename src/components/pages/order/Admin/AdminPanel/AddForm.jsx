@@ -18,19 +18,20 @@ export default function AddForm() {
   const {handleAdd,newProduct,setNewProduct} = useContext(OrderContext)
   const [isSubmit, setIsSubmit] = useState(false)
 
-  //components
+  
   const newProductAdd ={
     ...newProduct,//add new product in form after handleChange input
     id: crypto.randomUUID(),
   }
-
+//components
   const handleChange = (event) => {
     const {name, value} = event.target
     //add dinamically name object with [name] ie {title: newValue,imageSource: newValue,price: newValue}
+    //get newProduct object and add newValue by form   
     setNewProduct({...newProduct, [name]: value}) 
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event) => { 
     event.preventDefault();
     handleAdd(newProductAdd)
     setNewProduct(EMPTY_PRODUCT)
@@ -85,7 +86,7 @@ const AddFormStyled = styled.form`
 display: grid;
 grid-template-columns: 1fr 3fr;
 grid-template-rows: repeat(4,1fr);
-width: 70%;
+//width: 70%;
 height: 100%;
 grid-column-gap: 20px;
 grid-row-gap: 8px;
