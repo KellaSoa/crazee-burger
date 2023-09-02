@@ -5,68 +5,70 @@ import Main from "./Main/Main";
 import { theme } from "../../../theme";
 import OrderContext from "../../context/OrderContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
-import{EMPTY_PRODUCT} from "../../../enums/product"
+import { EMPTY_PRODUCT } from "../../../enums/product";
+import { deepClone } from "../../../utils/collection";
 
 export default function OrderPage() {
   //state
-  const [isModeAdmin, setIsModeAdmin] = useState(false)
-  const [tabCurrentName, setTabCurrentName] = useState("add")
-  const [tabActive, setTabActive] = useState("")
-  const [isCollapsed,setIsCollapsed] = useState(false)
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
-  const [menu,setMenu] = useState(fakeMenu.LARGE)
-  const [productSelected,setProductSelected] = useState(EMPTY_PRODUCT )
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [tabCurrentName, setTabCurrentName] = useState("add");
+  const [tabActive, setTabActive] = useState("");
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [menu, setMenu] = useState(fakeMenu.LARGE);
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
 
   //comportement
-  const handleAdd = (newProduct) => {   
-    const menuCopy = JSON.parse(JSON.stringify(menu))
-    const menuUpdate = [newProduct, ...menuCopy]
-    setMenu(menuUpdate)
-  }
-  const handleDelete = (idProduct) => {   
+  const handleAdd = (newProduct) => {
+    const menuCopy = deepClone(menu);
+    const menuUpdate = [newProduct, ...menuCopy];
+    setMenu(menuUpdate);
+  };
+  const handleDelete = (idProduct) => {
     //copy state
-    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const menuCopy = deepClone(menu);
     //update state
-    const menuUpdated = menuCopy.filter((product) =>product.id !== idProduct)
-    setMenu(menuUpdated)
-  }
-  const handleReset = () => { 
-    setMenu(fakeMenu.LARGE)
-  }
- 
-  const handleEdit = (productBeingSelected) => {   
-    //copy state deep clone
-    const menuCopy = JSON.parse(JSON.stringify(menu))
-    //get index product to edit
-    const indexToEditProduct = menu.findIndex((product) => product.id === productBeingSelected.id ) 
-    //update state
-    menuCopy[indexToEditProduct] = productBeingSelected
-    setMenu(menuCopy) 
-  }
+    const menuUpdated = menuCopy.filter((product) => product.id !== idProduct);
+    setMenu(menuUpdated);
+  };
+  const handleReset = () => {
+    setMenu(fakeMenu.LARGE);
+  };
 
+  const handleEdit = (productBeingSelected) => {
+    //copy state deep clone
+    const menuCopy = deepClone(menu);
+    //get index product to edit
+    const indexToEditProduct = menu.findIndex(
+      (product) => product.id === productBeingSelected.id
+    );
+    //update state
+    menuCopy[indexToEditProduct] = productBeingSelected;
+    setMenu(menuCopy);
+  };
 
   const orderContextValue = {
     isCollapsed,
     setIsCollapsed,
-    isModeAdmin, 
+    isModeAdmin,
     setIsModeAdmin,
     tabCurrentName,
     setTabCurrentName,
     tabActive,
     setTabActive,
-    
+
     menu,
     handleAdd,
     handleDelete,
     handleReset,
     handleEdit,
 
-    newProduct, 
+    newProduct,
     setNewProduct,
     productSelected,
-    setProductSelected
-  }
-  
+    setProductSelected,
+  };
+
   //render
   return (
     <OrderContext.Provider value={orderContextValue}>
@@ -77,7 +79,6 @@ export default function OrderPage() {
         </div>
       </OrderPageStyled>
     </OrderContext.Provider>
-
   );
 }
 

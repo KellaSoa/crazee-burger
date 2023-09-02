@@ -1,13 +1,27 @@
-import styled, { css } from "styled-components"
-import { theme } from "../../theme"
-import Button from "./Button"
+import styled, { css } from "styled-components";
+import { theme } from "../../theme";
+import Button from "./Button";
 
-const IMAGE_DEFAULT = "/images/coming-soon.png"
+const IMAGE_DEFAULT = "/images/coming-soon.png";
 
-export default function Card({Icon, title, imageSource, leftDescription, onDelete, onClick, version = "client" }) {
+export default function Card({
+  Icon,
+  title,
+  imageSource,
+  leftDescription,
+  onDelete,
+  onClick,
+  version = "client",
+}) {
   return (
     <CardStyled version={version} onClick={onClick}>
-      <button className="delete-button" aria-label="delete-button" onClick={onDelete}>{Icon && Icon}</button>
+      <button
+        className="delete-button"
+        aria-label="delete-button"
+        onClick={onDelete}
+      >
+        {Icon && Icon}
+      </button>
       <div className="image">
         <img src={imageSource ? imageSource : IMAGE_DEFAULT} alt={title} />
       </div>
@@ -21,7 +35,7 @@ export default function Card({Icon, title, imageSource, leftDescription, onDelet
         </div>
       </div>
     </CardStyled>
-  )
+  );
 }
 
 const CardStyled = styled.div`
@@ -32,23 +46,23 @@ const CardStyled = styled.div`
   grid-template-rows: 65% 1fr;
   padding: 20px;
   padding-bottom: 10px;
-  box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);  
+  box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
-  position:relative;
+  position: relative;
 
-  .delete-button{
+  .delete-button {
     position: absolute;
     right: 15px;
     top: 15px;
-    cursor:pointer;
+    cursor: pointer;
     background: none;
     border: none;
     color: ${theme.colors.primary};
-    
-    :hover{
+
+    :hover {
       color: ${theme.colors.red};
     }
-    :active{
+    :active {
       color: ${theme.colors.primary};
     }
   }
@@ -114,11 +128,11 @@ const CardStyled = styled.div`
           text-align: center;
         }
       }
-      
     }
-  } 
-  ${({version}) => extraCard[version]}
-`
+  }
+
+  ${({ version }) => extraCard[version]}
+`;
 
 const extraStyleAdmin = css`
   &:hover:not(:disabled) {
@@ -126,6 +140,6 @@ const extraStyleAdmin = css`
     cursor: pointer;
   }
 `;
-const extraCard ={
-  admin: extraStyleAdmin
-}
+const extraCard = {
+  admin: extraStyleAdmin,
+};

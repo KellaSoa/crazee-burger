@@ -1,30 +1,37 @@
-import { useContext } from "react"
-import styled from "styled-components"
-import { theme } from "../../../../../theme"
-import { formatPrice } from "../../../../../utils/maths"
-import Card from "../../../../reusable-ui/Card"
-import OrderContext from "../../../../context/OrderContext"
+import { useContext } from "react";
+import styled from "styled-components";
+import { theme } from "../../../../../theme";
+import { formatPrice } from "../../../../../utils/maths";
+import Card from "../../../../reusable-ui/Card";
+import OrderContext from "../../../../context/OrderContext";
 import { TiDelete } from "react-icons/ti";
-import EmptyMenuAdmin from "./EmptyMenuAdmin"
-import EmptyMenuClient from "./EmptyMenuClient"
+import EmptyMenuAdmin from "./EmptyMenuAdmin";
+import EmptyMenuClient from "./EmptyMenuClient";
 
 export default function Menu() {
   //state
-  const {menu,isModeAdmin,handleDelete,handleReset,setProductSelected} = useContext(OrderContext)
+  const { menu, isModeAdmin, handleDelete, handleReset, setProductSelected } =
+    useContext(OrderContext);
 
   const handleClick = (idProductSelected) => {
     //find product selected
-    const productSelected = menu.find((product) =>product.id === idProductSelected)
-    setProductSelected(productSelected)
-  }
+    const productSelected = menu.find(
+      (product) => product.id === idProductSelected
+    );
+    setProductSelected(productSelected);
+  };
 
   //render
-  if(menu.length === 0){
-    return(
+  if (menu.length === 0) {
+    return (
       <>
-        {isModeAdmin ? <EmptyMenuAdmin onReset={handleReset}/> : <EmptyMenuClient/> }
-      </>  
-    )    
+        {isModeAdmin ? (
+          <EmptyMenuAdmin onReset={handleReset} />
+        ) : (
+          <EmptyMenuClient />
+        )}
+      </>
+    );
   }
   return (
     <MenuStyled className="menu">
@@ -40,24 +47,27 @@ export default function Menu() {
             onClick={() => handleClick(id)}
             version={isModeAdmin ? "admin" : "client"}
           />
-        )
+        );
       })}
     </MenuStyled>
-  )
+  );
 }
 
 const MenuStyled = styled.div`
   background: ${theme.colors.background_white};
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-row-gap: 60px;
   padding: 50px 50px 150px;
   justify-items: center;
   box-shadow: ${theme.shadows.strong};
   overflow-y: scroll;
 
-  .icon{
+  .icon {
     width: 100%;
     height: 100%;
   }
-`
+  .is-clicked {
+    background-color: ${theme.colors.primary};
+  }
+`;
