@@ -15,10 +15,10 @@ export default function Menu() {
 
   const handleClick = (idProductSelected) => {
     //find product selected
-    const productSelected = menu.find(
+    const productClicked = menu.find(
       (product) => product.id === idProductSelected
     );
-    setProductSelected(productSelected);
+    setProductSelected(productClicked);
   };
 
   //render
