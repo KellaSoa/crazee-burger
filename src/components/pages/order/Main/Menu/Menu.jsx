@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/maths";
@@ -10,8 +10,15 @@ import EmptyMenuClient from "./EmptyMenuClient";
 
 export default function Menu() {
   //state
-  const { menu, isModeAdmin, handleDelete, handleReset, setProductSelected } =
-    useContext(OrderContext);
+  const [isSelected, setIsSelected] = useState(false);
+  const {
+    menu,
+    isModeAdmin,
+    handleDelete,
+    handleReset,
+    setProductSelected,
+    productSelected,
+  } = useContext(OrderContext);
 
   const handleClick = (idProductSelected) => {
     //find product selected
@@ -19,6 +26,10 @@ export default function Menu() {
       (product) => product.id === idProductSelected
     );
     setProductSelected(productClicked);
+    setIsSelected(idProductSelected === productSelected.id);
+  };
+  const checkProductSelected = (id, productSelected) => {
+    return id === productSelected.id;
   };
 
   //render
@@ -46,6 +57,7 @@ export default function Menu() {
             onDelete={() => handleDelete(id)}
             onClick={() => handleClick(id)}
             version={isModeAdmin ? "admin" : "client"}
+            isSelected={checkProductSelected(id, productSelected)}
           />
         );
       })}

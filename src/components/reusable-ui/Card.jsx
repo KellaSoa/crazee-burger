@@ -12,9 +12,14 @@ export default function Card({
   onDelete,
   onClick,
   version = "client",
+  isSelected,
 }) {
   return (
-    <CardStyled version={version} onClick={onClick}>
+    <CardStyled
+      version={version}
+      onClick={onClick}
+      style={isSelected ? { background: "orange" } : {}}
+    >
       <button
         className="delete-button"
         aria-label="delete-button"
@@ -137,6 +142,8 @@ const CardStyled = styled.div`
 
 const extraStyleAdmin = css`
   &:hover:not(:disabled) {
+    transform: scale(1.05);
+    transition: ease-in-out 0.4;
     border: 1px solid ${theme.colors.primary};
     cursor: pointer;
   }
