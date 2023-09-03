@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/maths";
@@ -10,7 +10,6 @@ import EmptyMenuClient from "./EmptyMenuClient";
 
 export default function Menu() {
   //state
-  const [isSelected, setIsSelected] = useState(false);
   const {
     menu,
     isModeAdmin,
@@ -26,7 +25,6 @@ export default function Menu() {
       (product) => product.id === idProductSelected
     );
     setProductSelected(productClicked);
-    setIsSelected(idProductSelected === productSelected.id);
   };
   const checkProductSelected = (id, productSelected) => {
     return id === productSelected.id;
@@ -56,7 +54,7 @@ export default function Menu() {
             leftDescription={formatPrice(price)}
             onDelete={() => handleDelete(id)}
             onClick={() => handleClick(id)}
-            version={isModeAdmin ? "admin" : "client"}
+            isadmin={isModeAdmin ? isModeAdmin : false}
             isSelected={checkProductSelected(id, productSelected)}
           />
         );

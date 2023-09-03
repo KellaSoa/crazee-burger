@@ -1,7 +1,13 @@
 import { css, styled } from "styled-components";
 import { theme } from "../../theme";
 
-export default function Button({ label, Icon, version= "primary", onReset }) {
+export default function Button({
+  label,
+  Icon,
+  version = "primary",
+  onReset,
+  isSelected = { isSelected },
+}) {
   return (
     <ButtonStyled version={version} onClick={onReset}>
       <span>{label}</span>
@@ -27,13 +33,12 @@ const ButtonStyled = styled.button`
   font-size: 15px;
   font-weight: 800;
   color: white;
-  
 
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
-  
+
   .icon {
     display: flex;
     justify-content: center;
@@ -41,12 +46,13 @@ const ButtonStyled = styled.button`
     font-size: ${theme.fonts.size.SM};
     margin-right: 8px;
   }
-  ${({version}) => extraButton[version]}
+  ${({ version }) => extraButton[version]}
+  ${({ isSelected }) => isSelected && extraSelected}
 `;
 
 const extraButtonPrimary = css`
   background-color: ${theme.colors.primary};
-  border: 1px solid ${theme.colors.primary}; 
+  border: 1px solid ${theme.colors.primary};
 
   &:hover:not(:disabled) {
     background-color: white;
@@ -66,7 +72,7 @@ const extraButtonSuccess = css`
   width: 50%;
   background-color: ${theme.colors.green};
   padding: 10px 20px;
-  border: 1px solid ${theme.colors.green}; 
+  border: 1px solid ${theme.colors.green};
   &:hover:not(:disabled) {
     background-color: white;
     color: ${theme.colors.green};
@@ -78,10 +84,21 @@ const extraButtonSuccess = css`
     color: white;
     background-color: ${theme.colors.green};
     border: 1px solid ${theme.colors.green};
-  } 
+  }
 `;
 
-const extraButton ={
+const extraSelected = css`
+  background-color: ${theme.colors.white};
+  border: 1px solid ${theme.colors.primary};
+  &:hover:not(:disabled) {
+    background-color: white;
+    color: ${theme.colors.primary};
+    border: 1px solid ${theme.colors.primary};
+    transition: all 200ms ease-out;
+  }
+`;
+
+const extraButton = {
   primary: extraButtonPrimary,
-  success: extraButtonSuccess
-}
+  success: extraButtonSuccess,
+};

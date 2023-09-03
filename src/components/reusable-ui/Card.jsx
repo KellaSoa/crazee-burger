@@ -11,15 +11,11 @@ export default function Card({
   leftDescription,
   onDelete,
   onClick,
-  version = "client",
+  isadmin,
   isSelected,
 }) {
   return (
-    <CardStyled
-      version={version}
-      onClick={onClick}
-      style={isSelected ? { background: "orange" } : {}}
-    >
+    <CardStyled isadmin={isadmin} onClick={onClick} isSelected={isSelected}>
       <button
         className="delete-button"
         aria-label="delete-button"
@@ -35,7 +31,11 @@ export default function Card({
         <div className="description">
           <div className="left-description">{leftDescription}</div>
           <div className="right-description">
-            <Button className="primary-button" label={"Ajouter"} />
+            <Button
+              className="primary-button"
+              label={"Ajouter"}
+              isSelected={isSelected}
+            />
           </div>
         </div>
       </div>
@@ -137,7 +137,8 @@ const CardStyled = styled.div`
     }
   }
 
-  ${({ version }) => extraCard[version]}
+  ${({ isadmin }) => isadmin && extraStyleAdmin}
+  ${({ isadmin, isSelected }) => isadmin && isSelected && extraStyleSelected}
 `;
 
 const extraStyleAdmin = css`
@@ -148,6 +149,31 @@ const extraStyleAdmin = css`
     cursor: pointer;
   }
 `;
-const extraCard = {
-  admin: extraStyleAdmin,
-};
+const extraStyleSelected = css`
+  background: ${theme.colors.primary};
+  .delete-button {
+    color: ${theme.colors.white};
+    :hover {
+      color: ${theme.colors.white};
+    }
+    :active {
+      color: ${theme.colors.white};
+    }
+  }
+  .text-info {
+    .description {
+      .left-description {
+        color: ${theme.colors.white};
+      }
+
+      .right-description {
+        color: ${theme.colors.primary};
+        .primary-button {
+          background: ${theme.colors.white};
+          color: ${theme.colors.primary};
+          border: 1px solid ${theme.colors.primary};
+        }
+      }
+    }
+  }
+`;
