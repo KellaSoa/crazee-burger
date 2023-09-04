@@ -5,6 +5,7 @@ import OrderContext from "../../../../context/OrderContext";
 import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../reusable-ui/TextInput";
 import { getInputTextsConfig } from "./getInputTextsConfig";
+import { theme } from "../../../../../theme";
 
 export default function EditForm() {
   const { productSelected, setProductSelected, handleEdit, titleEditRef } =
@@ -22,9 +23,7 @@ export default function EditForm() {
   };
 
   return (
-    <EditFormStyled>
-      <HintMessage />
-      
+    <EditFormStyled>      
       <ImagePreview
         imageSource={productSelected.imageSource}
         title={productSelected.title}
@@ -42,6 +41,8 @@ export default function EditForm() {
           );
         })}
       </div>
+      <div className="contain-button">
+        Cliquer sur un produit du menu pour le modifier <span> en temp réel</span>      </div>
     </EditFormStyled>
   );
 }
@@ -58,5 +59,15 @@ const EditFormStyled = styled.div`
     grid-area: 1 / 2 / 4 / -2;
     display: grid;
     grid-row-gap: 8px;
+  }
+  .contain-button{
+  grid-area: 4 / 2 / 5 / -1;
+  display:flex;
+  align-items: center;
+  color: ${theme.colors.primary};
+  span{
+    padding-left: 5px;
+    text-decoration: underline;
+  }
   }
 `;
