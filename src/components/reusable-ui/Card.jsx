@@ -35,6 +35,7 @@ export default function Card({
               className="primary-button"
               label={"Ajouter"}
               isSelected={isSelected}
+              onClick= {(event) => event.stopPropagation()}
             />
           </div>
         </div>

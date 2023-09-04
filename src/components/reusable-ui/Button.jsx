@@ -5,11 +5,11 @@ export default function Button({
   label,
   Icon,
   version = "primary",
-  onReset,
+  onClick,
   className
 }) {
   return (
-    <ButtonStyled version={version} onClick={onReset} className={className}>
+    <ButtonStyled version={version} onClick={onClick} className={className}>
       <span>{label}</span>
       {Icon && <div className="icon">{Icon && Icon}</div>}
     </ButtonStyled>
