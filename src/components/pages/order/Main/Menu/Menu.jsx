@@ -7,6 +7,7 @@ import OrderContext from "../../../../context/OrderContext";
 import { TiDelete } from "react-icons/ti";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
+import { EMPTY_PRODUCT } from "../../../../../enums/product";
 
 export default function Menu() {
   //state
@@ -43,6 +44,8 @@ export default function Menu() {
   const handleCardDelete = (event,idProductDelete) => { 
     event.stopPropagation() 
     handleDelete(idProductDelete)
+    idProductDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
+    titleEditRef.current.focus()
   }
 
 

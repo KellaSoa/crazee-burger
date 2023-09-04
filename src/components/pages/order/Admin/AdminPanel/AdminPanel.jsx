@@ -3,11 +3,13 @@ import { theme } from '../../../../../theme/index';
 import { styled } from 'styled-components';
 import { getPanelsConfig } from '../helper/getPanelsConfig';
 import OrderContext from '../../../../context/OrderContext';
+import { EMPTY_PRODUCT } from '../../../../../enums/product';
 
 export default function AdminPanel() {
-    const {tabActive} = useContext(OrderContext)    
+    const {tabActive,productSelected} = useContext(OrderContext)    
 
-   const panels = getPanelsConfig
+    const hasCardSelected = productSelected !== EMPTY_PRODUCT
+   const panels = getPanelsConfig(hasCardSelected)
 
     return (
         <AdminPanelStyled>            
