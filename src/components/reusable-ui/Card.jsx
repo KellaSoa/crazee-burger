@@ -166,7 +166,7 @@ const extraStyleSelected = css`
   .delete-button {
     color: ${theme.colors.white};
     :hover {
-      color: ${theme.colors.white};
+      color: ${theme.colors.red};
     }
     :active {
       color: ${theme.colors.white};
@@ -179,11 +179,21 @@ const extraStyleSelected = css`
       }
 
       .right-description {
-        color: ${theme.colors.primary};
         .primary-button {
           background: ${theme.colors.white};
           color: ${theme.colors.primary};
           border: 1px solid ${theme.colors.primary};
+          &:hover:not(:disabled) {
+            border: 1px solid ${theme.colors.white};
+            background: ${theme.colors.primary};
+            color: ${theme.colors.white};
+            cursor: pointer;
+          }
+          :active {
+            border: 1px solid ${theme.colors.white};
+            background: ${theme.colors.primary};
+            color: ${theme.colors.white};
+          }
         }
       }
     }
