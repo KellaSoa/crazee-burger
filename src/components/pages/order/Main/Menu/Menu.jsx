@@ -19,19 +19,22 @@ export default function Menu() {
     productSelected,
     setIsCollapsed,
     setTabCurrentName,
-    setTabActive
+    setTabActive,
+    titleEditRef
   } = useContext(OrderContext);
 
-  const handleClick = (idProductSelected) => {
+  const handleClick = async(idProductSelected) => {
     if(!isModeAdmin) return
-    setIsCollapsed(true)
-    setTabCurrentName("edit")
-    setTabActive("edit");
+    await setIsCollapsed(true)
+    await setTabCurrentName("edit")
+    await setTabActive("edit");
     //find product selected
     const productClicked = menu.find(
       (product) => product.id === idProductSelected
     );
-    setProductSelected(productClicked);
+    await setProductSelected(productClicked);
+    //onFucus in titleForm
+    titleEditRef.current.focus()
   };
   const checkProductSelected = (id, productSelected) => {
     return id === productSelected.id;
@@ -67,8 +70,8 @@ export default function Menu() {
             leftDescription={formatPrice(price)}
             onDelete={(event) => handleCardDelete(event,id)}
             onClick={() => handleClick(id)}
-            isadmin={isModeAdmin}
-            isSelected={checkProductSelected(id, productSelected)}
+            isHoverable={isModeAdmin ? isModeAdmin : null}
+            isselected={checkProductSelected(id, productSelected)}
           />
         );
       })}

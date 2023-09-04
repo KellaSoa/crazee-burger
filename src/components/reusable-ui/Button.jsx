@@ -47,7 +47,6 @@ const ButtonStyled = styled.button`
     margin-right: 8px;
   }
   ${({ version }) => extraButton[version]}
-  ${({ isSelected }) => isSelected && extraSelected}
 `;
 
 const extraButtonPrimary = css`
@@ -84,17 +83,6 @@ const extraButtonSuccess = css`
     color: white;
     background-color: ${theme.colors.green};
     border: 1px solid ${theme.colors.green};
-  }
-`;
-
-const extraSelected = css`
-  background-color: ${theme.colors.white};
-  border: 1px solid ${theme.colors.primary};
-  &:hover:not(:disabled) {
-    background-color: white;
-    color: ${theme.colors.primary};
-    border: 1px solid ${theme.colors.primary};
-    transition: all 200ms ease-out;
   }
 `;
 

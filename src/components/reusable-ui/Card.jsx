@@ -11,11 +11,11 @@ export default function Card({
   leftDescription,
   onDelete,
   onClick,
-  isadmin,
-  isSelected,
+  isHoverable,
+  isselected,
 }) {
   return (
-    <CardStyled isadmin={isadmin} onClick={onClick} isSelected={isSelected}>
+    <CardStyled onClick={onClick} isHoverable={isHoverable}  isselected={isselected}>
       <button
         className="delete-button"
         aria-label="delete-button"
@@ -34,7 +34,6 @@ export default function Card({
             <Button
               className="primary-button"
               label={"Ajouter"}
-              isSelected={isSelected}
               onClick= {(event) => event.stopPropagation()}
             />
           </div>
@@ -150,11 +149,11 @@ const CardStyled = styled.div`
     }
   }
 
-  ${({ isadmin }) => isadmin && extraStyleAdmin}
-  ${({ isadmin, isSelected }) => isadmin && isSelected && extraStyleSelected}
+  ${({ isHoverable }) => isHoverable && extraStyleIsHoverable}
+  ${({ isHoverable, isselected }) => isHoverable && isselected && extraStyleSelected}
 `;
 
-const extraStyleAdmin = css`
+const extraStyleIsHoverable = css`
   &:hover:not(:disabled) {
     transform: scale(1.05);
     transition: ease-in-out 0.4;
