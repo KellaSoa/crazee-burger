@@ -57,16 +57,28 @@ const CardStyled = styled.div`
   position: relative;
 
   .delete-button {
+    border: 1px solid red;
     position: absolute;
-    right: 15px;
     top: 15px;
+    right: 15px;
     cursor: pointer;
-    background: none;
-    border: none;
+    width: 30px;
+    height: 30px;
     color: ${theme.colors.primary};
+    z-index: 2;
+    padding: 0;
+    border: none;
+    background: none;
+
+    .icon {
+      /* border: 1px solid blue; */
+      height: 100%;
+      width: 100%;
+    }
 
     :hover {
       color: ${theme.colors.red};
+      /* background-color: red; */
     }
     :active {
       color: ${theme.colors.primary};
