@@ -1,54 +1,89 @@
-import styled from "styled-components"
-import { theme } from "../../theme"
-import Button from "./Button"
+import styled, { css } from "styled-components";
+import { theme } from "../../theme";
+import Button from "./Button";
 
-const IMAGE_DEFAULT = "/images/coming-soon.png"
 
-export default function Card({Icon, title, imageSource, leftDescription,onDelete }) {
+export default function Card({
+  Icon,
+  title,
+  imageSource,
+  leftDescription,
+  onDelete,
+  onClick,
+  isHoverable,
+  isSelected,
+}) {
   return (
-    <CardStyled className="produit">
-      <button className="delete-button" aria-label="delete-button" onClick={onDelete}>{Icon && Icon}</button>
+    <CardStyled 
+      onClick={onClick} 
+      isHoverable={isHoverable}
+      isSelected={isSelected}
+    >
+      <button
+        className="delete-button"
+        aria-label="delete-button"
+        onClick={onDelete}
+      >
+        {Icon && Icon}
+      </button>
       <div className="image">
-        <img src={imageSource ? imageSource : IMAGE_DEFAULT} alt={title} />
+        <img src={imageSource} alt={title} />
       </div>
       <div className="text-info">
         <div className="title">{title}</div>
         <div className="description">
           <div className="left-description">{leftDescription}</div>
           <div className="right-description">
-            <Button className="primary-button" label={"Ajouter"} />
+            <Button
+              className="primary-button"
+              label={"Ajouter"}
+              onClick= {(event) => event.stopPropagation()}
+            />
           </div>
         </div>
       </div>
     </CardStyled>
-  )
+  );
 }
 
 const CardStyled = styled.div`
   background: ${theme.colors.white};
-  width: 200px;
-  height: 300px;
+  border: border-box;
+  width: 240px;
+  height: 330px;
   display: grid;
   grid-template-rows: 65% 1fr;
   padding: 20px;
   padding-bottom: 10px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
-  position:relative;
+  position: relative;
 
-  .delete-button{
+  .delete-button {
+    border: 1px solid red;
     position: absolute;
-    right: 15px;
     top: 15px;
-    cursor:pointer;
-    background: none;
-    border: none;
+    right: 15px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
     color: ${theme.colors.primary};
-    
-    :hover{
-      color: ${theme.colors.red};
+    z-index: 2;
+    padding: 0;
+    border: none;
+    background: none;
+
+    .icon {
+      /* border: 1px solid blue; */
+      height: 100%;
+      width: 100%;
     }
-    :active{
+
+    :hover {
+      color: ${theme.colors.red};
+      /* background-color: red; */
+    }
+    :active {
       color: ${theme.colors.primary};
     }
   }
@@ -114,7 +149,56 @@ const CardStyled = styled.div`
           text-align: center;
         }
       }
-      
     }
-  } 
-`
+  }
+
+  ${({ isHoverable }) => isHoverable && extraStyleIsHoverable}
+  ${({ isHoverable, isSelected }) => isHoverable && isSelected && extraStyleSelected}
+`;
+
+const extraStyleIsHoverable = css`
+  &:hover:not(:disabled) {
+    transform: scale(1.05);
+    transition: ease-in-out 0.4;
+    border: 1px solid ${theme.colors.primary};
+    cursor: pointer;
+  }
+`;
+const extraStyleSelected = css`
+  background: ${theme.colors.primary};
+  .delete-button {
+    color: ${theme.colors.white};
+    :hover {
+      color: ${theme.colors.red};
+    }
+    :active {
+      color: ${theme.colors.white};
+    }
+  }
+  .text-info {
+    .description {
+      .left-description {
+        color: ${theme.colors.white};
+      }
+
+      .right-description {
+        .primary-button {
+          background: ${theme.colors.white};
+          color: ${theme.colors.primary};
+          border: 1px solid ${theme.colors.primary};
+          &:hover:not(:disabled) {
+            border: 1px solid ${theme.colors.white};
+            background: ${theme.colors.primary};
+            color: ${theme.colors.white};
+            cursor: pointer;
+          }
+          :active {
+            border: 1px solid ${theme.colors.white};
+            background: ${theme.colors.primary};
+            color: ${theme.colors.white};
+          }
+        }
+      }
+    }
+  }
+`;

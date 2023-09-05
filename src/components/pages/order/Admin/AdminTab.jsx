@@ -30,7 +30,6 @@ export default function AdminTab( ) {
 
   const tabs= getTabsConfig(isCollapsed);
   
-  
   return (
     <AdminTabStyled>
       {/*

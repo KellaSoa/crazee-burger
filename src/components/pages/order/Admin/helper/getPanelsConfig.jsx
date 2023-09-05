@@ -1,7 +1,8 @@
 import AddForm from "../AdminPanel/AddForm";
 import EditForm from "../AdminPanel/EditForm";
+import HintMessage from "../AdminPanel/HintMessage";
 
-export const getPanelsConfig = [
+export const getPanelsConfig = (hasCardSelected) =>[
     {
         id: 'collapsed',
         content: "",
@@ -13,7 +14,7 @@ export const getPanelsConfig = [
     },
     {
         id:"edit",
-        Content: <EditForm/>
+        Content: hasCardSelected ? <EditForm/> : <HintMessage/>
     },
     
     
