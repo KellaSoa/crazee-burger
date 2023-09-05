@@ -15,8 +15,12 @@ export default function EditForm() {
     const { name, value } = event.target;
     //add dinamically name object with [name] ie {title: newValue,imageSource: newValue,price: newValue}
     //get newProduct object and add newValue by form
-    setProductSelected({ ...productSelected, [name]: value });
-    handleEdit(productSelected);
+    const productBeingUpdated = {
+      ...productSelected,
+      [name]: value,
+    }
+    setProductSelected(productBeingUpdated); //Update Form
+    handleEdit(productBeingUpdated); //Update  menu
   };
 
   return (
