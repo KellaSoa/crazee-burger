@@ -29,7 +29,7 @@ export default function Menu() {
 
   const handleClick = async(idProductSelected) => {
     if(!isModeAdmin) return
-    await setIsCollapsed(true)
+    await setIsCollapsed(false)
     await setTabCurrentName("edit")
     await setTabActive("edit");
     //find product selected

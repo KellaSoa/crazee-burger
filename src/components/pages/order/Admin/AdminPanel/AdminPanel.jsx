@@ -10,7 +10,7 @@ export default function AdminPanel() {
 
     const hasCardSelected = productSelected !== EMPTY_PRODUCT
    const panels = getPanelsConfig(hasCardSelected)
-
+    console.log(tabActive)
     return (
         <AdminPanelStyled>            
            {panels.map((panel,index)=>{
