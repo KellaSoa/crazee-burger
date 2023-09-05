@@ -1,7 +1,6 @@
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
-import { formatPrice } from "../../../../../utils/maths";
 export const getInputTextsConfig = (newProduct) => [
   {
     id: 0,
@@ -20,7 +19,7 @@ export const getInputTextsConfig = (newProduct) => [
   },
   {
     id: 2,
-    value: newProduct.price ? formatPrice(newProduct.price) : "",
+    value: newProduct.price ? newProduct.price : "",
     placeholder: "prix ",
     Icon: <MdOutlineEuro className="icon" />,
     name: "price",
