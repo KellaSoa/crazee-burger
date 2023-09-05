@@ -1,12 +1,7 @@
 import React, { useContext, useState } from 'react';
-import TextInput from '../../../../reusable-ui/TextInput';
-import Button from '../../../../reusable-ui/Button';
-import { styled } from 'styled-components';
 import OrderContext from '../../../../context/OrderContext';
-import ImagePreview from './ImagePreview';
-import SubmitMessage from './SubmitMessage';
-import { getInputTextsConfig } from './getInputTextsConfig';
 import { EMPTY_PRODUCT } from '../../../../../enums/product';
+import Form from './Form';
 
 export default function AddForm() {
   //state
@@ -40,60 +35,10 @@ export default function AddForm() {
       setIsSubmit(false)
     },2000)
   }
-
-  const inputTexts = getInputTextsConfig(newProduct)
-
+ 
   //render
   return (
-    <AddFormStyled action="action" onSubmit={handleSubmit}>
-      <ImagePreview imageSource={newProduct.imageSource} title={newProduct.title}/>
-      <div className='input-fields'>
-        {inputTexts.map((input)=>{
-          return <TextInput
-          key={input.id}
-          {...input}
-          onChange={handleChange}
-          version="minimalist"
-          />
-        })}
-        {/* <TextInput
-          value={newProduct.title}
-          onChange={handleChange}
-          placeholder={"Nom du produit (ex: Super Burger) "}
-          Icon={<FaHamburger className="icon" />}
-          name="title"
-          version="minimalist"
-        />
-         */}
-          
-      </div>
-      <div className="contain-button">
-        <Button version= "success"
-          label={"Ajouter un nouveau produit au menu"}          
-        />
-        {isSubmit &&  <SubmitMessage/>}
-      </div>
-    </AddFormStyled>
+    <Form product={newProduct} onSubmit={handleSubmit} onChange={handleChange} isSubmit={isSubmit}/>
   )
 }
 
-const AddFormStyled = styled.form`
-display: grid;
-grid-template-columns: 1fr 3fr;
-grid-template-rows: repeat(4,1fr);
-//width: 70%;
-height: 100%;
-grid-column-gap: 20px;
-grid-row-gap: 8px;
-
-.input-fields{
-  grid-area: 1 / 2 / 4 / -2 ;  
-  display: grid;
-  grid-row-gap: 8px;
-}
-.contain-button{
-  grid-area: 4 / 2 / 5 / -1;
-  display:flex;
-  align-items: center;
-}
-`;
