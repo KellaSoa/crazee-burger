@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import OrderContext from '../../../../context/OrderContext';
 import { EMPTY_PRODUCT } from '../../../../../enums/product';
 import Form from './Form';
+import ButtonMessage from './ButtonMessage';
+
 
 export default function AddForm() {
   //state
@@ -38,7 +40,9 @@ export default function AddForm() {
  
   //render
   return (
-    <Form product={newProduct} onSubmit={handleSubmit} onChange={handleChange} isSubmit={isSubmit}/>
+    <Form product={newProduct} onSubmit={handleSubmit} onChange={handleChange}>
+      <ButtonMessage isSubmit={isSubmit}/>
+    </Form>
   )
 }
 

@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 import Button from "./Button";
 
-const IMAGE_DEFAULT = "/images/coming-soon.png";
 
 export default function Card({
   Icon,
@@ -12,10 +11,14 @@ export default function Card({
   onDelete,
   onClick,
   isHoverable,
-  isselected,
+  isSelected,
 }) {
   return (
-    <CardStyled onClick={onClick} isHoverable={isHoverable}  isselected={isselected}>
+    <CardStyled 
+      onClick={onClick} 
+      isHoverable={isHoverable}
+      isSelected={isSelected}
+    >
       <button
         className="delete-button"
         aria-label="delete-button"
@@ -24,7 +27,7 @@ export default function Card({
         {Icon && Icon}
       </button>
       <div className="image">
-        <img src={imageSource ? imageSource : IMAGE_DEFAULT} alt={title} />
+        <img src={imageSource} alt={title} />
       </div>
       <div className="text-info">
         <div className="title">{title}</div>
@@ -150,7 +153,7 @@ const CardStyled = styled.div`
   }
 
   ${({ isHoverable }) => isHoverable && extraStyleIsHoverable}
-  ${({ isHoverable, isselected }) => isHoverable && isselected && extraStyleSelected}
+  ${({ isHoverable, isSelected }) => isHoverable && isSelected && extraStyleSelected}
 `;
 
 const extraStyleIsHoverable = css`

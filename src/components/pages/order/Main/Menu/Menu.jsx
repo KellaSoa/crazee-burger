@@ -9,6 +9,9 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { EMPTY_PRODUCT } from "../../../../../enums/product";
 
+const IMAGE_DEFAULT = "/images/coming-soon.png";
+
+
 export default function Menu() {
   //state
   const {
@@ -69,12 +72,12 @@ export default function Menu() {
             key={id}
             Icon={isModeAdmin && <TiDelete className="icon" />}
             title={title}
-            imageSource={imageSource}
+            imageSource={imageSource ? imageSource : IMAGE_DEFAULT}
             leftDescription={formatPrice(price)}
             onDelete={(event) => handleCardDelete(event,id)}
             onClick={() => handleClick(id)}
-            isHoverable={isModeAdmin ? isModeAdmin : null}
-            isselected={checkProductSelected(id, productSelected)}
+            isHoverable={isModeAdmin}
+            isSelected={checkProductSelected(id, productSelected)}
           />
         );
       })}
