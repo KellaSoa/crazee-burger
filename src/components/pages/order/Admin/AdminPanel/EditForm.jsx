@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
-import { getInputTextsConfig } from "./getInputTextsConfig";
 import Form from "./Form";
 import EditInfoMessage from "./EditInfoMessage";
 
 export default function EditForm() {
   const { productSelected, setProductSelected, handleEdit, titleEditRef } =
     useContext(OrderContext);
-  const inputTexts = getInputTextsConfig(productSelected);
   
 
   //components
