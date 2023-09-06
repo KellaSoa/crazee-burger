@@ -4,9 +4,8 @@ import styled from "styled-components";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
 import OrderContext from "../../context/OrderContext";
-import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
-import { deepClone } from "../../../utils/collection";
+import { useMenu } from "../../../hooks/useMenu";
 
 export default function OrderPage() {
   //state
@@ -15,38 +14,9 @@ export default function OrderPage() {
   const [tabActive, setTabActive] = useState("add");
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef()
-
-  //comportement
-  const handleAdd = (newProduct) => {
-    const menuCopy = deepClone(menu);
-    const menuUpdate = [newProduct, ...menuCopy];
-    setMenu(menuUpdate);
-  };
-  const handleDelete = (idProduct) => {
-    //copy state
-    const menuCopy = deepClone(menu);
-    //update state
-    const menuUpdated = menuCopy.filter((product) => product.id !== idProduct);
-    setMenu(menuUpdated);
-  };
-  const handleReset = () => {
-    setMenu(fakeMenu.LARGE);
-  };
-
-  const handleEdit = (productBeingSelected) => {
-    //copy state deep clone
-    const menuCopy = deepClone(menu);
-    //get index product to edit
-    const indexToEditProduct = menu.findIndex(
-      (product) => product.id === productBeingSelected.id
-    );
-    //update state
-    menuCopy[indexToEditProduct] = productBeingSelected;
-    setMenu(menuCopy);
-  };
+  const {menu,setMenu,handleAdd,handleDelete,handleEdit,handleReset} = useMenu()
 
   const orderContextValue = {
     isCollapsed,
