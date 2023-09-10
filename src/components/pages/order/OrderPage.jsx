@@ -6,6 +6,7 @@ import { theme } from "../../../theme";
 import OrderContext from "../../context/OrderContext";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
+import { useBasket } from "../../../hooks/useBasket";
 
 export default function OrderPage() {
   //state
@@ -15,8 +16,10 @@ export default function OrderPage() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
-  const titleEditRef = useRef()
-  const {menu,setMenu,handleAdd,handleDelete,handleEdit,handleReset} = useMenu()
+  const titleEditRef = useRef();
+  const { menu, setMenu, handleAdd, handleDelete, handleEdit, handleReset } =
+    useMenu();
+  const { basket } = useBasket();
 
   const orderContextValue = {
     isCollapsed,
@@ -39,7 +42,9 @@ export default function OrderPage() {
     productSelected,
     setProductSelected,
 
-    titleEditRef
+    titleEditRef,
+
+    basket,
   };
 
   //render
