@@ -1,6 +1,6 @@
 import { fakeBasket } from "../fakeData/fakeBasket";
 import { useState } from "react";
-import { deepClone, findInArray } from "../utils/collection";
+import { deepClone, findInArray, findIndex } from "../utils/collection";
 
 export const useBasket = () => {
   const [basket, setBasket] = useState(fakeBasket.EMPTY);
@@ -13,6 +13,7 @@ export const useBasket = () => {
     const isProductAlredyInBasket =
       findInArray(productToAdd.id, basketCopy) === undefined;
     //manip state
+
     if (isProductAlredyInBasket) {
       //last in first of the list
       const newProductBasket = {
@@ -21,8 +22,14 @@ export const useBasket = () => {
       };
       const updateBasket = [newProductBasket, ...basketCopy];
       setBasket(updateBasket);
+      return;
     }
+    //check if id product in basket
+    const indexOfCardBasketToIncrement = findIndex(productToAdd.id, basketCopy);
+    //increment value quantity
+    basketCopy[indexOfCardBasketToIncrement].quantity += 1;
     //update state
+    setBasket(basketCopy);
   };
 
   return { basket, handleAddToBasket };
