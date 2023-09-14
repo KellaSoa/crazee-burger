@@ -11,12 +11,12 @@ import BasketProducts from "./BasketProducts";
 
 export default function Basket() {
   const { basket } = useContext(OrderContext);
-  const isBasket = basket.length === 0;
-
+  console.log(basket);
+  const isBasketEmpty = basket.length === 0;
   return (
     <BasketStyled>
       <Total amountTotal={formatPrice(0)} />
-      {isBasket ? <EmptyBasket /> : <BasketProducts basket={basket} />}
+      {isBasketEmpty ? <EmptyBasket /> : <BasketProducts basket={basket} />}
 
       <Footer />
     </BasketStyled>

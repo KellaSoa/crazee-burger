@@ -19,7 +19,7 @@ export default function OrderPage() {
   const titleEditRef = useRef();
   const { menu, setMenu, handleAdd, handleDelete, handleEdit, handleReset } =
     useMenu();
-  const { basket } = useBasket();
+  const { basket, handleAddToBasket } = useBasket();
 
   const orderContextValue = {
     isCollapsed,
@@ -45,6 +45,7 @@ export default function OrderPage() {
     titleEditRef,
 
     basket,
+    handleAddToBasket,
   };
 
   //render

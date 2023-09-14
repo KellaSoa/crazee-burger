@@ -27,7 +27,7 @@ export default function BasketCard({
           <span className="price">{formatPrice(price)}</span>
         </div>
         <div className="quantity">
-          <span>{quantity}</span>
+          <span>x {quantity}</span>
         </div>
       </div>
     </BasketCardStyled>
