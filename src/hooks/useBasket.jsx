@@ -10,27 +10,32 @@ export const useBasket = () => {
     const basketCopy = deepClone(basket);
 
     //check product click not in basket
-    const isProductAlredyInBasket =
+    const productFoundInBasket =
       findInArray(productToAdd.id, basketCopy) === undefined;
     //manip state
 
-    if (isProductAlredyInBasket) {
+    if (productFoundInBasket) {
       //last in first of the list
-      const newProductBasket = {
-        ...productToAdd,
-        quantity: 1,
-      };
-      const updateBasket = [newProductBasket, ...basketCopy];
-      setBasket(updateBasket);
+      createProductInBasket(productToAdd, basketCopy);
       return;
     }
     //check if id product in basket
+    incrementQuantityProductInBasket(productToAdd, basketCopy);
+  };
+  const createProductInBasket = (productToAdd, basketCopy) => {
+    const newProductBasket = {
+      ...productToAdd,
+      quantity: 1,
+    };
+    const updateBasket = [newProductBasket, ...basketCopy];
+    setBasket(updateBasket);
+  };
+  const incrementQuantityProductInBasket = (productToAdd, basketCopy) => {
     const indexOfCardBasketToIncrement = findIndex(productToAdd.id, basketCopy);
     //increment value quantity
     basketCopy[indexOfCardBasketToIncrement].quantity += 1;
     //update state
     setBasket(basketCopy);
   };
-
   return { basket, handleAddToBasket };
 };
