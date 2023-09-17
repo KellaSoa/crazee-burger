@@ -7,13 +7,16 @@ import { theme } from "../../../../../theme";
 export default function BasketCard({
   id,
   title,
-  imageSource,
   price,
   quantity,
+  imageSource,
+  className,
+  isModeAdmin,
+  onDelete,
 }) {
   return (
-    <BasketCardStyled>
-      <div className="delete-button">
+    <BasketCardStyled className={className} isModeAdmin={isModeAdmin}>
+      <div className="delete-button" onClick={onDelete}>
         <MdDeleteForever className="icon" />
       </div>
       <div className="image">
@@ -35,6 +38,8 @@ export default function BasketCard({
 }
 
 const BasketCardStyled = styled.div`
+  cursor: ${({ isModeAdmin }) => (isModeAdmin ? "pointer" : "auto")};
+  /* border: 1px solid red; */
   box-sizing: border-box;
   height: 86px;
   padding: 8px 16px;
@@ -79,6 +84,7 @@ const BasketCardStyled = styled.div`
         display: flex;
         align-items: center;
         /* background: yellow; */
+        font-family: ${theme.fonts.family.stylish};
         font-size: ${theme.fonts.size.P3};
         line-height: 32px;
         font-weight: ${theme.fonts.weights.bold};
@@ -97,6 +103,7 @@ const BasketCardStyled = styled.div`
         /* background: blue; */
         font-size: ${theme.fonts.size.SM};
         font-weight: ${theme.fonts.weights.medium};
+        font-family: ${theme.fonts.family.openSans};
         /* color: ${theme.colors.white}; */
       }
     }
@@ -117,5 +124,44 @@ const BasketCardStyled = styled.div`
   .delete-button {
     display: none;
     z-index: 1;
+  }
+
+  /* hover de la card */
+  &:hover {
+    .delete-button {
+      border: none;
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 76px;
+      border-top-right-radius: ${theme.borderRadius.round};
+      border-bottom-right-radius: ${theme.borderRadius.round};
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: ${theme.colors.red};
+      color: ${theme.colors.white};
+      cursor: pointer;
+
+      .icon {
+        width: ${theme.fonts.size.P3};
+        height: ${theme.fonts.size.P3};
+      }
+
+      /* behaviour on delete-button hover */
+      :hover {
+        .icon {
+          color: ${theme.colors.dark};
+        }
+        :active {
+          .icon {
+            color: ${theme.colors.white};
+          }
+        }
+      }
+    }
   }
 `;
