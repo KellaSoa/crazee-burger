@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 import Button from "./Button";
 
-
 export default function Card({
   Icon,
   title,
@@ -12,10 +11,11 @@ export default function Card({
   onClick,
   isHoverable,
   isSelected,
+  onAdd,
 }) {
   return (
-    <CardStyled 
-      onClick={onClick} 
+    <CardStyled
+      onClick={onClick}
       isHoverable={isHoverable}
       isSelected={isSelected}
     >
@@ -37,7 +37,7 @@ export default function Card({
             <Button
               className="primary-button"
               label={"Ajouter"}
-              onClick= {(event) => event.stopPropagation()}
+              onClick={onAdd}
             />
           </div>
         </div>
@@ -153,7 +153,8 @@ const CardStyled = styled.div`
   }
 
   ${({ isHoverable }) => isHoverable && extraStyleIsHoverable}
-  ${({ isHoverable, isSelected }) => isHoverable && isSelected && extraStyleSelected}
+  ${({ isHoverable, isSelected }) =>
+    isHoverable && isSelected && extraStyleSelected}
 `;
 
 const extraStyleIsHoverable = css`

@@ -7,10 +7,11 @@ import OrderContext from "../../../../../context/OrderContext";
 import { TiDelete } from "react-icons/ti";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product";
-
-const IMAGE_DEFAULT = "/images/coming-soon.png";
-
+import {
+  EMPTY_PRODUCT,
+  IMAGE_COMING_SOON,
+} from "../../../../../../enums/product";
+import { findInArray } from "../../../../../../utils/collection";
 
 export default function Menu() {
   //state
@@ -24,33 +25,41 @@ export default function Menu() {
     setIsCollapsed,
     setTabCurrentName,
     setTabActive,
-    titleEditRef
+    titleEditRef,
+    handleAddToBasket,
+    handleDeleteProductBasket,
   } = useContext(OrderContext);
 
-  const handleClick = async(idProductSelected) => {
-    if(!isModeAdmin) return
-    await setIsCollapsed(false)
-    await setTabCurrentName("edit")
+  const handleClick = async (idProductSelected) => {
+    if (!isModeAdmin) return;
+    await setIsCollapsed(false);
+    await setTabCurrentName("edit");
     await setTabActive("edit");
     //find product selected
-    const productClicked = menu.find(
-      (product) => product.id === idProductSelected
-    );
+    const productClicked = findInArray(idProductSelected, menu);
     await setProductSelected(productClicked);
     //onFucus in titleForm
-    titleEditRef.current.focus()
+    titleEditRef.current.focus();
   };
   const checkProductSelected = (id, productSelected) => {
     return id === productSelected.id;
   };
 
-  const handleCardDelete = (event,idProductDelete) => { 
-    event.stopPropagation() 
-    handleDelete(idProductDelete)
-    idProductDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
-    titleEditRef.current.focus()
-  }
+  const handleCardDelete = (event, idProductDelete) => {
+    event.stopPropagation();
+    handleDelete(idProductDelete);
+    handleDeleteProductBasket(idProductDelete);
+    idProductDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT);
+    titleEditRef.current.focus();
+  };
 
+  const handleAdd = (event, idProductSelected) => {
+    event.stopPropagation();
+    const productToAdd = findInArray(idProductSelected, menu);
+
+    console.log(productToAdd);
+    handleAddToBasket(productToAdd);
+  };
 
   //render
   if (menu.length === 0) {
@@ -72,12 +81,13 @@ export default function Menu() {
             key={id}
             Icon={isModeAdmin && <TiDelete className="icon" />}
             title={title}
-            imageSource={imageSource ? imageSource : IMAGE_DEFAULT}
+            imageSource={imageSource ? imageSource : IMAGE_COMING_SOON}
             leftDescription={formatPrice(price)}
-            onDelete={(event) => handleCardDelete(event,id)}
+            onDelete={(event) => handleCardDelete(event, id)}
             onClick={() => handleClick(id)}
             isHoverable={isModeAdmin}
             isSelected={checkProductSelected(id, productSelected)}
+            onAdd={(event) => handleAdd(event, id)}
           />
         );
       })}
@@ -89,7 +99,7 @@ const MenuStyled = styled.div`
   background: ${theme.colors.background_white};
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 60px;
   padding: 50px 50px 150px;
   justify-items: center;
