@@ -5,7 +5,6 @@ import { MdDeleteForever } from "react-icons/md";
 import { theme } from "../../../../../theme";
 
 export default function BasketCard({
-  id,
   title,
   price,
   quantity,
@@ -152,11 +151,11 @@ const BasketCardStyled = styled.div`
       }
 
       /* behaviour on delete-button hover */
-      :hover {
+      &:hover {
         .icon {
           color: ${theme.colors.dark};
         }
-        :active {
+        &:active {
           .icon {
             color: ${theme.colors.white};
           }
