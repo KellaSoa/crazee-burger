@@ -52,6 +52,7 @@ const fonts = {
   },
   family: {
     stylish: '"Amatic SC", cursive',
+    timeRoman: '"Courier New", Courier, monospace;',
   },
 };
 const gridUnit = 8;

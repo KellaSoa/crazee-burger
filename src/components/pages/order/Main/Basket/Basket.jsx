@@ -40,7 +40,7 @@ export default function Basket() {
 }
 
 const BasketStyled = styled.div`
-  font-family: "Amatic SC", cursive;
+  font-family: ${theme.fonts.family.stylish};
   background: ${theme.colors.background_white};
   box-shadow: ${theme.shadows.basket};
   display: flex;

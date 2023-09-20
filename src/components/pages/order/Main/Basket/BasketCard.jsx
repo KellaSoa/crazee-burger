@@ -82,8 +82,7 @@ const BasketCardStyled = styled.div`
       .title {
         display: flex;
         align-items: center;
-        /* background: yellow; */
-        font-family: ${theme.fonts.family.stylish};
+
         font-size: ${theme.fonts.size.P3};
         line-height: 32px;
         font-weight: ${theme.fonts.weights.bold};
@@ -99,24 +98,21 @@ const BasketCardStyled = styled.div`
       }
 
       .price {
-        /* background: blue; */
         font-size: ${theme.fonts.size.SM};
         font-weight: ${theme.fonts.weights.medium};
-        font-family: ${theme.fonts.family.openSans};
-        /* color: ${theme.colors.white}; */
+        font-family: ${theme.fonts.family.timeRoman};
       }
     }
 
     .quantity {
       box-sizing: border-box;
-      /* border: 1px solid lightblue; */
-      /* background: lightblue; */
       font-weight: ${theme.fonts.weights.medium};
       display: flex;
       align-items: center;
       justify-content: flex-end;
       margin-right: 20px;
       font-size: ${theme.fonts.size.SM};
+      font-family: ${theme.fonts.family.timeRoman};
     }
   }
 
