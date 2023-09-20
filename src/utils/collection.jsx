@@ -11,3 +11,7 @@ export const findIndex = (id, array) => {
 export const filter = (idPoductToRemove, array) => {
   array.filter((item) => item.id !== idPoductToRemove);
 };
+
+export const isEmpty = (array) => {
+  return array.length === 0;
+};

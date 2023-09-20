@@ -11,7 +11,7 @@ import {
   EMPTY_PRODUCT,
   IMAGE_COMING_SOON,
 } from "../../../../../../enums/product";
-import { findInArray } from "../../../../../../utils/collection";
+import { findInArray, isEmpty } from "../../../../../../utils/collection";
 
 export default function Menu() {
   //state
@@ -62,7 +62,7 @@ export default function Menu() {
   };
 
   //render
-  if (menu.length === 0) {
+  if (isEmpty(menu)) {
     return (
       <>
         {isModeAdmin ? (

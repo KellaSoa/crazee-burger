@@ -8,12 +8,13 @@ import Footer from "./Footer";
 import OrderContext from "../../../../context/OrderContext";
 import EmptyBasket from "./EmptyBasket";
 import BasketProducts from "./BasketProducts";
+import { isEmpty } from "../../../../../utils/collection";
 
 export default function Basket() {
   const { basket, isModeAdmin, handleDeleteProductBasket } =
     useContext(OrderContext);
 
-  const isBasketEmpty = basket.length === 0;
+  const isBasketEmpty = isEmpty(basket);
   const sumToPay = basket.reduce((total, basketProduct) => {
     if (isNaN(basketProduct.price)) return total;
 
