@@ -1,28 +1,34 @@
-import React from 'react'
-import { styled } from 'styled-components';
-import { theme } from '../../../../../theme';
-import Header from './Header';
+import React, { useContext } from "react";
+import { styled } from "styled-components";
+import { theme } from "../../../../../theme";
+import Header from "./Header";
+import { formatPrice, totalSumToPay } from "../../../../../utils/maths";
+import OrderContext from "../../../../context/OrderContext";
 
-export default function Total({amountTotal}) {
+export default function Total() {
+  const { basket, menu } = useContext(OrderContext);
+
+  const sumToPay = totalSumToPay(basket, menu);
+  console.log(sumToPay);
   return (
     <Header>
-        <TotalStyled>
-            <span className='title'>Total</span>
-            <span className='amount'>{amountTotal}</span>
-        </TotalStyled>
+      <TotalStyled>
+        <span className="title">Total</span>
+        <span className="amount">{formatPrice(sumToPay)}</span>
+      </TotalStyled>
     </Header>
-  )
+  );
 }
 
 const TotalStyled = styled.div`
-height: 100%;
-color: ${theme.colors.primary};
-font-size: ${theme.fonts.size.P4};
- 
-font-weight: ${theme.fonts.weights.bold};
+  height: 100%;
+  color: ${theme.colors.primary};
+  font-size: ${theme.fonts.size.P4};
 
-display: flex;
-justify-content:space-between ;
-align-items:center;
-letter-spacing: 2px;
+  font-weight: ${theme.fonts.weights.bold};
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 2px;
 `;

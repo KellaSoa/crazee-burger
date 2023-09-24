@@ -7,6 +7,7 @@ import OrderContext from "../../context/OrderContext";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
+import { findInArray } from "../../../utils/collection";
 
 export default function OrderPage() {
   //state
@@ -20,6 +21,17 @@ export default function OrderPage() {
   const { menu, setMenu, handleAdd, handleDelete, handleEdit, handleReset } =
     useMenu();
   const { basket, handleAddToBasket, handleDeleteProductBasket } = useBasket();
+
+  const handleProductSelected = async (idProductSelected) => {
+    //find product selected
+    const productClicked = findInArray(idProductSelected, menu);
+    await setIsCollapsed(false);
+    await setTabCurrentName("edit");
+    await setTabActive("edit");
+    await setProductSelected(productClicked);
+    //onFucus in titleForm
+    titleEditRef.current.focus();
+  };
 
   const orderContextValue = {
     isCollapsed,
@@ -47,6 +59,8 @@ export default function OrderPage() {
     basket,
     handleAddToBasket,
     handleDeleteProductBasket,
+
+    handleProductSelected,
   };
 
   //render

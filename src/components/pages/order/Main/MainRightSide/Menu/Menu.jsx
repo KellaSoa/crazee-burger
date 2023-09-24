@@ -28,19 +28,9 @@ export default function Menu() {
     titleEditRef,
     handleAddToBasket,
     handleDeleteProductBasket,
+    handleProductSelected,
   } = useContext(OrderContext);
 
-  const handleClick = async (idProductSelected) => {
-    if (!isModeAdmin) return;
-    await setIsCollapsed(false);
-    await setTabCurrentName("edit");
-    await setTabActive("edit");
-    //find product selected
-    const productClicked = findInArray(idProductSelected, menu);
-    await setProductSelected(productClicked);
-    //onFucus in titleForm
-    titleEditRef.current.focus();
-  };
   const checkProductSelected = (id, productSelected) => {
     return id === productSelected.id;
   };
@@ -50,15 +40,12 @@ export default function Menu() {
     handleDelete(idProductDelete);
     handleDeleteProductBasket(idProductDelete);
     idProductDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT);
-    titleEditRef.current.focus();
   };
 
   const handleAdd = (event, idProductSelected) => {
     event.stopPropagation();
-    const productToAdd = findInArray(idProductSelected, menu);
 
-    console.log(productToAdd);
-    handleAddToBasket(productToAdd);
+    handleAddToBasket(idProductSelected);
   };
 
   //render
@@ -84,7 +71,7 @@ export default function Menu() {
             imageSource={imageSource ? imageSource : IMAGE_COMING_SOON}
             leftDescription={formatPrice(price)}
             onDelete={(event) => handleCardDelete(event, id)}
-            onClick={() => handleClick(id)}
+            onClick={isModeAdmin ? () => handleProductSelected(id) : null}
             isHoverable={isModeAdmin}
             isSelected={checkProductSelected(id, productSelected)}
             onAdd={(event) => handleAdd(event, id)}
