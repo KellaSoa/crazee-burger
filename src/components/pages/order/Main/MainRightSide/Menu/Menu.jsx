@@ -11,7 +11,11 @@ import {
   EMPTY_PRODUCT,
   IMAGE_COMING_SOON,
 } from "../../../../../../enums/product";
-import { findInArray, isEmpty } from "../../../../../../utils/collection";
+import {
+  checkProductSelected,
+  findInArray,
+  isEmpty,
+} from "../../../../../../utils/collection";
 
 export default function Menu() {
   //state
@@ -30,10 +34,6 @@ export default function Menu() {
     handleDeleteProductBasket,
     handleProductSelected,
   } = useContext(OrderContext);
-
-  const checkProductSelected = (id, productSelected) => {
-    return id === productSelected.id;
-  };
 
   const handleCardDelete = (event, idProductDelete) => {
     event.stopPropagation();

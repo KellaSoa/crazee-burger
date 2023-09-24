@@ -2,7 +2,10 @@ import React, { useContext } from "react";
 import { styled } from "styled-components";
 import BasketCard from "./BasketCard";
 import { IMAGE_COMING_SOON } from "../../../../../enums/product";
-import { findInArray } from "../../../../../utils/collection";
+import {
+  checkProductSelected,
+  findInArray,
+} from "../../../../../utils/collection";
 import OrderContext from "../../../../context/OrderContext";
 
 export default function BasketProducts() {
@@ -12,6 +15,7 @@ export default function BasketProducts() {
     handleDeleteProductBasket,
     menu,
     handleProductSelected,
+    productSelected,
   } = useContext(OrderContext);
 
   const handleOnDelete = (event, idProduct) => {
@@ -40,6 +44,10 @@ export default function BasketProducts() {
                   ? () => handleProductSelected(basketProduct.id)
                   : null
               }
+              isSelected={checkProductSelected(
+                basketProduct.id,
+                productSelected
+              )}
             />
           </div>
         );
