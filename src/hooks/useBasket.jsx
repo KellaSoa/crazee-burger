@@ -5,33 +5,28 @@ import { deepClone, filter, findInArray, findIndex } from "../utils/collection";
 export const useBasket = () => {
   const [basket, setBasket] = useState(fakeBasket.EMPTY);
 
-  const handleAddToBasket = (productToAdd) => {
+  const handleAddToBasket = (idProduct) => {
     //copy state
     const basketCopy = deepClone(basket);
+    const productAlreadyInBasket = findInArray(idProduct, basketCopy);
 
-    //check product click not in basket
-    const productFoundInBasket =
-      findInArray(productToAdd.id, basketCopy) === undefined;
-    //manip state
-
-    if (productFoundInBasket) {
-      //last in first of the list
-      createProductInBasket(productToAdd, basketCopy);
+    if (productAlreadyInBasket) {
+      incrementQuantityProductInBasket(idProduct, basketCopy);
       return;
     }
-    //check if id product in basket
-    incrementQuantityProductInBasket(productToAdd, basketCopy);
+    createProductInBasket(idProduct, basketCopy);
   };
-  const createProductInBasket = (productToAdd, basketCopy) => {
-    const newProductBasket = {
-      ...productToAdd,
-      quantity: 1,
-    };
-    const updateBasket = [newProductBasket, ...basketCopy];
-    setBasket(updateBasket);
+
+  const createProductInBasket = (idProduct, basketCopy) => {
+    //manip state
+    const newProduct = { id: idProduct, quantity: 1 };
+    const newProductInBasket = [newProduct, ...basketCopy];
+
+    //update state
+    setBasket(newProductInBasket);
   };
-  const incrementQuantityProductInBasket = (productToAdd, basketCopy) => {
-    const indexOfCardBasketToIncrement = findIndex(productToAdd.id, basketCopy);
+  const incrementQuantityProductInBasket = (productId, basketCopy) => {
+    const indexOfCardBasketToIncrement = findIndex(productId, basketCopy);
     //increment value quantity
     basketCopy[indexOfCardBasketToIncrement].quantity += 1;
     //update state

@@ -1,31 +1,53 @@
-import React from "react";
+import React, { useContext } from "react";
 import { styled } from "styled-components";
 import BasketCard from "./BasketCard";
 import { IMAGE_COMING_SOON } from "../../../../../enums/product";
+import {
+  checkProductSelected,
+  findInArray,
+} from "../../../../../utils/collection";
+import OrderContext from "../../../../context/OrderContext";
 
-export default function BasketProducts({
-  basket,
-  isModeAdmin,
-  handleDeleteProductBasket,
-}) {
-  const handleOnDelete = (idProduct) => {
+export default function BasketProducts() {
+  const {
+    basket,
+    isModeAdmin,
+    handleDeleteProductBasket,
+    menu,
+    handleProductSelected,
+    productSelected,
+  } = useContext(OrderContext);
+
+  const handleOnDelete = (event, idProduct) => {
+    event.stopPropagation();
     handleDeleteProductBasket(idProduct);
   };
 
   return (
     <BasketProductsStled>
       {basket.map((basketProduct) => {
+        const menuProduct = findInArray(basketProduct.id, menu);
         return (
           <div className="basket-card" key={basketProduct.id}>
             <BasketCard
-              {...basketProduct}
+              {...menuProduct}
               imageSource={
-                basketProduct.imageSource
-                  ? basketProduct.imageSource
+                menuProduct.imageSource
+                  ? menuProduct.imageSource
                   : IMAGE_COMING_SOON
               }
-              isModeAdmin={isModeAdmin}
-              onDelete={() => handleOnDelete(basketProduct.id)}
+              quantity={basketProduct.quantity}
+              isClickable={isModeAdmin}
+              onDelete={(event) => handleOnDelete(event, menuProduct.id)}
+              onClick={
+                isModeAdmin
+                  ? () => handleProductSelected(basketProduct.id)
+                  : null
+              }
+              isSelected={checkProductSelected(
+                basketProduct.id,
+                productSelected
+              )}
             />
           </div>
         );

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { formatPrice } from "../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md";
 import { theme } from "../../../../../theme";
@@ -10,11 +10,18 @@ export default function BasketCard({
   quantity,
   imageSource,
   className,
-  isModeAdmin,
+  isClickable,
   onDelete,
+  onClick,
+  isSelected,
 }) {
   return (
-    <BasketCardStyled className={className} isModeAdmin={isModeAdmin}>
+    <BasketCardStyled
+      className={className}
+      isClickable={isClickable}
+      onClick={onClick}
+      isSelected={isSelected}
+    >
       <div className="delete-button" onClick={onDelete}>
         <MdDeleteForever className="icon" />
       </div>
@@ -37,7 +44,7 @@ export default function BasketCard({
 }
 
 const BasketCardStyled = styled.div`
-  cursor: ${({ isModeAdmin }) => (isModeAdmin ? "pointer" : "auto")};
+  cursor: ${({ isClickable }) => (isClickable ? "pointer" : "auto")};
   /* border: 1px solid red; */
   box-sizing: border-box;
   height: 86px;
@@ -82,8 +89,7 @@ const BasketCardStyled = styled.div`
       .title {
         display: flex;
         align-items: center;
-        /* background: yellow; */
-        font-family: ${theme.fonts.family.stylish};
+
         font-size: ${theme.fonts.size.P3};
         line-height: 32px;
         font-weight: ${theme.fonts.weights.bold};
@@ -99,24 +105,21 @@ const BasketCardStyled = styled.div`
       }
 
       .price {
-        /* background: blue; */
         font-size: ${theme.fonts.size.SM};
         font-weight: ${theme.fonts.weights.medium};
-        font-family: ${theme.fonts.family.openSans};
-        /* color: ${theme.colors.white}; */
+        font-family: ${theme.fonts.family.timeRoman};
       }
     }
 
     .quantity {
       box-sizing: border-box;
-      /* border: 1px solid lightblue; */
-      /* background: lightblue; */
       font-weight: ${theme.fonts.weights.medium};
       display: flex;
       align-items: center;
       justify-content: flex-end;
       margin-right: 20px;
       font-size: ${theme.fonts.size.SM};
+      font-family: ${theme.fonts.family.timeRoman};
     }
   }
 
@@ -162,5 +165,14 @@ const BasketCardStyled = styled.div`
         }
       }
     }
+  }
+  ${({ isClickable, isSelected }) =>
+    isClickable && isSelected && extraStyleSelected}
+`;
+const extraStyleSelected = css`
+  background: ${theme.colors.primary};
+  .price,
+  .quantity {
+    color: ${theme.colors.white};
   }
 `;
