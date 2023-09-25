@@ -4,6 +4,7 @@ import { EMPTY_PRODUCT } from '../../../../../enums/product';
 import Form from './Form';
 import ButtonMessage from './ButtonMessage';
 import { useSuccessMessage } from '../../../../../hooks/useSuccessMessage';
+import { replaceFrenchCommaWithDot } from '../../../../../utils/maths';
 
 
 export default function AddForm() {
@@ -14,6 +15,7 @@ export default function AddForm() {
   const newProductAdd ={
     ...newProduct,//add new product in form after handleChange input
     id: crypto.randomUUID(),
+    price:replaceFrenchCommaWithDot(newProduct.price)
   }
 //components
   const handleChange = (event) => {

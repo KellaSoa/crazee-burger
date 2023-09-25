@@ -9,7 +9,6 @@ export default function Total() {
   const { basket, menu } = useContext(OrderContext);
 
   const sumToPay = totalSumToPay(basket, menu);
-  console.log(sumToPay);
   return (
     <Header>
       <TotalStyled>
