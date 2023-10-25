@@ -64,7 +64,7 @@ export default function OrderPage() {
     handleProductSelected,
   };
 
-  getUser("Alex")
+  getUser("Alex")  
   //render
   return (
     <OrderContext.Provider value={orderContextValue}>
