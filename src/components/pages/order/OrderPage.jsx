@@ -9,6 +9,7 @@ import { useBasket } from "../../../hooks/useBasket";
 import { findInArray } from "../../../utils/collection";
 import { getUser } from "../../../api/user";
 import OrderContext from "../../../context/OrderContext";
+import { useParams } from "react-router-dom";
 
 export default function OrderPage() {
   //state    
@@ -22,6 +23,8 @@ export default function OrderPage() {
   const { menu, setMenu, handleAdd, handleDelete, handleEdit, handleReset } =
     useMenu();
   const { basket, handleAddToBasket, handleDeleteProductBasket } = useBasket();
+  const { username } = useParams();
+
 
   const handleProductSelected = async (idProductSelected) => {
     //find product selected
@@ -35,6 +38,8 @@ export default function OrderPage() {
   };
 
   const orderContextValue = {
+    username,
+
     isCollapsed,
     setIsCollapsed,
     isModeAdmin,
