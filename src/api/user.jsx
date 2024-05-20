@@ -7,7 +7,6 @@ export const getUser = async (idUser) => {
     const docRef = doc(db, "users", idUser);
     const docSnapShot = await getDoc(docRef);
     
-    console.log("docSnapShot: ", docSnapShot);
     if (docSnapShot.exists()) {
         const userReceived = docSnapShot.data();
         return userReceived

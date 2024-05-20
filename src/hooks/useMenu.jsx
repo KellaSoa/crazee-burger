@@ -14,12 +14,13 @@ export const useMenu = () => {
         setMenu(menuUpdated);
         syncBothMenus(userName,menuUpdated)
     };
-    const handleDelete = (idProduct) => {
+    const handleDelete = (idProduct, userName) => {
         //copy state
         const menuCopy = deepClone(menu);
         //update state
         const menuUpdated = menuCopy.filter((product) => product.id !== idProduct);
         setMenu(menuUpdated);
+        syncBothMenus(userName,menuUpdated)
     };
     const handleReset = () => {
         setMenu(fakeMenu.LARGE);

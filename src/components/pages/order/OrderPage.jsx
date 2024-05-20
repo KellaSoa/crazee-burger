@@ -68,9 +68,6 @@ export default function OrderPage() {
 
     handleProductSelected,
   };
-  console.log(import.meta.env)
-  getUser("Alex")  
-  //render
   return (
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>

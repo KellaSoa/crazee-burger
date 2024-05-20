@@ -20,6 +20,7 @@ import {
 export default function Menu() {
   //state
   const {
+    userName,
     menu,
     isModeAdmin,
     handleDelete,
@@ -33,11 +34,12 @@ export default function Menu() {
     handleAddToBasket,
     handleDeleteProductBasket,
     handleProductSelected,
+    
   } = useContext(OrderContext);
 
   const handleCardDelete = (event, idProductDelete) => {
     event.stopPropagation();
-    handleDelete(idProductDelete);
+    handleDelete(idProductDelete,userName);
     handleDeleteProductBasket(idProductDelete);
     idProductDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT);
   };
