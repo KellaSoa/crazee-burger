@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar/Navbar";
 import styled from "styled-components";
 import Main from "./Main/Main";
@@ -10,6 +10,7 @@ import { findInArray } from "../../../utils/collection";
 import { getUser } from "../../../api/user";
 import OrderContext from "../../../context/OrderContext";
 import { useParams } from "react-router-dom";
+import { getMenu } from "../../../api/product";
 
 export default function OrderPage() {
   //state    
@@ -36,7 +37,15 @@ export default function OrderPage() {
     //onFucus in titleForm
     titleEditRef.current.focus();
   };
+  const initialiseMenu = async() => { 
+    const menuReceived = await getMenu(username)
+    setMenu(menuReceived)
+   }
 
+  useEffect(()=>{
+    initialiseMenu()
+  },[])
+  
   const orderContextValue = {
     username,
 
