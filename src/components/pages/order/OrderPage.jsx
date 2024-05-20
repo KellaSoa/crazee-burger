@@ -3,15 +3,15 @@ import Navbar from "./Navbar/Navbar";
 import styled from "styled-components";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
-import OrderContext from "../../context/OrderContext";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { findInArray } from "../../../utils/collection";
 import { getUser } from "../../../api/user";
+import OrderContext from "../../../context/OrderContext";
 
 export default function OrderPage() {
-  //state
+  //state    
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [tabCurrentName, setTabCurrentName] = useState("add");
   const [tabActive, setTabActive] = useState("add");
@@ -63,7 +63,7 @@ export default function OrderPage() {
 
     handleProductSelected,
   };
-
+  console.log(import.meta.env)
   getUser("Alex")  
   //render
   return (

@@ -31,7 +31,7 @@ const ProfileStyled = styled.div`
   min-width: 100px;
   padding-left: 50px;
 
-  .info {
+  .info { 
     text-align: right;
     margin-right: 10px;
     p {

@@ -7,7 +7,7 @@ import Footer from "./Footer";
 import EmptyBasket from "./EmptyBasket";
 import BasketProducts from "./BasketProducts";
 import { isEmpty } from "../../../../../utils/collection";
-import OrderContext from "../../../../context/OrderContext";
+import OrderContext from "../../../../../context/OrderContext";
 
 export default function Basket() {
   const { basket } = useContext(OrderContext);

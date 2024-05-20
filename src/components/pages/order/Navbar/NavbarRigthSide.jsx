@@ -4,14 +4,14 @@ import ToggleButton from "../../../reusable-ui/ToggleButton";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from "react";
-import OrderContext from "../../../context/OrderContext";
-//import {FaUserSecret} from "react-icons/fa"
+import OrderContext from "../../../../context/OrderContext";
+//import {FaUserSecret}  from "react-icons/fa"
 
 export default function NavbarRigthSide() {   
 
   const {isModeAdmin, setIsModeAdmin} = useContext(OrderContext)
 
-  const displayNotification = () =>{
+  const displayNotification = () =>{ 
       if(!isModeAdmin){
       toast.info("Mode admin activé", {
       //icon: <FaUserSecret size={30} />,
@@ -38,13 +38,14 @@ export default function NavbarRigthSide() {
         />
       <ToastContainer/>
       <Profile />
-    </NavbarRigthSideStyled>
+    </NavbarRigthSideStyled> 
   );
 }
 
 const NavbarRigthSideStyled = styled.div`
-  display: flex;
+  display: flex;  
   align-items: center;
   justify-content: space-between;
   padding-right: 50px;
 `;
+    

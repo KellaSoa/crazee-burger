@@ -39,13 +39,7 @@ const ButtonStyled = styled.button`
     cursor: not-allowed;
   }
 
-  .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: ${theme.fonts.size.SM};
-    margin-right: 8px;
-  }
+ 
   ${({ version }) => extraButton[version]}
 `;
 

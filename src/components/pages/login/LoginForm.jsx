@@ -6,22 +6,21 @@ import { BsPersonCircle } from "react-icons/bs";
 import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
-import { createUser } from "../../../api/user";
+import { authenticateUser } from "../../../api/user.jsx";
 
 export default function LoginForm() {
-  const [userName, setuserName] = useState("Kella");
+  const [userName, setUserName] = useState("Kella");
   const navigate = useNavigate();
 
-  const handeSubmit = (event) => {
+  const handeSubmit =  (event) => {
     event.preventDefault();
-    createUser(userName)
-    setuserName("");
+    authenticateUser(userName)
+    setUserName("");
     navigate(`order/${userName}`);
   };
 
   const handeChange = (event) => {
-    console.log(event.target.value);
-    setuserName(event.target.value);
+    setUserName(event.target.value);
   };
 
   return (
@@ -64,6 +63,13 @@ const LoginFormStyled = styled.form`
     border: 1.5px solid ${theme.colors.primary};
     margin-bottom: 40px;
   }
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: ${theme.fonts.size.SM};
+    margin-right: 8px;
+  } 
 `;
 
 

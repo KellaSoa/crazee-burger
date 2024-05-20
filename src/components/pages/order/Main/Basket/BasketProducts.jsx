@@ -6,7 +6,7 @@ import {
   checkProductSelected,
   findInArray,
 } from "../../../../../utils/collection";
-import OrderContext from "../../../../context/OrderContext";
+import OrderContext from "../../../../../context/OrderContext";
 
 export default function BasketProducts() {
   const {

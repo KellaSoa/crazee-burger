@@ -1,5 +1,4 @@
 import Logo from "../../../reusable-ui/Logo";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import NavbarRigthSide from "./NavbarRigthSide";

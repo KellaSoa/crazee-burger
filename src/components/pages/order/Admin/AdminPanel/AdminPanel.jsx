@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { theme } from "../../../../../theme/index";
 import { styled } from "styled-components";
 import { getPanelsConfig } from "../helper/getPanelsConfig";
-import OrderContext from "../../../../context/OrderContext";
+import OrderContext from "../../../../../context/OrderContext";
 import { EMPTY_PRODUCT } from "../../../../../enums/product";
 
 export default function AdminPanel() {
