@@ -10,13 +10,15 @@ import { isEmpty } from "../../../../../utils/collection";
 import OrderContext from "../../../../../context/OrderContext";
 
 export default function Basket() {
-  const { basket } = useContext(OrderContext);
-  const isBasketEmpty = isEmpty(basket);
+  const { basket, menu } = useContext(OrderContext);
 
+  if(menu === undefined) return <span>Chargement ... </span>//because basket need info (price, image ...  in basket)
+console.log('menu:')
+  console.log( menu)
   return (
     <BasketStyled>
       <Total />
-      {isBasketEmpty ? <EmptyBasket /> : <BasketProducts />}
+      {isEmpty(basket) ? <EmptyBasket /> : <BasketProducts />}
 
       <Footer />
     </BasketStyled>

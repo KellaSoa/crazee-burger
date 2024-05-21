@@ -48,7 +48,7 @@ export default function Menu() {
   const handleAdd = (event, idProductSelected) => {
     event.stopPropagation();
  
-    handleAddToBasket(idProductSelected);
+    handleAddToBasket(idProductSelected, username);
   };
   if(menu === undefined) return <Loader/>
 
