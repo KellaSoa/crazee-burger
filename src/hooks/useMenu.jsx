@@ -24,12 +24,11 @@ export const useMenu = () => {
         syncBothMenus(userName,menuUpdated)
     };
     const handleReset = (userName) => {
-        console.log('ici reset')
         setMenu(fakeMenu.LARGE);
         syncBothMenus(userName,fakeMenu.LARGE)
     };
 
-    const handleEdit = (productBeingSelected) => {
+    const handleEdit = (productBeingSelected,userName) => {
         //copy state deep clone
         const menuCopy = deepClone(menu);
         //get index product to edit
@@ -39,6 +38,7 @@ export const useMenu = () => {
         //update state
         menuCopy[indexToEditProduct] = productBeingSelected;
         setMenu(menuCopy);
+        syncBothMenus(userName,menuCopy)
     };
     return {menu,setMenu,handleAdd,handleDelete,handleEdit,handleReset}
  }
