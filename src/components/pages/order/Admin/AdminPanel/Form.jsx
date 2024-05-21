@@ -5,7 +5,7 @@ import TextInput from '../../../../reusable-ui/TextInput';
 import { getInputTextsConfig } from './getInputTextsConfig';
 
 const Form = React.forwardRef(
-  ({onSubmit,onChange,product,children},ref) => {
+  ({product,onSubmit,onChange,onFocus,onBlur,children},ref) => {
 
     const inputTexts = getInputTextsConfig(product)
     
@@ -20,6 +20,8 @@ const Form = React.forwardRef(
             onChange={onChange}
             version="minimalist"
             ref={ref && input.name === "title"  ? ref : null}
+            onFocus= {onFocus }
+            onBlur={onBlur}
             />
           })}
           {/* <TextInput

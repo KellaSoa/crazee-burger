@@ -30,7 +30,7 @@ export default function OrderPage() {
   const handleProductSelected = async (idProductSelected) => {
     //find product selected
     const productClicked = findInArray(idProductSelected, menu);
-    await setIsCollapsed(false);
+    await setIsCollapsed(true);
     await setTabCurrentName("edit");
     await setTabActive("edit");
     await setProductSelected(productClicked);
