@@ -35,7 +35,7 @@ export const useBasket = () => {
     setLocalStorage(username,basketCopy)
   };
 
-  const handleDeleteProductBasket = (idProduct) => {
+  const handleDeleteProductBasket = (idProduct, username) => {
     //copy state
     const basketCopy = deepClone(basket   );
     //update state
@@ -44,6 +44,7 @@ export const useBasket = () => {
     );
     //const basketUpdated = filter(idProduct, basketCopy);
     setBasket(basketUpdated);
+    setLocalStorage(username,basketUpdated)
   };
 
   return { basket,setBasket, handleAddToBasket, handleDeleteProductBasket };

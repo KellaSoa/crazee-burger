@@ -13,7 +13,7 @@ export const filter = (idPoductToRemove, array) => {
 };
 
 export const isEmpty = (array) => {
-  return !array || array.length === 0;
+  return array.length === 0;
 };
 
 export const checkProductSelected = (id, productSelected) => {

@@ -44,16 +44,20 @@ export default function OrderPage() {
    }
    const initialiseBasket = () => { 
     const basketReceived =  getLocalStorage(username) //localstorage synchron doesn't need await
-    if(basketReceived) setBasket(basketReceived)
+    if (basketReceived) setBasket(basketReceived)
    }
+   const initialiseUserSession = async()=>{
+    await initialiseMenu() // because need price,image from menu so we need to await it 
+    initialiseBasket()
+  }
 
-  useEffect(()=>{
-    initialiseMenu()
-  },[])
+  //useEffect(initialiseUserSession(),[])
   
   useEffect(()=>{
-    initialiseBasket()
+    initialiseUserSession()
   },[])
+
+
   const orderContextValue = {
     username,
 

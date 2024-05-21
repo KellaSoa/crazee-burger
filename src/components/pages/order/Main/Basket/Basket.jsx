@@ -12,13 +12,11 @@ import OrderContext from "../../../../../context/OrderContext";
 export default function Basket() {
   const { basket, menu } = useContext(OrderContext);
 
-  if(menu === undefined) return <span>Chargement ... </span>//because basket need info (price, image ...  in basket)
-console.log('menu:')
-  console.log( menu)
+  //if(!menu) return <span>Chargement ... </span>//because basket need info (price, image ...  in basket)
   return (
     <BasketStyled>
       <Total />
-      {isEmpty(basket) ? <EmptyBasket /> : <BasketProducts />}
+      {isEmpty(basket) ? <EmptyBasket isLoading={menu === undefined} /> : <BasketProducts />}
 
       <Footer />
     </BasketStyled>
