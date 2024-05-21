@@ -18,9 +18,9 @@ export default function BasketCard({
   return (
     <BasketCardStyled
       className={className}
-      isClickable={isClickable}
+      $isClickable={isClickable}
       onClick={onClick}
-      isSelected={isSelected}
+      $isSelected={isSelected}
     >
       <div className="delete-button" onClick={onDelete}>
         <MdDeleteForever className="icon" />
@@ -166,8 +166,8 @@ const BasketCardStyled = styled.div`
       }
     }
   }
-  ${({ isClickable, isSelected }) =>
-    isClickable && isSelected && extraStyleSelected}
+  ${({ $isClickable, $isSelected }) =>
+    $isClickable && $isSelected && extraStyleSelected}
 `;
 const extraStyleSelected = css`
   background: ${theme.colors.primary};

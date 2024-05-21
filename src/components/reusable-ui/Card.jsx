@@ -16,8 +16,8 @@ export default function  Card({
   return (
     <CardStyled
       onClick={onClick}
-      isHoverable={isHoverable}
-      isSelected={isSelected}
+      $isHoverable={isHoverable}
+      $isSelected={isSelected}
     >
       <button
         className="delete-button"
@@ -152,9 +152,9 @@ const CardStyled = styled.div`
     }
   }
 
-  ${({ isHoverable }) => isHoverable && extraStyleIsHoverable}
-  ${({ isHoverable, isSelected }) =>
-    isHoverable && isSelected && extraStyleSelected}
+  ${({ $isHoverable }) => $isHoverable && extraStyleIsHoverable}
+  ${({ $isHoverable, $isSelected }) =>
+    $isHoverable && $isSelected && extraStyleSelected}
 `;
 
 const extraStyleIsHoverable = css`

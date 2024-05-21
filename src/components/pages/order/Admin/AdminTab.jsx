@@ -71,4 +71,6 @@ const AdminTabStyled = styled.div`
   button {
     margin-left: 1px;
   }
+
+  
 `;

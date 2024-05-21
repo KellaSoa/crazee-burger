@@ -16,11 +16,12 @@ import {
   findInArray,
   isEmpty,
 } from "../../../../../../utils/collection";
+import Loader from "./Loader";
 
 export default function Menu() {
   //state
   const {
-    userName,
+    username,
     menu,
     isModeAdmin,
     handleDelete,
@@ -39,29 +40,24 @@ export default function Menu() {
 
   const handleCardDelete = (event, idProductDelete) => {
     event.stopPropagation();
-    handleDelete(idProductDelete,userName);
+    handleDelete(idProductDelete,username);
     handleDeleteProductBasket(idProductDelete);
     idProductDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT);
   };
 
   const handleAdd = (event, idProductSelected) => {
     event.stopPropagation();
-
+ 
     handleAddToBasket(idProductSelected);
   };
+  if(menu === undefined) return <Loader/>
 
   //render
   if (isEmpty(menu)) {
-    return (
-      <>
-        {isModeAdmin ? (
-          <EmptyMenuAdmin onClick={handleReset} />
-        ) : (
-          <EmptyMenuClient />
-        )}
-      </>
-    );
+    if (!isModeAdmin) return <EmptyMenuClient />
+    return <EmptyMenuAdmin onReset={() => handleReset(username)} />
   }
+
   return (
     <MenuStyled className="menu">
       {menu.map(({ id, title, imageSource, price }) => {

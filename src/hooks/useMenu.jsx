@@ -5,7 +5,7 @@ import { syncBothMenus } from "../api/product";
 
 export const useMenu = () => { 
 
-    const [menu, setMenu] = useState(fakeMenu.LARGE);
+    const [menu, setMenu] = useState();
 
     //comportement
     const handleAdd = (newProduct,userName) => {
@@ -20,10 +20,13 @@ export const useMenu = () => {
         //update state
         const menuUpdated = menuCopy.filter((product) => product.id !== idProduct);
         setMenu(menuUpdated);
+        console.log(menuUpdated)
         syncBothMenus(userName,menuUpdated)
     };
-    const handleReset = () => {
+    const handleReset = (userName) => {
+        console.log('ici reset')
         setMenu(fakeMenu.LARGE);
+        syncBothMenus(userName,fakeMenu.LARGE)
     };
 
     const handleEdit = (productBeingSelected) => {

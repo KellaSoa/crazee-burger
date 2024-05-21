@@ -52,6 +52,7 @@ const extraButtonPrimary = css`
     color: ${theme.colors.primary};
     border: 1px solid ${theme.colors.primary};
     transition: all 200ms ease-out;
+    cursor: pointer;
   }
 
   &:active {
@@ -71,6 +72,7 @@ const extraButtonSuccess = css`
     color: ${theme.colors.green};
     border: 1px solid ${theme.colors.green};
     transition: all 200ms ease-out;
+    cursor: pointer;
   }
 
   &:active {
