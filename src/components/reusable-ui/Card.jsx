@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 import Button from "./Button";
+import { fadeInFromRight } from "../../theme/animations";
 
 export default function  Card({
   Icon,
@@ -72,6 +73,7 @@ const CardStyled = styled.div`
     padding: 0;
     border: none;
     background: none;
+    animation: ${fadeInFromRight} ${theme.speed.slow} ease-out;
 
     .icon {
       /* border: 1px solid blue; */
