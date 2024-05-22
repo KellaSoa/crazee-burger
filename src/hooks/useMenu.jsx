@@ -1,29 +1,34 @@
 import { useState } from "react";
 import { deepClone } from "../utils/collection";
 import { fakeMenu } from "../fakeData/fakeMenu";
+import { syncBothMenus } from "../api/product";
 
 export const useMenu = () => { 
 
-    const [menu, setMenu] = useState(fakeMenu.LARGE);
+    const [menu, setMenu] = useState();
 
     //comportement
-    const handleAdd = (newProduct) => {
+    const handleAdd = (newProduct,userName) => {
         const menuCopy = deepClone(menu);
-        const menuUpdate = [newProduct, ...menuCopy];
-        setMenu(menuUpdate);
+        const menuUpdated = [newProduct, ...menuCopy];
+        setMenu(menuUpdated);
+        syncBothMenus(userName,menuUpdated)
     };
-    const handleDelete = (idProduct) => {
+    const handleDelete = (idProduct, userName) => {
         //copy state
         const menuCopy = deepClone(menu);
         //update state
         const menuUpdated = menuCopy.filter((product) => product.id !== idProduct);
         setMenu(menuUpdated);
+        console.log(menuUpdated)
+        syncBothMenus(userName,menuUpdated)
     };
-    const handleReset = () => {
+    const handleReset = (userName) => {
         setMenu(fakeMenu.LARGE);
+        syncBothMenus(userName,fakeMenu.LARGE)
     };
 
-    const handleEdit = (productBeingSelected) => {
+    const handleEdit = (productBeingSelected,userName) => {
         //copy state deep clone
         const menuCopy = deepClone(menu);
         //get index product to edit
@@ -33,6 +38,7 @@ export const useMenu = () => {
         //update state
         menuCopy[indexToEditProduct] = productBeingSelected;
         setMenu(menuCopy);
+        syncBothMenus(userName,menuCopy)
     };
     return {menu,setMenu,handleAdd,handleDelete,handleEdit,handleReset}
  }

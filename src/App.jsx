@@ -15,8 +15,8 @@ function App() {
       <Route path="/" element={<LoginPage />}></Route>
       <Route path="/order/:username" element={<OrderPage />}></Route>
       <Route path="*" element={<ErrorPage />}></Route>
-    </Routes>
-  );
+    </Routes> 
+  ); 
 }
 
 export default App;

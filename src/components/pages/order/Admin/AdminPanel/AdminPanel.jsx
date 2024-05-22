@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import { theme } from "../../../../../theme/index";
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import { getPanelsConfig } from "../helper/getPanelsConfig";
-import OrderContext from "../../../../context/OrderContext";
+import OrderContext from "../../../../../context/OrderContext";
 import { EMPTY_PRODUCT } from "../../../../../enums/product";
 
 export default function AdminPanel() {
-  const { tabActive, productSelected } = useContext(OrderContext);
+  const { tabActive, productSelected,isCollapsed} = useContext(OrderContext);
 
   const hasCardSelected = productSelected !== EMPTY_PRODUCT;
   const panels = getPanelsConfig(hasCardSelected);
   return (
-    <AdminPanelStyled>
+    <AdminPanelStyled $isCollapsed={isCollapsed}>
       {panels.map((panel, index) => {
         console.log();
         return (
@@ -43,4 +43,12 @@ const AdminPanelStyled = styled.div`
   .panelInActive {
     display: none;
   }
+  ${({ $isCollapsed }) => $isCollapsed ? extraStyleIsCollapsed : extraStyleNotIsCollapsed}
+`;
+
+ const extraStyleIsCollapsed = css`
+  display:block;
+`;
+const extraStyleNotIsCollapsed = css`
+  display:none;
 `;

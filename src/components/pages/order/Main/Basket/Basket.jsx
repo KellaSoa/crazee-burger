@@ -7,16 +7,16 @@ import Footer from "./Footer";
 import EmptyBasket from "./EmptyBasket";
 import BasketProducts from "./BasketProducts";
 import { isEmpty } from "../../../../../utils/collection";
-import OrderContext from "../../../../context/OrderContext";
+import OrderContext from "../../../../../context/OrderContext";
 
 export default function Basket() {
-  const { basket } = useContext(OrderContext);
-  const isBasketEmpty = isEmpty(basket);
+  const { basket, menu } = useContext(OrderContext);
 
+  //if(!menu) return <span>Chargement ... </span>//because basket need info (price, image ...  in basket)
   return (
     <BasketStyled>
       <Total />
-      {isBasketEmpty ? <EmptyBasket /> : <BasketProducts />}
+      {isEmpty(basket) ? <EmptyBasket isLoading={menu === undefined} /> : <BasketProducts />}
 
       <Footer />
     </BasketStyled>

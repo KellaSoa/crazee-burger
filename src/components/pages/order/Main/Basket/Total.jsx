@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 import Header from "./Header";
 import { formatPrice, totalSumToPay } from "../../../../../utils/maths";
-import OrderContext from "../../../../context/OrderContext";
+import OrderContext from "../../../../../context/OrderContext";
 
 export default function Total() {
   const { basket, menu } = useContext(OrderContext);

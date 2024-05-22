@@ -39,13 +39,7 @@ const ButtonStyled = styled.button`
     cursor: not-allowed;
   }
 
-  .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: ${theme.fonts.size.SM};
-    margin-right: 8px;
-  }
+ 
   ${({ version }) => extraButton[version]}
 `;
 
@@ -58,6 +52,7 @@ const extraButtonPrimary = css`
     color: ${theme.colors.primary};
     border: 1px solid ${theme.colors.primary};
     transition: all 200ms ease-out;
+    cursor: pointer;
   }
 
   &:active {
@@ -77,6 +72,7 @@ const extraButtonSuccess = css`
     color: ${theme.colors.green};
     border: 1px solid ${theme.colors.green};
     transition: all 200ms ease-out;
+    cursor: pointer;
   }
 
   &:active {

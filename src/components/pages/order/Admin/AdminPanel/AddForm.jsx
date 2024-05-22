@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import OrderContext from '../../../../context/OrderContext';
+import OrderContext from '../../../../../context/OrderContext';
 import { EMPTY_PRODUCT } from '../../../../../enums/product';
 import Form from './Form';
 import ButtonMessage from './ButtonMessage';
@@ -9,7 +9,7 @@ import { replaceFrenchCommaWithDot } from '../../../../../utils/maths';
 
 export default function AddForm() {
   //state
-  const {handleAdd,newProduct,setNewProduct} = useContext(OrderContext)
+  const {handleAdd,newProduct,setNewProduct,username} = useContext(OrderContext)
   const {isSubmit, displaySuccessMessage} = useSuccessMessage()
   
   const newProductAdd ={
@@ -27,7 +27,7 @@ export default function AddForm() {
 
   const handleSubmit = (event) => { 
     event.preventDefault();
-    handleAdd(newProductAdd)
+    handleAdd(newProductAdd,username)
     setNewProduct(EMPTY_PRODUCT )
 
     displaySuccessMessage()

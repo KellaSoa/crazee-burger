@@ -3,7 +3,7 @@ import TabButton from "../../../reusable-ui/TabButton";
 import { useContext, useState } from "react";
 import { theme } from "../../../../theme/index";
 import { getTabsConfig } from "./helper/getTabsConfig";
-import OrderContext from "../../../context/OrderContext";
+import OrderContext from "../../../../context/OrderContext";
 
 export default function AdminTab() {
   //defaut active button add product
@@ -71,4 +71,6 @@ const AdminTabStyled = styled.div`
   button {
     margin-left: 1px;
   }
+
+  
 `;

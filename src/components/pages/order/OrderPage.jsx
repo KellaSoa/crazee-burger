@@ -1,16 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar/Navbar";
 import styled from "styled-components";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
-import OrderContext from "../../context/OrderContext";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { findInArray } from "../../../utils/collection";
+import { getUser } from "../../../api/user";
+import OrderContext from "../../../context/OrderContext";
+import { useParams } from "react-router-dom";
+import { getMenu } from "../../../api/product";
+import { getLocalStorage } from "../../../utils/window";
+import { initialiseUserSession } from "./initialiseUserSession";
 
 export default function OrderPage() {
-  //state
+  //state    
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [tabCurrentName, setTabCurrentName] = useState("add");
   const [tabActive, setTabActive] = useState("add");
@@ -20,12 +25,14 @@ export default function OrderPage() {
   const titleEditRef = useRef();
   const { menu, setMenu, handleAdd, handleDelete, handleEdit, handleReset } =
     useMenu();
-  const { basket, handleAddToBasket, handleDeleteProductBasket } = useBasket();
+  const { basket,setBasket, handleAddToBasket, handleDeleteProductBasket } = useBasket();
+  const { username } = useParams();
+
 
   const handleProductSelected = async (idProductSelected) => {
     //find product selected
     const productClicked = findInArray(idProductSelected, menu);
-    await setIsCollapsed(false);
+    await setIsCollapsed(true);
     await setTabCurrentName("edit");
     await setTabActive("edit");
     await setProductSelected(productClicked);
@@ -33,7 +40,31 @@ export default function OrderPage() {
     titleEditRef.current.focus();
   };
 
+  useEffect(()=>{
+    initialiseUserSession(username,setMenu,setBasket)
+  },[])
+  
+ /* const initialiseMenu = async() => { 
+    const menuReceived = await getMenu(username)
+    setMenu(menuReceived)
+    }
+    const initialiseBasket = () => { 
+    const basketReceived =  getLocalStorage(username) //localstorage synchron doesn't need await
+    if (basketReceived) setBasket(basketReceived)
+    }
+    const initialiseUserSession = async()=>{
+    await initialiseMenu() // because need price,image from menu so we need to await it 
+    initialiseBasket() 
+    }
+
+    
+    useEffect(()=>{
+    initialiseUserSession()
+    },[])*/
+
   const orderContextValue = {
+    username,
+
     isCollapsed,
     setIsCollapsed,
     isModeAdmin,
@@ -62,8 +93,6 @@ export default function OrderPage() {
 
     handleProductSelected,
   };
-
-  //render
   return (
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>

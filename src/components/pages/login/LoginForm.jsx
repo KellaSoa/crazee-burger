@@ -6,27 +6,27 @@ import { BsPersonCircle } from "react-icons/bs";
 import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
+import { authenticateUser } from "../../../api/user.jsx";
+import Welcome from "./welcome.jsx";
 
 export default function LoginForm() {
-  const [userName, setuserName] = useState("Kella");
+  const [userName, setUserName] = useState("Kella");
   const navigate = useNavigate();
 
-  const handeSubmit = (event) => {
+  const handeSubmit =  (event) => {
     event.preventDefault();
-    setuserName("");
+    authenticateUser(userName)
+    setUserName("");
     navigate(`order/${userName}`);
   };
 
   const handeChange = (event) => {
-    console.log(event.target.value);
-    setuserName(event.target.value);
+    setUserName(event.target.value);
   };
 
   return (
     <LoginFormStyled action="action" onSubmit={handeSubmit}>
-      <h1>Bienvenue chez nous !</h1>
-      <hr />
-      <h2>Connectez vous</h2>
+      <Welcome/>
       <TextInput
         value={userName}
         onChange={handeChange}
@@ -53,15 +53,14 @@ const LoginFormStyled = styled.form`
   padding: 40px ${theme.spacing.lg};
   border-radius: ${theme.borderRadius.round};
 
-  h1,
-  h2 {
-    color: ${theme.colors.white};
-    text-transform: capitalize;
-  }
-  hr {
-    border: 1.5px solid ${theme.colors.primary};
-    margin-bottom: 40px;
-  }
+  
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: ${theme.fonts.size.SM};
+    margin-right: 8px;
+  } 
 `;
 
 

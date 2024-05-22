@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 import Button from "./Button";
 
-export default function Card({
+export default function  Card({
   Icon,
   title,
   imageSource,
@@ -16,8 +16,8 @@ export default function Card({
   return (
     <CardStyled
       onClick={onClick}
-      isHoverable={isHoverable}
-      isSelected={isSelected}
+      $isHoverable={isHoverable}
+      $isSelected={isSelected}
     >
       <button
         className="delete-button"
@@ -49,8 +49,8 @@ export default function Card({
 const CardStyled = styled.div`
   background: ${theme.colors.white};
   border: border-box;
-  width: 240px;
-  height: 330px;
+  width: 200px;
+  height: 300px;
   display: grid;
   grid-template-rows: 65% 1fr;
   padding: 20px;
@@ -152,9 +152,9 @@ const CardStyled = styled.div`
     }
   }
 
-  ${({ isHoverable }) => isHoverable && extraStyleIsHoverable}
-  ${({ isHoverable, isSelected }) =>
-    isHoverable && isSelected && extraStyleSelected}
+  ${({ $isHoverable }) => $isHoverable && extraStyleIsHoverable}
+  ${({ $isHoverable, $isSelected }) =>
+    $isHoverable && $isSelected && extraStyleSelected}
 `;
 
 const extraStyleIsHoverable = css`

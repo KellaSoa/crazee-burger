@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "../../../../../../theme/index";
 import { formatPrice } from "../../../../../../utils/maths";
 import Card from "../../../../../reusable-ui/Card";
-import OrderContext from "../../../../../context/OrderContext";
+import OrderContext from "../../../../../../context/OrderContext";
 import { TiDelete } from "react-icons/ti";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
@@ -16,10 +16,12 @@ import {
   findInArray,
   isEmpty,
 } from "../../../../../../utils/collection";
+import Loader from "./Loader";
 
 export default function Menu() {
   //state
   const {
+    username,
     menu,
     isModeAdmin,
     handleDelete,
@@ -33,33 +35,29 @@ export default function Menu() {
     handleAddToBasket,
     handleDeleteProductBasket,
     handleProductSelected,
+    
   } = useContext(OrderContext);
 
   const handleCardDelete = (event, idProductDelete) => {
     event.stopPropagation();
-    handleDelete(idProductDelete);
-    handleDeleteProductBasket(idProductDelete);
+    handleDelete(idProductDelete,username);
+    handleDeleteProductBasket(idProductDelete,username);
     idProductDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT);
   };
 
   const handleAdd = (event, idProductSelected) => {
     event.stopPropagation();
-
-    handleAddToBasket(idProductSelected);
+ 
+    handleAddToBasket(idProductSelected, username);
   };
+  if(menu === undefined) return <Loader/>
 
   //render
   if (isEmpty(menu)) {
-    return (
-      <>
-        {isModeAdmin ? (
-          <EmptyMenuAdmin onClick={handleReset} />
-        ) : (
-          <EmptyMenuClient />
-        )}
-      </>
-    );
+    if (!isModeAdmin) return <EmptyMenuClient />
+    return <EmptyMenuAdmin onReset={() => handleReset(username)} />
   }
+
   return (
     <MenuStyled className="menu">
       {menu.map(({ id, title, imageSource, price }) => {
