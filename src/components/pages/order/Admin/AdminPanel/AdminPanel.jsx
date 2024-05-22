@@ -13,7 +13,6 @@ export default function AdminPanel() {
   return (
     <AdminPanelStyled $isCollapsed={isCollapsed}>
       {panels.map((panel, index) => {
-        console.log();
         return (
           <div
             key={index}
