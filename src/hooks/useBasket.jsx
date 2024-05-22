@@ -15,16 +15,17 @@ export const useBasket = () => {
       incrementQuantityProductInBasket(idProduct, basketCopy,username);
       return;
     }
-    createProductInBasket(idProduct, basketCopy);
+    createProductInBasket(idProduct, basketCopy,username);
   };
 
-  const createProductInBasket = (idProduct, basketCopy) => {
+  const createProductInBasket = (idProduct, basketCopy,username) => {
     //manip state
     const newProduct = { id: idProduct, quantity: 1 };
     const newProductInBasket = [newProduct, ...basketCopy];
 
     //update state
     setBasket(newProductInBasket);
+    setLocalStorage(username,newProductInBasket)
   };
   const incrementQuantityProductInBasket = (productId, basketCopy,username) => { 
     const indexOfCardBasketToIncrement = findIndex(productId, basketCopy);
