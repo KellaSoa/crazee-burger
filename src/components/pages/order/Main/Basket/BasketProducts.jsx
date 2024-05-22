@@ -8,6 +8,7 @@ import {
 } from "../../../../../utils/collection";
 import OrderContext from "../../../../../context/OrderContext";
 import {TransitionGroup,CSSTransition} from "react-transition-group"
+import { basketAnimation } from "../../../../../theme/animations";
 
 export default function BasketProducts() {
   const {
@@ -35,12 +36,12 @@ export default function BasketProducts() {
           return (
             <CSSTransition 
               appear={true}
-              classNames={"transition"}
+              classNames={"animation-basket"}
               key={basketProduct.id}
               timeout={{enter:500,exit:500}}
               nodeRef={nodeRef}
             >
-              <div ref={nodeRef} className="basket-card" key={basketProduct.id}>
+              <div ref={nodeRef} className="card-container">
                 <BasketCard
                   {...menuProduct}
                   imageSource={
@@ -60,6 +61,7 @@ export default function BasketProducts() {
                     basketProduct.id,
                     productSelected
                   )}
+                  className={"card"}
                 />
               </div>
             </CSSTransition>
@@ -81,29 +83,7 @@ const BasketProductsStled = styled.div`
     scrollbar-color: initial;
   }
  
-  .transition-enter{
-    transform:translateX(100px);
-    opacity: 0%;
-  }
-  .transition-enter-active{
-    transition: 0.5s;
-    transform: translateX(0px);
-    opacity: 100%;
-
-  }
- 
-  .transition-exit{
-    transform: translateX(0px);
-    opacity: 100%;
-  }
-  .transition-exit-active{
-    transform:translateX(-100px);
-    opacity: 0%;
-    transition: 0.5s;
-  }
-
-
-  .basket-card {
+  .card-container {
     margin: 10px 16px;
     height: 86px;
     box-sizing: border-box;
@@ -114,4 +94,5 @@ const BasketProductsStled = styled.div`
       /* margin-bottom: 20px; */
     }
   }
+  ${basketAnimation}
 `;
