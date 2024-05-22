@@ -17,6 +17,8 @@ import {
   isEmpty,
 } from "../../../../../../utils/collection";
 import Loader from "./Loader";
+import { TransitionGroup,CSSTransition } from "react-transition-group";
+import { cardAddAnimation } from "../../../../../../theme/animations";
 
 export default function Menu() {
   //state
@@ -59,24 +61,31 @@ export default function Menu() {
   }
 
   return (
-    <MenuStyled className="menu">
+    <TransitionGroup component={MenuStyled}>
       {menu.map(({ id, title, imageSource, price }) => {
         return (
-          <Card
+          <CSSTransition
+            appear
+            classNames={"animation-menu"}
+            timeout={500}
             key={id}
-            Icon={isModeAdmin && <TiDelete className="icon" />}
-            title={title}
-            imageSource={imageSource ? imageSource : IMAGE_COMING_SOON}
-            leftDescription={formatPrice(price)}
-            onDelete={(event) => handleCardDelete(event, id)}
-            onClick={isModeAdmin ? () => handleProductSelected(id) : null}
-            isHoverable={isModeAdmin}
-            isSelected={checkProductSelected(id, productSelected)}
-            onAdd={(event) => handleAdd(event, id)}
-          />
+          >
+            <Card
+              key={id}
+              Icon={isModeAdmin && <TiDelete className="icon" />}
+              title={title}
+              imageSource={imageSource ? imageSource : IMAGE_COMING_SOON}
+              leftDescription={formatPrice(price)}
+              onDelete={(event) => handleCardDelete(event, id)}
+              onClick={isModeAdmin ? () => handleProductSelected(id) : null}
+              isHoverable={isModeAdmin}
+              isSelected={checkProductSelected(id, productSelected)}
+              onAdd={(event) => handleAdd(event, id)}
+            />
+          </CSSTransition>
         );
       })}
-    </MenuStyled>
+    </TransitionGroup>
   );
 }
 
@@ -98,4 +107,5 @@ const MenuStyled = styled.div`
   .is-clicked {
     background-color: ${theme.colors.primary};
   }
+  ${cardAddAnimation}
 `;

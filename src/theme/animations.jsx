@@ -58,3 +58,24 @@ export const basketAnimation = css`
         transition: 0.5s;
     }
 `;
+
+export const cardAddAnimation = css`
+    .animation-menu-enter{
+        transform:translateX(-120px);
+        opacity: 0.01;
+        &.animation-menu-enter-active{
+            opacity: 1;
+            transform: translateX(0);
+            transition: all ${theme.speed.quick} ease-out;
+        }
+    }
+    .animation-menu-exit-active{
+        transform:translateX(0);
+        opacity: 1;
+        &.animation-menu-exit-active{
+            opacity: 0.01;
+            transform: translateX(0);
+            transition: all ${theme.speed.quick} ease-out;
+        }
+    }
+`;
