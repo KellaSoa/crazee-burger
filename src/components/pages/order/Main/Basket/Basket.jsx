@@ -4,20 +4,16 @@ import { theme } from "../../../../../theme";
 
 import Total from "./Total";
 import Footer from "./Footer";
-import EmptyBasket from "./EmptyBasket";
-import BasketProducts from "./BasketProducts";
-import { isEmpty } from "../../../../../utils/collection";
-import OrderContext from "../../../../../context/OrderContext";
+import Body from "./Body";
 
 export default function Basket() {
-  const { basket, menu } = useContext(OrderContext);
 
   //if(!menu) return <span>Chargement ... </span>//because basket need info (price, image ...  in basket)
   return (
     <BasketStyled>
       <Total />
-      {isEmpty(basket) ? <EmptyBasket isLoading={menu === undefined} /> : <BasketProducts />}
-
+      <Body/>
+      {/*{isEmpty(basket) ? <EmptyBasket isLoading={menu === undefined} /> : <BasketProducts />}*/}
       <Footer />
     </BasketStyled>
   );

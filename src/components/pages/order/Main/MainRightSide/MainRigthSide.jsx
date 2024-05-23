@@ -4,6 +4,8 @@ import Admin from '../../Admin/Admin'
 import { styled } from 'styled-components';
 import OrderContext from '../../../../../context/OrderContext';
 import { theme } from '../../../../../theme';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { adminAnimation } from '../../../../../theme/animations';
 
 export default function MainRigthSide() {
 
@@ -11,8 +13,13 @@ export default function MainRigthSide() {
   return (
     <MainRigthSideStyled className="menu-and-admin">
         <Menu />
-          {/* {isModeAdmin ? <Admin />: null} */}
-          {isModeAdmin && <Admin />} 
+        {isModeAdmin && (
+        <TransitionGroup>
+          <CSSTransition apper classNames={"admin"} timeout={5000}>
+            <Admin />
+          </CSSTransition>
+        </TransitionGroup>
+        )} 
     </MainRigthSideStyled>
   )
 }
@@ -21,6 +28,7 @@ const MainRigthSideStyled = styled.div`
     position: relative;
     overflow-y: hidden;    
     display: grid;
-    
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
+
+    ${adminAnimation}
 `;
