@@ -11,7 +11,7 @@ export default function Loader() {
 }
 
 const LoaderStyled = styled.div`
-background-color: ${theme.colors.background_dark};
+background-color: ${theme.colors.white};
 box-shadow: ${theme.shadows.strong};
 border-bottom-right-radius: ${theme.borderRadius};
 display: flex;
