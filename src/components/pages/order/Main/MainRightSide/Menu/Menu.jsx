@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme/index";
 import { formatPrice } from "../../../../../../utils/maths";
@@ -40,6 +40,8 @@ export default function Menu() {
     
   } = useContext(OrderContext);
 
+  const nodeRef = useRef(null);
+
   const handleCardDelete = (event, idProductDelete) => {
     event.stopPropagation();
     handleDelete(idProductDelete,username);
@@ -69,6 +71,7 @@ export default function Menu() {
             classNames={"animation-menu"}
             timeout={500}
             key={id}
+            nodeRef={nodeRef}
           >
             <Card
               key={id}
@@ -81,6 +84,7 @@ export default function Menu() {
               isHoverable={isModeAdmin}
               isSelected={checkProductSelected(id, productSelected)}
               onAdd={(event) => handleAdd(event, id)}
+              
             />
           </CSSTransition>
         );
