@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components';
 import ImagePreview from './ImagePreview';
 import TextInput from '../../../../reusable-ui/TextInput';
-import { getInputTextsConfig, getSelectsConfig } from './getInputTextsConfig';
 import Select from '../../../../reusable-ui/Select';
+import { getInputTextsConfig, getSelectsConfig } from './inputConfig';
 
 
 
@@ -30,7 +30,8 @@ const Form = React.forwardRef(
           ))}
   
           {selects.map((select)=> (
-            <Select {...select} key={select.id} onChange={onChange}/>
+            <Select {...select} key={select.id} onChange={onChange}  onFocus= {onFocus }
+            onBlur={onBlur}/>
           ))}
           {/*<Select name="isAvalaible" className="is-avalaible" id="3" options={isAvalaibleOptions}/> */}
  
@@ -57,10 +58,11 @@ export default Form
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: repeat(4,1fr);
-  //width: 70%;
+  width: 80%;
   height: 100%;
   grid-column-gap: 20px;
   grid-row-gap: 8px;
+  
   
   .input-fields{
     grid-area: 1 / 2 / -2 / 3 ;  
@@ -68,6 +70,7 @@ export default Form
     grid-template-columns:repeat(3fr 1fr);
     grid-template-rows: repeat(3,1fr);
     grid-row-gap: 8px;
+    grid-gap: 10px;
 
     .title{
       grid-area: 1/1/2/4;
@@ -77,13 +80,15 @@ export default Form
     }
     .price{
       grid-area: 3/1/4/2;
+      gap: 2px;
     }
-    .is-avalaible{
+    /*.is-avalaible{
       grid-area: 3/2/3/3;
+      gap: 2px;
     }
     .is-publicised{
       grid-area: 3/3/4/4;
-    }
+    }*/
 
   }
   .contain-button{
