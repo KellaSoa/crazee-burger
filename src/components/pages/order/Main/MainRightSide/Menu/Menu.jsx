@@ -64,8 +64,8 @@ export default function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled}>
-      {menu.map(({ id, title, imageSource, price }) => {
-        return (
+      {menu.map(({ id, title, imageSource, price }) => 
+        (
           <CSSTransition
             appear
             classNames={"animation-menu"}
@@ -87,8 +87,8 @@ export default function Menu() {
               
             />
           </CSSTransition>
-        );
-      })}
+        )
+      )}
     </TransitionGroup>
   );
 }

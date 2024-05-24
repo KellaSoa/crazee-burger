@@ -42,8 +42,8 @@ export default function AdminTab() {
         className={tabCurrentName == "add" || tabActive == "add"  ? "is-active" : ""}       
       />
        */}
-      {tabs.map((tab) => {
-        return (
+      {tabs.map((tab) => 
+        (
           <TabButton
             key={tab.id}
             id={tab.id}
@@ -54,8 +54,8 @@ export default function AdminTab() {
             Icon={tab.Icon}
             onClick={handleClick}
           />
-        );
-      })}
+        )
+      )}
     </AdminTabStyled>
   );
 }
