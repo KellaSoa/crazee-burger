@@ -7,17 +7,18 @@ import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
 import { authenticateUser } from "../../../api/user.jsx";
-import Welcome from "./welcome.jsx";
+import Welcome from "./Welcome.jsx";
 
 export default function LoginForm() {
   const [userName, setUserName] = useState("Kella");
   const navigate = useNavigate();
 
-  const handeSubmit =  async (event) => {
+  const handeSubmit = async (event) => {
     event.preventDefault();
-    const userReceived = await authenticateUser(userName)
+    //const userReceived = await authenticateUser(userName);
+
     setUserName("");
-    navigate(`order/${userReceived.username}`);
+    navigate(`order/${userName}`);
   };
 
   const handeChange = (event) => {
@@ -26,7 +27,7 @@ export default function LoginForm() {
 
   return (
     <LoginFormStyled action="action" onSubmit={handeSubmit}>
-      <Welcome/>
+      <Welcome />
       <TextInput
         value={userName}
         onChange={handeChange}
@@ -38,7 +39,7 @@ export default function LoginForm() {
       <Button
         label={"Accéder à mon espace"}
         Icon={<IoChevronForward className="iconForward" />}
-        version= "primary"
+        version="primary"
       />
     </LoginFormStyled>
   );
@@ -53,14 +54,11 @@ const LoginFormStyled = styled.form`
   padding: 40px ${theme.spacing.lg};
   border-radius: ${theme.borderRadius.round};
 
-  
   .icon {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: ${theme.fonts.size.SM};
     margin-right: 8px;
-  } 
+  }
 `;
-
-

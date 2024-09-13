@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 /*const firebaseConfig = {
   apiKey: import.meta.env.VITE_APP_API_KEY,
@@ -15,7 +15,7 @@ const firebaseConfig = {
   projectId: "app-crazee-burger",
   storageBucket: "app-crazee-burger.appspot.com",
   messagingSenderId: "683526187850",
-  appId: "1:683526187850:web:14c05b89113eb169c86fb3"
+  appId: "1:683526187850:web:14c05b89113eb169c86fb3",
 };
 
 const app = initializeApp(firebaseConfig);

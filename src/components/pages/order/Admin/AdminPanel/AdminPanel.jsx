@@ -12,16 +12,16 @@ export default function AdminPanel() {
   const panels = getPanelsConfig(hasCardSelected);
   return (
     <AdminPanelStyled $isCollapsed={isCollapsed}>
-      {panels.map((panel, index) => {
-        return (
+      {panels.map((panel, index) => 
+        (
           <div
             key={index}
             className={tabActive === panel.id ? "panelActive" : "panelInActive"}
           >
             {panel.Content}
           </div>
-        );
-      })}
+        )
+      )}
     </AdminPanelStyled>
   );
 }

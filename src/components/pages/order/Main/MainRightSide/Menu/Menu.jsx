@@ -10,6 +10,7 @@ import EmptyMenuClient from "./EmptyMenuClient";
 import {
   EMPTY_PRODUCT,
   IMAGE_COMING_SOON,
+  IMAGE_NO_STOCK
 } from "../../../../../../enums/product";
 import {
   checkProductSelected,
@@ -64,8 +65,8 @@ export default function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled}>
-      {menu.map(({ id, title, imageSource, price }) => {
-        return (
+      {menu.map(({ id, title, imageSource, price }) => 
+        (
           <CSSTransition
             appear
             classNames={"animation-menu"}
@@ -84,11 +85,12 @@ export default function Menu() {
               isHoverable={isModeAdmin}
               isSelected={checkProductSelected(id, productSelected)}
               onAdd={(event) => handleAdd(event, id)}
-              
+              isOverlapImageVisible={true}
+              overlapImageSource={IMAGE_NO_STOCK}
             />
           </CSSTransition>
-        );
-      })}
+        )
+      )}
     </TransitionGroup>
   );
 }
