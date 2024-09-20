@@ -26,3 +26,8 @@ dist-ssr
 
 .vercel
 .env
+
+# amplify
+.amplify
+amplify_outputs*
+amplifyconfiguration*
