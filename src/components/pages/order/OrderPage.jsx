@@ -10,8 +10,6 @@ import { findInArray } from "../../../utils/collection";
 import { getUser } from "../../../api/user";
 import OrderContext from "../../../context/OrderContext";
 import { useParams } from "react-router-dom";
-import { getMenu } from "../../../api/product";
-import { getLocalStorage } from "../../../utils/window";
 import { initialiseUserSession } from "./initialiseUserSession";
 
 export default function OrderPage() {
@@ -40,28 +38,12 @@ export default function OrderPage() {
     titleEditRef.current.focus();
   };
 
+  
   useEffect(()=>{
     initialiseUserSession(username,setMenu,setBasket)
   },[])
-  
- /* const initialiseMenu = async() => { 
-    const menuReceived = await getMenu(username)
-    setMenu(menuReceived)
-    }
-    const initialiseBasket = () => { 
-    const basketReceived =  getLocalStorage(username) //localstorage synchron doesn't need await
-    if (basketReceived) setBasket(basketReceived)
-    }
-    const initialiseUserSession = async()=>{
-    await initialiseMenu() // because need price,image from menu so we need to await it 
-    initialiseBasket() 
-    }
-
     
-    useEffect(()=>{
-    initialiseUserSession()
-    },[])*/
-
+ 
   const orderContextValue = {
     username,
 
