@@ -18,6 +18,7 @@ const RibbonStyled = styled.div`
     align-items: center;
     min-height: 100vh;
     background: #f0f0f0;
+    
   }
   .box {
     position: relative;
@@ -34,6 +35,7 @@ const RibbonStyled = styled.div`
     height: 150px;
     overflow: hidden;
     position: absolute;
+    z-index: 2;
   }
   .ribbon::before,
   .ribbon::after {

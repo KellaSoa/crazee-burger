@@ -19,7 +19,10 @@ import {
 } from "../../../../../../utils/collection";
 import Loader from "./Loader";
 import { TransitionGroup,CSSTransition } from "react-transition-group";
-import { cardAddAnimation } from "../../../../../../theme/animations";
+import {  menuAnimation } from "../../../../../../theme/animations";
+import { convertStringToBoolean } from "../../../../../../utils/string";
+import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated";
+
 
 export default function Menu() {
   //state
@@ -34,13 +37,13 @@ export default function Menu() {
     setIsCollapsed,
     setTabCurrentName,
     setTabActive,
-    titleEditRef,
+    titleEditRef,  
     handleAddToBasket,
     handleDeleteProductBasket,
     handleProductSelected,
     
   } = useContext(OrderContext);
-
+ 
   const nodeRef = useRef(null);
 
   const handleCardDelete = (event, idProductDelete) => {
@@ -65,7 +68,7 @@ export default function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled}>
-      {menu.map(({ id, title, imageSource, price }) => 
+      {menu.map(({ id, title, imageSource, price,isAvailable,isPublicised }) => 
         (
           <CSSTransition
             appear
@@ -74,20 +77,23 @@ export default function Menu() {
             key={id}
             nodeRef={nodeRef}
           >
-            <Card
-              key={id}
-              Icon={isModeAdmin && <TiDelete className="icon" />}
-              title={title}
-              imageSource={imageSource ? imageSource : IMAGE_COMING_SOON}
-              leftDescription={formatPrice(price)}
-              onDelete={(event) => handleCardDelete(event, id)}
-              onClick={isModeAdmin ? () => handleProductSelected(id) : null}
-              isHoverable={isModeAdmin}
-              isSelected={checkProductSelected(id, productSelected)}
-              onAdd={(event) => handleAdd(event, id)}
-              isOverlapImageVisible={true}
-              overlapImageSource={IMAGE_NO_STOCK}
-            />
+            <div className={isModeAdmin ? "card-container is-hoverable" : "card-container"} >
+              {convertStringToBoolean(isPublicised) && <RibbonAnimated/>}
+              <Card
+                key={id}
+                Icon={isModeAdmin && <TiDelete className="icon" />}
+                title={title}
+                imageSource={imageSource ? imageSource : IMAGE_COMING_SOON}
+                leftDescription={formatPrice(price)}
+                onDelete={(event) => handleCardDelete(event, id)}
+                onClick={isModeAdmin ? () => handleProductSelected(id) : null}
+                isHoverable={isModeAdmin}
+                isSelected={checkProductSelected(id, productSelected)}
+                onAdd={(event) => handleAdd(event, id)}
+                isOverlapImageVisible={convertStringToBoolean(isAvailable) === false}
+                overlapImageSource={IMAGE_NO_STOCK}
+              />
+            </div>
           </CSSTransition>
         )
       )}
@@ -106,12 +112,17 @@ const MenuStyled = styled.div`
   box-shadow: ${theme.shadows.strong};
   overflow-y: scroll;
 
-  .icon {
-    width: 100%;
-    height: 100%;
+  ${menuAnimation}
+  .card-container {
+    position: relative;
+    height: 330px;
+    border-radius: ${theme.borderRadius.extraRound};
+    &.is-hoverable{
+      :hover {
+        /*transform: scale(1.05);
+        transition: ease-out 0.4s;*/
+      }
+    }
   }
-  .is-clicked {
-    background-color: ${theme.colors.primary};
-  }
-  ${cardAddAnimation}
+  ${ribbonAnimation}
 `;

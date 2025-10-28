@@ -6,7 +6,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
-import { authenticateUser } from "../../../api/user.jsx";
+import { getUser, createUser, authenticateUser } from "../../../api/user.jsx";
 import Welcome from "./Welcome.jsx";
 
 export default function LoginForm() {
@@ -15,10 +15,10 @@ export default function LoginForm() {
 
   const handeSubmit = async (event) => {
     event.preventDefault();
-    //const userReceived = await authenticateUser(userName);
-
+   
+    const userReceived = await authenticateUser(userName);
     setUserName("");
-    navigate(`order/${userName}`);
+    navigate(`order/${userReceived.username}`);
   };
 
   const handeChange = (event) => {

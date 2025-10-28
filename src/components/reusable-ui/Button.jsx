@@ -6,10 +6,11 @@ export default function Button({
   Icon,
   version = "primary",
   onClick,
-  className
+  className,
+  disabled,
 }) {
   return (
-    <ButtonStyled version={version} onClick={onClick} className={className}>
+    <ButtonStyled version={version} onClick={onClick} className={className} disabled={disabled}>
       <span>{label}</span>
       {Icon && <div className="icon">{Icon && Icon}</div>}
     </ButtonStyled>
