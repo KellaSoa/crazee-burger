@@ -20,6 +20,7 @@ import {
 import Loader from "./Loader";
 import { TransitionGroup,CSSTransition } from "react-transition-group";
 import { cardAddAnimation } from "../../../../../../theme/animations";
+import { convertStringToBoolean } from "../../../../../../utils/string";
 
 export default function Menu() {
   //state
@@ -40,7 +41,7 @@ export default function Menu() {
     handleProductSelected,
     
   } = useContext(OrderContext);
-
+ 
   const nodeRef = useRef(null);
 
   const handleCardDelete = (event, idProductDelete) => {
@@ -65,7 +66,7 @@ export default function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled}>
-      {menu.map(({ id, title, imageSource, price }) => 
+      {menu.map(({ id, title, imageSource, price,isAvailable }) => 
         (
           <CSSTransition
             appear
@@ -85,7 +86,7 @@ export default function Menu() {
               isHoverable={isModeAdmin}
               isSelected={checkProductSelected(id, productSelected)}
               onAdd={(event) => handleAdd(event, id)}
-              isOverlapImageVisible={true}
+              isOverlapImageVisible={convertStringToBoolean(isAvailable) === false}
               overlapImageSource={IMAGE_NO_STOCK}
             />
           </CSSTransition>

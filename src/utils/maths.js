@@ -1,4 +1,5 @@
 import { findInArray } from "./collection";
+import { convertStringToBoolean } from "./string";
 
 export function formatPrice(priceToFormat) {
   let price = priceToFormat;
@@ -23,6 +24,7 @@ export const totalSumToPay = (basket, menu) => {
   return basket.reduce((total, basketProduct) => {
     const menuProduct = findInArray(basketProduct.id, menu);
     if(isNaN(menuProduct.price)) return total;    
+    if(convertStringToBoolean(menuProduct.isAvailable) === false) return total;
     total += menuProduct.price * basketProduct.quantity;
     return total;
   }, 0);

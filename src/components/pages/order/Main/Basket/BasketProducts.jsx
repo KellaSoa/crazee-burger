@@ -10,6 +10,10 @@ import OrderContext from "../../../../../context/OrderContext";
 import {TransitionGroup,CSSTransition} from "react-transition-group"
 import { basketAnimation } from "../../../../../theme/animations";
 
+import { formatPrice } from "../../../../../utils/maths";
+import { convertStringToBoolean } from "../../../../../utils/string";
+import { BASKET_MESSAGE } from "../../../../../enums/product";
+
 export default function BasketProducts() {
   const {
     username,
@@ -62,6 +66,8 @@ export default function BasketProducts() {
                     productSelected
                   )}
                   className={"card"}
+                  price={convertStringToBoolean(menuProduct.isAvailable) ? formatPrice(menuProduct.price) : BASKET_MESSAGE.NOT_AVAILABLE}
+
                 />
               </div>
             </CSSTransition>

@@ -30,8 +30,10 @@ export default function EditForm() {
   }
   const handleOnBlur = (event) => { 
     const valueOnBlur = event.target.value 
-    if(valueOnFocus !== valueOnBlur )
+    if(valueOnFocus !== valueOnBlur ){
       displaySuccessMessage()
+    }
+      
    }
  
   return (
