@@ -119,8 +119,8 @@ const MenuStyled = styled.div`
     border-radius: ${theme.borderRadius.extraRound};
     &.is-hoverable{
       :hover {
-        transform: scale(1.05);
-        transition: ease-out 0.4s;
+        /*transform: scale(1.05);
+        transition: ease-out 0.4s;*/
       }
     }
   }
