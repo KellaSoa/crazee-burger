@@ -82,7 +82,7 @@ const CardStyled = styled.div`
     padding: 0;
     border: none;
     background: none;
-    animation: ${fadeInFromRight} ${theme.speed.slow} ease-out;
+    animation: ${fadeInFromRight} ${theme.animations.speed.slow} ease-out;
 
     .icon {
       /* border: 1px solid blue; */
@@ -194,8 +194,7 @@ const CardStyled = styled.div`
 
 const extraStyleIsHoverable = css`
   &:hover:not(:disabled) {
-    transform: scale(1.05);
-    transition: ease-in-out 0.4;
+   
     border: 1px solid ${theme.colors.primary};
     cursor: pointer;
   }

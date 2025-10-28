@@ -13,6 +13,7 @@ import { basketAnimation } from "../../../../../theme/animations";
 import { formatPrice } from "../../../../../utils/maths";
 import { convertStringToBoolean } from "../../../../../utils/string";
 import { BASKET_MESSAGE } from "../../../../../enums/product";
+import Sticker from "../../../../reusable-ui/Sticker";
 
 export default function BasketProducts() {
   const {
@@ -46,6 +47,7 @@ export default function BasketProducts() {
               nodeRef={nodeRef}
             >
               <div ref={nodeRef} className="card-container">
+                {convertStringToBoolean(menuProduct.isPublicised) && <Sticker className="badge-new"/>}
                 <BasketCard
                   {...menuProduct}
                   imageSource={
@@ -93,12 +95,22 @@ const BasketProductsStled = styled.div`
     margin: 10px 16px;
     height: 86px;
     box-sizing: border-box;
+    position: relative;
     :first-child {
       /* margin-top: 20px; */
     }
     :last-child {
-      /* margin-bottom: 20px; */
+
     }
+    .badge-new{
+      position: absolute;
+      z-index: 2;
+      bottom:10%;
+      left: 21%;
+      transform: translateY(-21%);
+      transform: translateX(-5%);
+    }
+    
   }
   ${basketAnimation}
 `;
